@@ -158,6 +158,36 @@ export class AuthService {
     return moment().diff(moment(loggedTime).add(this.userToken.expiresIn, 'seconds')) >= 0;
   }
 
+  public getUserInfo(): Observable<ApiResponse<UserInfo>> {
+    return this._http.get(`${AppConstant.domain}/api/profile/basic-info`)
+      .map((resp) => resp.json())
+      .catch(this._handleError);
+  }
+
+  /**
+   * fillInfo
+   * @param obj
+   */
+  public updateUserInfo(obj: UserInfo): void {
+    this.currentUser = Object.assign(this.currentUser, obj);
+  }
+  /**
+   * Check valid token for resetting password
+   * @param token
+   * @returns {Observable<R>}
+   */
+  public checkTokenForgotPassword(token: string): Observable<ApiResponse<null>> {
+    let url = window.location.protocol + '//' + window.location.host;
+    let obj = {
+      code: token,
+      type: 0,
+      // callBackUri: `${url}/#/account/reset-password`
+    };
+    return this._http.post(`${AppConstant.domain}/api/code/valid`, obj)
+      .map((resp) => resp.json())
+      .catch(this._handleError);
+  }
+
   /**
    * Error handler for observable
    * @param error
@@ -167,4 +197,5 @@ export class AuthService {
   private _handleError(error: Response): Observable<ApiResponse<null>> {
     return Observable.throw(error.json());
   }
+
 }

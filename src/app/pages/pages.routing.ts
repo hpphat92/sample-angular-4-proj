@@ -22,10 +22,14 @@ export const routes: Routes = [
     path: 'pages',
     component: Pages,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
     ],
   },
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

@@ -1,0 +1,102 @@
+.modal-dialog {
+  .modal-header {
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    position: relative;
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 25px;
+      height: 25px;
+    }
+    .modal-header {
+      color: #fff;
+      background-color: #d1d4d7; 
+    }
+  }
+  .modal-content {
+    border-color: #d1d4d7; 
+    .confirm-btn {
+      border-width: 1px;
+      color: #fff;
+      background: #0275d8;
+      border-color: #0275d8;
+    }
+  }
+}
+
+.modal-primary {
+  .modal-content {
+    border-color: $primary; 
+    .confirm-btn {
+      color: #fff;
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+  .modal-header {
+    color: #fff;
+    background-color: $primary; 
+  }
+} 
+
+.modal-success {
+  .modal-content {
+    border-color: $success; 
+    .confirm-btn {
+      color: #fff;
+      background-color: $success;
+      border-color: $success;
+    }
+  }
+  .modal-header {
+    color: #fff;
+    background-color: $success;
+  }
+}
+
+.modal-info {
+  .modal-content {
+    border-color: $info; 
+    .confirm-btn {
+      color: #fff;
+      background-color: $info;
+      border-color: $info;
+    }
+  }
+  .modal-header {
+    color: #fff;
+    background-color: $info; 
+  }
+}
+
+.modal-warning {
+  .modal-content {
+    border-color: $warning; 
+    .confirm-btn {
+      color: #fff;
+      background-color: $warning;
+      border-color: $warning;
+    }
+  }
+  .modal-header {
+    color: #fff;
+    background-color: $warning; 
+  }
+}
+
+.modal-danger {
+  .modal-content {
+    border-color: $danger; 
+    .confirm-btn {
+      color: #fff;
+      background-color: $danger;
+      border-color: $danger; 
+    }
+  }
+  .modal-header {
+    color: #fff;
+    background-color: $danger; 
+  }
+}

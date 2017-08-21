@@ -16,6 +16,8 @@ import 'rxjs/add/operator/toPromise';
 
 import { LocalStorageService } from 'angular-2-local-storage';
 import { UserToken } from '../../models/user-token.model';
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 // https://www.illucit.com/blog/2016/03/angular2-http-authentication-interceptor/
 @Injectable()
@@ -25,7 +27,9 @@ export class ExtendedHttpService extends Http {
 
   constructor(backend: XHRBackend,
               defaultOptions: RequestOptions,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private _toast: ToastrService,
+              private _router: Router) {
     super(backend, defaultOptions);
   }
 
@@ -74,31 +78,54 @@ export class ExtendedHttpService extends Http {
 
     return options;
   }
-
-  public intercept(observable: Observable<Response>): Observable<Response> {
+  public intercept(observable: Observable<Response>, config?: any): Observable<Response> {
+    let args = arguments;
+    config = config || {};
     let shareRequest = observable.share();
     this.showProgress();
-    shareRequest.subscribe(
-      () => {
+    shareRequest.map((resp) => resp.json()).subscribe(
+      (resp) => {
         // subscribe
         this.hideProgress();
       },
-      () => {
-        // error
-        this.hideProgress();
+      (err) => {
+        try {
+          if (!config.skipAlert && err.status !== 403 && err.status !== 401) {
+            let errObj = JSON.parse(err._body);
+            this._toast.error(errObj.message, "Error");
+          }
+          if (err.status === 401) {
+            this.localStorageService.remove('userInfo');
+            this.localStorageService.remove('userToken');
+            this.localStorageService.remove('logged-time');
+            this._router.navigate(['page', 'login']);
+
+            // error
+            this.hideProgress();
+            return;
+          }
+          if (err.status === 403) {
+            this._router.navigate(['forbidden']);
+            // error
+            this.hideProgress();
+            return;
+          }
+        } catch (e) {
+          this.hideProgress();
+        }
+
       },
       () => {
         // complete
         this.hideProgress();
       }
     );
-    
+
     return shareRequest
       .catch((err, source) => {
         return Observable.throw(err);
       });
   }
-
   private showProgress() {
     // this.progressService.start();
   }
@@ -112,7 +139,7 @@ export class MyQueryEncoder extends QueryEncoder {
   encodeKey(k: string): string {
     return encodeURIComponent(k);
   }
- 
+
   encodeValue(v: string): string {
     return encodeURIComponent(v);
   }

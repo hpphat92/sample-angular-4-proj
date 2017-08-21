@@ -44,7 +44,6 @@ import {
   BaKameleonPicturePipe,
   BaProfilePicturePipe
 } from './pipes';
-
 import {
   BaImageLoaderService,
   BaMenuService,

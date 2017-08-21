@@ -91,7 +91,7 @@ export class AuthService {
         email: data.email,
         password: data.password
       };
-      return this._http.post(`${AppConstant.domain}/profile/token`, body)
+      return this._http.post(`${AppConstant.domain}/a-api/login`, body)
         .map((resp) => resp.json())
         .catch(this._handleError);
 
@@ -100,7 +100,7 @@ export class AuthService {
       let body = {
         refreshToken: userToken.refreshToken
       };
-      return this._http.post(`${AppConstant.domain}/profile/refresh-token`, body)
+      return this._http.post(`${AppConstant.domain}/a-api/token/refresh`, body)
         .map((resp) => resp.json());
     }
   }

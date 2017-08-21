@@ -3,8 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -16,12 +20,16 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
+import { SHARED_SERVICES } from './shared/services';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  GlobalState,
+  ...SHARED_SERVICES,
+  AuthGuard
 ];
 
 export type StoreType = {
@@ -46,6 +54,13 @@ export type StoreType = {
     ReactiveFormsModule,
     NgaModule.forRoot(),
     NgbModule.forRoot(),
+    BrowserAnimationsModule,
+    LocalStorageModule.withConfig({
+      prefix: 'my-app',
+      storageType: 'localStorage'
+    }),
+    ToastrModule.forRoot(), 
+    ToastContainerModule.forRoot(),
     PagesModule,
     routing
   ],

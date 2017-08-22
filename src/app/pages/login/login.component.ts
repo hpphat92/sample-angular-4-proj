@@ -43,7 +43,7 @@ export class Login {
         this.submitted = false;
         this._auth.getUserInfo().subscribe((response: ApiResponse<any>) => {
           this._auth.updateUserInfo(response.data);
-          this._router.navigate(['pages', 'dashboard']);
+          this._router.navigate(['app', 'dashboard']);
         });
 
       }, (err: ApiResponse<any>) => {

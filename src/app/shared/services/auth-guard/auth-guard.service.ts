@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from "@angular/router";
 
 import { AuthService } from "../auth/auth.service";
 
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     return new Promise((resolve) => {
       if (!this._authService.isAuthenticated) {
         this._authService.logout();
-        this.router.navigateByUrl('/page/login');
+        this.router.navigateByUrl('/home/login');
         resolve(false);
       } else {
         if (this._authService.isTokenExpired()) {
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
 
             resolve(true);
           }, (err) => {
-            this.router.navigateByUrl('/page/login');
+            this.router.navigateByUrl('/home/login');
             resolve(false);
           });
         } else {
@@ -44,12 +44,12 @@ export class AuthGuard implements CanActivate {
 }
 
 @Injectable()
-export class AnonymousPage implements CanActivate {
+export class AnonymousPage implements CanActivateChild {
 
   constructor(private _authService: AuthService, private router: Router, private _toast: ToastrService) {
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     return new Promise((resolve) => {
       if (!this._authService.isAuthenticated) {
@@ -57,8 +57,29 @@ export class AnonymousPage implements CanActivate {
       } else {
         this._authService.fromUnAuthPage = true;
         // this._toast.info('You are already signed in', 'Info');
-        this.router.navigate(['app', 'dashboard']);
         resolve(false);
+        this.router.navigateByUrl('/app/dashboard');
+      }
+    });
+  }
+}
+
+@Injectable()
+export class AuthorizedPage implements CanActivateChild {
+
+  constructor(private _authService: AuthService, private router: Router, private _toast: ToastrService) {
+  }
+
+  public canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+
+    return new Promise((resolve) => {
+      if (this._authService.isAuthenticated) {
+        resolve(true);
+      } else {
+        // this._authService.fromUnAuthPage = true;
+        // this._toast.info('You are already signed in', 'Info');
+        resolve(false);
+        this.router.navigateByUrl('/home/login');
       }
     });
   }

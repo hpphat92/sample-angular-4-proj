@@ -54,7 +54,7 @@ export class Signup {
         this._auth.refreshToken();
         this.submitted = false;
 
-        this._router.navigate(['pages', 'dashboard']);
+        this._router.navigate(['app', 'dashboard']);
 
       }, (err: ApiResponse<any>) => {
         this.submitted = false;

@@ -83,7 +83,7 @@ export class AuthService {
   }
 
   public signup(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/profile/signup`, data)
+    return this._http.post(`${AppConstant.domain}/w-api/signup`, data)
       .map((resp) => resp.json());
   }
 
@@ -108,12 +108,17 @@ export class AuthService {
   }
 
   public logout(): Observable<ApiResponse<any>> {
-    if (this._refreshSubscription) {
-      this._refreshSubscription.unsubscribe();
-    }
+    this.clear();
+    return this._http.delete(`${AppConstant.domain}/api/token`).flatMap(() => {
+      return new Observable((observer) => {
+        if (this._refreshSubscription) {
+          this._refreshSubscription.unsubscribe();
+        }
+        observer.next();
+        observer.complete();
+      });
 
-    return this._http.delete(`${AppConstant.domain}/profile/token`)
-      .map((resp) => resp.json());
+    })
   }
 
   public forgotPassword(data): Observable<ApiResponse<any>> {
@@ -127,7 +132,7 @@ export class AuthService {
   }
 
   public resetPassword(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/profile/password/reset`, data)
+    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/new-password`, data)
       .map((resp) => resp.json());
   }
 

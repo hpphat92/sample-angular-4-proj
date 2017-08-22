@@ -59,13 +59,14 @@ export type StoreType = {
       prefix: 'my-app',
       storageType: 'localStorage'
     }),
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot(),
     ToastContainerModule.forRoot(),
     PagesModule,
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    ...SHARED_SERVICES
   ]
 })
 

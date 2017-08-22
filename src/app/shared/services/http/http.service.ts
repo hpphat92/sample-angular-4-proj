@@ -73,7 +73,7 @@ export class ExtendedHttpService extends Http {
 
     if (url && token) {
 
-      options.headers.append('Authorization', `Bearer ${token.accessToken}`);
+      options.headers.append('Authorization', `${token.accessToken}`);
     }
 
     return options;

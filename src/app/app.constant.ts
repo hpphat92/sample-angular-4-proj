@@ -1,5 +1,5 @@
 export const AppConstant = {
-  domain: 'http://nois.newoceaninfosys.com:44459',
+  domain: 'http://192.168.1.242:44459',
   format: {
     moment: {
       shortDate: 'YYYY-MM-DD',

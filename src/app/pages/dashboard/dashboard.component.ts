@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Http } from "@angular/http";
+import { AppConstant } from "../../app.constant";
 
 @Component({
   selector: 'dashboard',
@@ -8,51 +10,10 @@ import { Component } from '@angular/core';
 export class Dashboard {
   public items = [];
 
-  constructor() {
-    this.items = [
-      {
-        id: 1,
-        name: 'Test 1',
-        manager: {
-          id: 1,
-          firstName: "string",
-          lastName: "string",
-          email: "string",
-        },
-        services: [
-          {
-            mappingId: 1,
-            id: 1,
-            name: 'string 1',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png'
-          },
-          {
-            mappingId: 2,
-            id: 2,
-            name: 'string 2',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png'
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: 'Test 1',
-        services: [
-          {
-            mappingId: 1,
-            id: 1,
-            name: 'string 1',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png'
-          },
-          {
-            mappingId: 2,
-            id: 2,
-            name: 'string 2',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Vanamo_Logo.png'
-          }
-        ]
-      }
-    ]
+  constructor(private _http: Http) {
+    this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
+      this.items = resp.data;
+    })
   }
 
 }

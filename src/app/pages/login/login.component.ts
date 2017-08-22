@@ -41,8 +41,10 @@ export class Login {
         this._auth.setToken(resp.data);
         this._auth.refreshToken();
         this.submitted = false;
-
-        this._router.navigate(['pages', 'dashboard']);
+        this._auth.getUserInfo().subscribe((response: ApiResponse<any>) => {
+          this._auth.updateUserInfo(response.data);
+          this._router.navigate(['pages', 'dashboard']);
+        });
 
       }, (err: ApiResponse<any>) => {
         this.submitted = false;

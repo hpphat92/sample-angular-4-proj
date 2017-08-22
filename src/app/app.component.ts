@@ -5,6 +5,8 @@ import { GlobalState } from './global.state';
 import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
+import { AuthService } from "./shared/services/auth/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 /*
  * App Component
@@ -28,7 +30,9 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig) {
+              private themeConfig: BaThemeConfig,
+              private _authService: AuthService,
+              private  _toast: ToastrService) {
 
     themeConfig.config();
 
@@ -37,6 +41,16 @@ export class App {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+    if (this._authService.userToken && this._authService.userToken.accessToken) {
+      this._authService.refreshToken();
+      this._authService.getUserInfo().subscribe((response) => {
+        this._authService.updateUserInfo(response.data);
+        if (this._authService.fromUnAuthPage) {
+          this._authService.fromUnAuthPage = false;
+          this._toast.info('You are already signed in', 'Info');
+        }
+      });
+    }
   }
 
   public ngAfterViewInit(): void {

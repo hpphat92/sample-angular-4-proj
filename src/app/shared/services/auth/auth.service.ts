@@ -22,6 +22,8 @@ export class AuthService {
               private _localStorage: LocalStorageService) {
   }
 
+  public fromUnAuthPage: boolean = false;
+
   get currentUser(): UserInfo {
     if (this._currentUser && this._currentUser.id) {
       return this._currentUser;
@@ -115,12 +117,12 @@ export class AuthService {
   }
 
   public forgotPassword(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/code`, data)
+    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/check-account`, data)
       .map((resp) => resp.json());
   }
 
   public verifyCode(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/code/verify`, data)
+    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/verify-code`, data)
       .map((resp) => resp.json());
   }
 
@@ -159,7 +161,7 @@ export class AuthService {
   }
 
   public getUserInfo(): Observable<ApiResponse<UserInfo>> {
-    return this._http.get(`${AppConstant.domain}/api/profile/basic-info`)
+    return this._http.get(`${AppConstant.domain}/w-api/profile/basic-info`)
       .map((resp) => resp.json())
       .catch(this._handleError);
   }

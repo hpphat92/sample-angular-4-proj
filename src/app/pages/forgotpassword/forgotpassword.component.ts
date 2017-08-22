@@ -59,11 +59,6 @@ export class ForgotPassword {
       this._auth.forgotPassword({
         email: formValue.email
       }).subscribe((resp) => {
-
-        this._router.navigate(['page', 'login']);
-        this._toast.success('An email has been sent to the address on file covering how to reset your password');
-        // this._toast.success("Your password has successful reset", "Success");
-        // this._router.navigate(['page', 'login']);
         this.currentStep = 2;
       }, (err: any) => {
         this.submitted = false;
@@ -76,12 +71,10 @@ export class ForgotPassword {
   public onSubmitStep2(formValue: any): void {
     this.submitted = true;
     if (this.frm.valid) {
-      this._auth.forgotPassword({
-        email: formValue.email
+      this._auth.verifyCode({
+        email: this.frm.value.email,
+        code: formValue.verifyCode
       }).subscribe((resp) => {
-
-        this._router.navigate(['page', 'login']);
-        this._toast.success('An email has been sent to the address on file covering how to reset your password');
         // this._toast.success("Your password has successful reset", "Success");
         // this._router.navigate(['page', 'login']);
         this.currentStep = 3;
@@ -97,8 +90,9 @@ export class ForgotPassword {
     this.submitted3 = true;
     if (this.frm.valid) {
       let data = {
-        "isLoginNow": true,
-        "newPassword": formValue.password
+        "password": formValue.password,
+        email: this.frm.value.email,
+        code: this.frm2.value.verifyCode
       };
       this.submitted3 = true;
       this._auth.resetPassword(data).subscribe((resp) => {

@@ -1,5 +1,5 @@
 export const AppConstant = {
-  domain: 'http://nois.newoceaninfosys.com:44455/w-api',
+  domain: 'http://nois.newoceaninfosys.com:44459',
   format: {
     moment: {
       shortDate: 'YYYY-MM-DD',

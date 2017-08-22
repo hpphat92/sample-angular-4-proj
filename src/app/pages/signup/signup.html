@@ -2,6 +2,26 @@
   <div class="auth-content">
     <h1>Sign up</h1>
     <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+      <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.dirty || firstName.touched)}">
+        <input [formControl]="firstName" type="text" class="form-control" placeholder="First Name">
+        <p class="form-error-message">
+          <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+            <span *ngIf="firstName.errors?.required">
+              First Name cannot be blank
+            </span>
+          </span>
+        </p>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': lastName.invalid && (lastName.dirty || lastName.touched)}">
+        <input [formControl]="lastName" type="text" class="form-control" placeholder="Last Name">
+        <p class="form-error-message">
+          <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <span *ngIf="lastName.errors?.required">
+              Last Name cannot be blank
+            </span>
+          </span>
+        </p>
+      </div>
       <div class="form-group" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
         <input [formControl]="email" type="email" class="form-control" placeholder="Email">
         <p class="form-error-message">

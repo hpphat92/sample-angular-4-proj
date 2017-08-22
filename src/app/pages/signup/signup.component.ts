@@ -16,6 +16,8 @@ import { EqualPasswordsValidator } from "../../theme/validators/equalPasswords.v
 export class Signup {
 
   public frm: FormGroup;
+  public firstName: AbstractControl;
+  public lastName: AbstractControl;
   public email: AbstractControl;
   public password: AbstractControl;
   public confirmPassword: AbstractControl;
@@ -26,6 +28,8 @@ export class Signup {
               private _toast: ToastrService,
               private _router: Router) {
     this.frm = fb.group({
+      'firstName': ['', Validators.compose([Validators.required])],
+      'lastName': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
       'password': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
       'confirmPassword': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
@@ -34,6 +38,8 @@ export class Signup {
       validator: EqualPasswordsValidator.validate('password', 'confirmPassword')
     });
 
+    this.firstName = this.frm.controls['firstName'];
+    this.lastName = this.frm.controls['lastName'];
     this.email = this.frm.controls['email'];
     this.password = this.frm.controls['password'];
     this.confirmPassword = this.frm.controls['confirmPassword'];
@@ -43,7 +49,7 @@ export class Signup {
     this.submitted = true;
     if (this.frm.valid) {
       this.frm.disable();
-      this._auth.authorize(this.frm.value).subscribe((resp: ApiResponse<any>) => {
+      this._auth.signup(this.frm.value).subscribe((resp: ApiResponse<any>) => {
         this._auth.setToken(resp.data);
         this._auth.refreshToken();
         this.submitted = false;
@@ -52,7 +58,6 @@ export class Signup {
 
       }, (err: ApiResponse<any>) => {
         this.submitted = false;
-        this._toast.error(err.message, "Error");
         this.frm.enable();
       });
     }

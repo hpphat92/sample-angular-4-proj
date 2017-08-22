@@ -14,7 +14,7 @@ export class BaContentTop {
   constructor(private _state:GlobalState) {
     this._state.subscribe('menu.activeLink', (activeLink) => {
       if (activeLink) {
-        this.activePageTitle = activeLink.title;
+        this.activePageTitle = activeLink.alternateTitle || activeLink.title;
       }
     });
   }

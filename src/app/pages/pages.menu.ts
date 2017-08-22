@@ -6,7 +6,44 @@ export const PAGES_MENU = [
         path: 'dashboard',
         data: {
           menu: {
-            title: 'general.menu.dashboard',
+            title: 'general.menu.porfolioView',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'submit-data',
+        data: {
+          menu: {
+            title: 'general.menu.submitData',
+            alternateTitle: 'general.menu.submitDataAlter',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'support',
+        data: {
+          menu: {
+            title: 'general.menu.support',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: 'service',
+        data: {
+          menu: {
+            title: 'general.menu.service',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,

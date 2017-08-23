@@ -20,7 +20,9 @@
     <td class="service-container">
       <div *ngFor="let i of item.services" class="item">
         <div class="image">
-          <img [src]="i.imageUrl" alt="">
+          <a [routerLink]="['/app/portfolio-detail/'+i.mappingId]">
+            <img [src]="i.imageUrl" alt="">
+          </a>
         </div>
       </div>
     </td>

@@ -102,10 +102,12 @@ export class AuthService {
 
     } else {
       let userToken: UserToken = this._localStorage.get('userToken') as UserToken;
-      console.log('try refreshtoken', UserToken);
       let body = {
         refreshToken: userToken ? userToken.refreshToken : ''
       };
+      if (!userToken) {
+        return;
+      }
       return this._http.post(`${AppConstant.domain}/w-api/token/refresh`, body)
         .map((resp) => resp.json());
     }
@@ -162,10 +164,10 @@ export class AuthService {
       this._refreshSubscription = Observable.timer(dueTime, scheduleTime).subscribe(() => {
         this.authorize(null, true).subscribe((resp: ApiResponse<UserToken>) => {
           this.userToken = resp.data;
+        }, () => {
+          this.clear();
+          this._router.navigateByUrl('/home/login');
         });
-      }, () => {
-        this.clear();
-        this._router.navigateByUrl('home/login');
       });
     }
   }

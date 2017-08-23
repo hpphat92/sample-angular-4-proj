@@ -59,7 +59,7 @@ export class AnonymousPage implements CanActivateChild {
         this._authService.fromUnAuthPage = true;
         // this._toast.info('You are already signed in', 'Info');
         resolve(false);
-        this.router.navigateByUrl('/app/dashboard');
+        this.router.navigate(['app', 'portfolio']);
       }
     });
   }

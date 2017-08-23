@@ -41,7 +41,7 @@ export class Login {
         this._auth.setToken(resp.data);
         this._auth.refreshToken();
         this.submitted = false;
-        this._router.navigate(['app', 'dashboard']);
+        this._router.navigate(['app', 'portfolio']);
       }, (err: ApiResponse<any>) => {
         this.submitted = false;
         this._toast.error(err.message, "Error");

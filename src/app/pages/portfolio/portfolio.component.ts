@@ -3,11 +3,11 @@ import { AppConstant } from "../../app.constant";
 import { ExtendedHttpService } from "../../shared/services/http/http.service";
 
 @Component({
-  selector: 'dashboard',
-  styleUrls: ['./dashboard.scss'],
-  templateUrl: './dashboard.html'
+  selector: 'portfolio',
+  styleUrls: ['./portfolio.scss'],
+  templateUrl: './portfolio.html'
 })
-export class Dashboard {
+export class portfolio {
   public items = [];
 
   constructor(private _http: ExtendedHttpService) {

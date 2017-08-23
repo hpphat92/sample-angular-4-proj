@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { EqualPasswordsValidator } from "../../../../theme/validators/equalPasswords.validator";
 import { AuthService } from "../../../../shared/services/auth/auth.service";
+import { GlobalState } from "app/global.state";
 
 @Component({
   selector: 'profile-password',
@@ -9,13 +10,22 @@ import { AuthService } from "../../../../shared/services/auth/auth.service";
   styleUrls: ['./password.scss']
 
 })
-export class ProfilePasswordComponent {
+export class ProfilePasswordComponent implements AfterViewInit {
+
   public frm: FormGroup;
   public confirmPassword: AbstractControl;
   public password: AbstractControl;
   public oldPassword: AbstractControl;
 
-  constructor(fb: FormBuilder, private _authService: AuthService) {
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this._state.notifyDataChanged('menu.activeLink', {
+        title: 'Password'
+      });
+    })
+  }
+
+  constructor(fb: FormBuilder, private _authService: AuthService, private _state: GlobalState) {
     this.frm = fb.group({
       'confirmPassword': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
       'password': ['', [Validators.required]],
@@ -29,6 +39,7 @@ export class ProfilePasswordComponent {
     this.confirmPassword = this.frm.controls['confirmPassword'];
     this.password = this.frm.controls['password'];
     this.oldPassword = this.frm.controls['oldPassword'];
+
   }
 
   public changePassword() {

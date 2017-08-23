@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../app.translation.module';
 import { NgaModule } from '../../theme/nga.module';
 
-import { Dashboard } from './dashboard.component';
-import { routing } from './dashboard.routing';
+import { portfolio } from './portfolio.component';
+import { routing } from './portfolio.routing';
 
 @NgModule({
   imports: [
@@ -16,9 +16,9 @@ import { routing } from './dashboard.routing';
     routing
   ],
   declarations: [
-    Dashboard
+    portfolio
   ],
   providers: [
   ]
 })
-export class DashboardModule {}
+export class PortfolioModule {}

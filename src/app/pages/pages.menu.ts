@@ -3,7 +3,7 @@ export const PAGES_MENU = [
     path: 'app',
     children: [
       {
-        path: 'dashboard',
+        path: 'portfolio',
         data: {
           menu: {
             title: 'general.menu.porfolioView',

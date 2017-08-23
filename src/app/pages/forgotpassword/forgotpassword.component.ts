@@ -103,7 +103,7 @@ export class ForgotPassword {
         this._auth.getUserInfo().then((response: ApiResponse<any>) => {
         });
 
-        this._router.navigate(['app', 'dashboard']);
+        this._router.navigate(['app', 'portfolio']);
       }, (err) => {
         this.submitted3 = false;
       })

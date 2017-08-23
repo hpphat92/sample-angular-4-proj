@@ -32,8 +32,9 @@ export const routes: Routes = [
     component: Pages,
     canActivateChild: [AuthorizedPage],
     children: [
-      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+      {path: '', redirectTo: 'portfolio', pathMatch: 'full'},
+      {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
+      {path: 'portfolio-detail/:id', loadChildren: './portfolio-detail/portfolio-detail.module#PortfolioDetailModule'},
       {path: 'submit-data', loadChildren: './submit-data/submit-data.module#SubmitDataModule'},
       {path: 'support', loadChildren: './support/support.module#SupportModule'},
       {path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},

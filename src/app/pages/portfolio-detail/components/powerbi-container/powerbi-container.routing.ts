@@ -1,13 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { Dashboard } from './dashboard.component';
+import { PowerbiContainerComponent } from './powerbi-container.component';
 import { ModuleWithProviders } from '@angular/core';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
     path: '',
-    component: Dashboard,
+    component: PowerbiContainerComponent,
     children: [
       // { path: 'treeview', component: TreeViewComponent }
     ]

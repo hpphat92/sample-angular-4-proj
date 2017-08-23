@@ -41,16 +41,7 @@ export class App {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
-    if (this._authService.userToken && this._authService.userToken.accessToken) {
-      this._authService.refreshToken();
-      this._authService.getUserInfo().subscribe((response) => {
-        this._authService.updateUserInfo(response.data);
-        if (this._authService.fromUnAuthPage) {
-          this._authService.fromUnAuthPage = false;
-          this._toast.info('You are already signed in', 'Info');
-        }
-      });
-    }
+
   }
 
   public ngAfterViewInit(): void {

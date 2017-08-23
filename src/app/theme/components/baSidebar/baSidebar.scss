@@ -54,12 +54,16 @@ $angle-right: '\f101';
     height: 100%;
     position: fixed;
   }
-
+  .slimScrollDiv {
+    height: auto !important;
+    overflow: auto !important;
+  }
   .al-sidebar-list {
     margin: 0;
     overflow: hidden;
     padding: 0;
     list-style: none;
+    height: auto !important;
   }
 
   .al-sidebar-sublist .subitem-submenu-list {

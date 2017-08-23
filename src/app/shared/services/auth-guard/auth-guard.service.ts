@@ -74,7 +74,11 @@ export class AuthorizedPage implements CanActivateChild {
 
     return new Promise((resolve) => {
       if (this._authService.isAuthenticated) {
-        resolve(true);
+        this._authService.refreshToken();
+        this._authService.getUserInfo().subscribe((response) => {
+          this._authService.updateUserInfo(response.data);
+          resolve(true);
+        });
       } else {
         // this._authService.fromUnAuthPage = true;
         // this._toast.info('You are already signed in', 'Info');

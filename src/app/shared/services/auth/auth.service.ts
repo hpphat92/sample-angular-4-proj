@@ -13,8 +13,9 @@ import { AppConstant } from '../../../app.constant';
 
 @Injectable()
 export class AuthService {
-  private _currentUser: UserInfo;
+  private _currentUser: UserInfo = null;
   private _userToken: UserToken;
+  private subscription: any = null;
 
   private _refreshSubscription: Subscription;
 
@@ -165,10 +166,28 @@ export class AuthService {
     return moment().diff(moment(loggedTime).add(this.userToken.expiresIn, 'seconds')) >= 0;
   }
 
-  public getUserInfo(): Observable<ApiResponse<UserInfo>> {
-    return this._http.get(`${AppConstant.domain}/w-api/profile/basic-info`)
-      .map((resp) => resp.json())
-      .catch(this._handleError);
+  public getUserInfo() {
+    return new Promise((resolve, reject) => {
+      if (this.currentUser.isAuth) {
+        resolve();
+        return;
+      }
+      if (this.subscription) {
+        console.log(this.subscription);
+        this.subscription.subscribe(() => {
+          resolve();
+        })
+        return;
+      }
+      this.subscription = this._http.get(`${AppConstant.domain}/w-api/profile/basic-info`);
+      this.subscription
+        .map((resp) => resp.json())
+        .catch(this._handleError)
+        .subscribe((resp) => {
+          this.updateUserInfo(resp.data);
+          resolve();
+        });
+    });
   }
 
   /**
@@ -177,7 +196,9 @@ export class AuthService {
    */
   public updateUserInfo(obj: UserInfo): void {
     this.currentUser = Object.assign(this.currentUser, obj);
+    this.currentUser.isAuth = true;
   }
+
   /**
    * Check valid token for resetting password
    * @param token

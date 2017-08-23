@@ -32,7 +32,7 @@ export class App {
               private viewContainerRef: ViewContainerRef,
               private themeConfig: BaThemeConfig,
               private _authService: AuthService,
-              private  _toast: ToastrService) {
+              private _toast: ToastrService) {
 
     themeConfig.config();
 

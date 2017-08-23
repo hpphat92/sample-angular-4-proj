@@ -75,8 +75,7 @@ export class AuthorizedPage implements CanActivateChild {
     return new Promise((resolve) => {
       if (this._authService.isAuthenticated) {
         this._authService.refreshToken();
-        this._authService.getUserInfo().subscribe((response) => {
-          this._authService.updateUserInfo(response.data);
+        this._authService.getUserInfo().then((response) => {
           resolve(true);
         });
       } else {

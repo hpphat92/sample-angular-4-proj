@@ -2,6 +2,7 @@ import { BaseModel } from './base.model';
 
 export class UserInfo extends BaseModel {
   public firstName: string;
+  public isAuth: boolean;
   public lastName: string;
   public phone: string;
   public email: string;
@@ -13,6 +14,7 @@ export class UserInfo extends BaseModel {
   constructor() {
     super();
     this.id = undefined;
+    this.isAuth = undefined;
     this.firstName = undefined;
     this.lastName = undefined;
     this.phone = undefined;

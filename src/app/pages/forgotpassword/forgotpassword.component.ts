@@ -100,8 +100,7 @@ export class ForgotPassword {
         // Add automatically grant token after expiring
         this._auth.refreshToken();
 
-        this._auth.getUserInfo().subscribe((response: ApiResponse<any>) => {
-          this._auth.updateUserInfo(response.data);
+        this._auth.getUserInfo().then((response: ApiResponse<any>) => {
         });
 
         this._router.navigate(['app', 'dashboard']);

@@ -1,7 +1,6 @@
 <div class="auth-main">
   <div class="auth-content row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <form [formGroup]="frm" (ngSubmit)="onSubmit()">
         <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.dirty || firstName.touched)}">
           <label>First Name</label>

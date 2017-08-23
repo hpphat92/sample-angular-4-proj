@@ -30,7 +30,6 @@ export class ProfileInfoComponent {
         title: 'Profile'
       });
     });
-
     this.frm = fb.group({
       'id': [''],
       'firstName': ['', Validators.compose([Validators.required])],

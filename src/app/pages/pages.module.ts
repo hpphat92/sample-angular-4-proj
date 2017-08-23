@@ -7,6 +7,7 @@ import { AppTranslationModule } from '../app.translation.module';
 
 import { Pages } from './pages.component';
 import { SHARED_SERVICES } from "../shared/index";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [CommonModule, AppTranslationModule, NgaModule, routing],

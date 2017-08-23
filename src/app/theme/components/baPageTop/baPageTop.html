@@ -11,7 +11,7 @@
         <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
       </a>
       <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
-        <li class="dropdown-item"><a routerLink="/app/profile"><i class="fa fa-user"></i>Profile</a></li>
+        <li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i class="fa fa-user"></i>Profile</a></li>
         <li class="dropdown-item"><a href><i class="fa fa-cog"></i>Settings</a></li>
         <li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i class="fa fa-power-off"></i>Sign
           out</a></li>

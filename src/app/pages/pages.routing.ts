@@ -36,6 +36,7 @@ export const routes: Routes = [
       {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
       {path: 'submit-data', loadChildren: './submit-data/submit-data.module#SubmitDataModule'},
       {path: 'support', loadChildren: './support/support.module#SupportModule'},
+      {path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
     ],
   },
   {

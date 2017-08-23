@@ -33,8 +33,9 @@
       "option1": "Option 1"
     },
     "menu": {
-      "porfolioView": "Porftolio View",
+      "porfolioView": "Porfolio View",
       "submitData": "Submit Data",
+      "profile": "Profile",
       "submitDataAlter": "Secure data submission",
       "support": "Support",
       "service": "Service",

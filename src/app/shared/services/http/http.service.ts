@@ -38,7 +38,6 @@ export class ExtendedHttpService extends Http {
   }
 
   public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    // debugger;
     return this.intercept(super.get(url, this.getRequestOptionArgs(url, options)));
   }
 

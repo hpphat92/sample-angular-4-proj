@@ -38,4 +38,8 @@ export class BaPageTop {
     this._router.navigate(['home', 'login']);
     // });
   }
+
+  public goProfile() {
+    this._router.navigate(['app', 'profile'])
+  }
 }

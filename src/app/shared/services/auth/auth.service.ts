@@ -9,6 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 // App modules
 import { UserInfo, UserToken, ApiResponse } from '../../models';
 import { AppConstant } from '../../../app.constant';
+import { Router } from "@angular/router";
 
 
 @Injectable()
@@ -20,7 +21,8 @@ export class AuthService {
   private _refreshSubscription: Subscription;
 
   constructor(private _http: Http,
-              private _localStorage: LocalStorageService) {
+              private _localStorage: LocalStorageService,
+              private _router: Router) {
   }
 
   public fromUnAuthPage: boolean = false;
@@ -70,7 +72,7 @@ export class AuthService {
     if (!userToken) {
       this.clear();
     } else {
-      this.currentUser = userToken.basicInfo;
+      // this.currentUser = userToken.basicInfo;
       this.userToken = userToken;
     }
   }
@@ -150,6 +152,9 @@ export class AuthService {
         this.authorize(null, true).subscribe((resp: ApiResponse<UserToken>) => {
           this.userToken = resp.data;
         });
+      }, () => {
+        this.clear();
+        this._router.navigateByUrl('home/login');
       });
     }
   }
@@ -173,7 +178,6 @@ export class AuthService {
         return;
       }
       if (this.subscription) {
-        console.log(this.subscription);
         this.subscription.subscribe(() => {
           resolve();
         })
@@ -212,6 +216,17 @@ export class AuthService {
       // callBackUri: `${url}/#/account/reset-password`
     };
     return this._http.post(`${AppConstant.domain}/api/code/valid`, obj)
+      .map((resp) => resp.json())
+      .catch(this._handleError);
+  }
+
+  /**
+   * Update user profile
+   * @param user data
+   * @returns {Observable<R>}
+   */
+  public updateUserProfile(data: any): Observable<ApiResponse<null>> {
+    return this._http.put(`${AppConstant.domain}/w-api/profile`, data)
       .map((resp) => resp.json())
       .catch(this._handleError);
   }

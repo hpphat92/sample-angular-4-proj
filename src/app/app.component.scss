@@ -126,4 +126,15 @@
     cursor: pointer;
   }
 
+  .form-error-message {
+    font-family: Helvetica;
+    color: #ff3d3d;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 300;
+    text-align: left;
+    padding-bottom: 24px;
+    margin: 0;
+    height: 0;
+  }
 }

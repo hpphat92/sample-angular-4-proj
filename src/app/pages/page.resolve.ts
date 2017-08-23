@@ -10,12 +10,9 @@ export class CheckTokenResolve implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let self = this;
-    debugger;
     return new Promise((resolve, reject) => {
       self.route.params.subscribe(
         (param: any) => {
-          debugger;
-
           resolve();
         });
     });

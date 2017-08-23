@@ -6,16 +6,16 @@ profile {
       .nav-item {
         a {
           position: relative;
-          background: -webkit-linear-gradient(top, #0275d8 0%,#025aa5 100%);
+          background: #fff;
           padding: 12px 15px;
           text-transform: uppercase;
           white-space: nowrap;
-          color: #fff;
+          color: #1e5155;
           font-weight: bold;
           border-radius: 3px 3px 0 0;
-          text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+          text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
           &:hover {
-            background: #0275d8;
+            background: rgba(#1e5155, 0.1);
           }
           &::after {
             content: '';
@@ -34,8 +34,8 @@ profile {
         }
         &.active {
           a {
-            background: #fff;
-            color: #0275d8;
+            background: #1e5155;
+            color: #fff;
           }
         }
       }
@@ -55,16 +55,16 @@ profile {
       .nav-item {
         a {
           position: relative;
-          background: -webkit-linear-gradient(top, #0275d8 0%,#025aa5 100%);
+          background: #fff;
           padding: 15px;
           margin-bottom: 1px;
           text-transform: uppercase;
-          color: #fff;
+          color: #1e5155;
           font-weight: bold;
           border-radius: 3px 0 0 3px;
-          text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+          text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
           &:hover {
-            background: #0275d8;
+            background: rgba(#1e5155, 0.1);
           }
           &::after {
             content: none;
@@ -76,8 +76,8 @@ profile {
         }
         &.active {
           a {
-            background: #fff;
-            color: #0275d8;
+            background: #1e5155;
+            color: #fff;
           }
         }
       }

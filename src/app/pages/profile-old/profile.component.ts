@@ -4,6 +4,7 @@ import { AppConstant } from "../../app.constant";
 import { GlobalState } from "../../global.state";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../shared/services/auth/auth.service";
+import { ExtendedHttpService } from "../../shared/services/http/http.service";
 
 @Component({
   selector: 'profile',
@@ -19,7 +20,7 @@ export class Profile {
   public telephone: AbstractControl;
   public submitted: boolean = false;
 
-  constructor(private _http: Http, private _state: GlobalState, private fb: FormBuilder, private _authService: AuthService) {
+  constructor(private _http: ExtendedHttpService, private _state: GlobalState, private fb: FormBuilder, private _authService: AuthService) {
     this._http.get(`${AppConstant.domain}/w-api/profile`).map((json) => json.json()).subscribe((resp) => {
       this.frm.setValue(resp.data);
     }, () => {

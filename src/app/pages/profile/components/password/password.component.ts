@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { EqualPasswordsValidator } from "../../../../theme/validators/equalPasswords.validator";
+import { AuthService } from "../../../../shared/services/auth/auth.service";
 
 @Component({
   selector: 'profile-password',
@@ -7,7 +10,34 @@ import { Component } from '@angular/core';
 
 })
 export class ProfilePasswordComponent {
+  public frm: FormGroup;
+  public confirmPassword: AbstractControl;
+  public password: AbstractControl;
+  public oldPassword: AbstractControl;
 
-  constructor() {
+  constructor(fb: FormBuilder, private _authService: AuthService) {
+    this.frm = fb.group({
+      'confirmPassword': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+      'password': ['', [Validators.required]],
+      'oldPassword': ['', [Validators.required]],
+    }, {
+      // Add validator for matching password and confirm password
+      validator: EqualPasswordsValidator.validate('password', 'confirmPassword')
+    });
+
+    // Set shortcut for control that used in HTML files
+    this.confirmPassword = this.frm.controls['confirmPassword'];
+    this.password = this.frm.controls['password'];
+    this.oldPassword = this.frm.controls['oldPassword'];
+  }
+
+  public changePassword() {
+    let model = {
+      "currentPassword": this.oldPassword.value,
+      "newPassword": this.password.value
+    }
+    this._authService.changePassword(model).subscribe(() => {
+      this.frm.reset();
+    })
   }
 }

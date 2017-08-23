@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import * as _ from 'lodash';
 import { isObject } from 'util';
 import { ToastrService } from 'ngx-toastr';
+import { ExtendedHttpService } from "../http/http.service";
 
 @Injectable()
 export class Util {
 
-  constructor(private _http: Http, private _toast: ToastrService) {
+  constructor(private _http: ExtendedHttpService, private _toast: ToastrService) {
 
   }
 
@@ -85,7 +86,7 @@ export class Util {
       let passwordInput = group.controls[passwordKey],
         passwordConfirmationInput = group.controls[passwordConfirmationKey];
       if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({ notEquivalent: true })
+        return passwordConfirmationInput.setErrors({notEquivalent: true})
       } else {
         return passwordConfirmationInput.setErrors(null);
       }
@@ -94,21 +95,21 @@ export class Util {
 
   public downloadFile(url: string): void {
     let filename = this.getFilename(url);
-    this._http.get(url, { responseType: 3 }).subscribe(resp => {
+    this._http.get(url, {responseType: 3}).subscribe(resp => {
       let blob = new Blob([(<any>resp)._body]);
       let link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob); 
+      link.href = window.URL.createObjectURL(blob);
       link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }, (err) => { 
+    }, (err) => {
       this._toast.error(err.message || err, "Error");
     });
   }
 
   public getFilename(url): string {
-    if(!url) {
+    if (!url) {
       return null;
     }
     return url.substring(url.lastIndexOf('/') + 1);

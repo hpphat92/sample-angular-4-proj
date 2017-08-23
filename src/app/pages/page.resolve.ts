@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, ActivatedRoute } from "@angular/router";
-import { Http } from "@angular/http";
+import { ExtendedHttpService } from "../shared/services/http/http.service";
 
 @Injectable()
 export class CheckTokenResolve implements Resolve<any> {
 
-  constructor(private _http: Http, private route: ActivatedRoute) {
+  constructor(private _http: ExtendedHttpService, private route: ActivatedRoute) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

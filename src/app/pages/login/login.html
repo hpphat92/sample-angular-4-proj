@@ -22,9 +22,6 @@
           <span *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.required">
             Password cannot be blank
           </span>
-          <span *ngIf="password.invalid && (password.dirty || password.touched) && (password.errors?.minlength || password.errors?.maxlength)">
-            Password length must be between 4 and 15
-          </span>
         </p>
       </div>
 

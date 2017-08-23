@@ -7,7 +7,8 @@ import { AuthService } from '../services';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private _auth: AuthService) { }
+  constructor(private router: Router, private _auth: AuthService) {
+  }
 
   canActivate() {
     return new Promise((resolve) => {
@@ -23,6 +24,7 @@ export class AuthGuard implements CanActivate {
 
             resolve(true);
           }, (err) => {
+            this._auth.clear();
             this.router.navigate(['login']);
             resolve(false);
           });

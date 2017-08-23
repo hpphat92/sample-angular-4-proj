@@ -22,6 +22,7 @@ import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 import { SHARED_SERVICES } from './shared/services';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { ExtendedHttpService } from "./shared/services/http/http.service";
 
 
 // Application wide providers
@@ -66,6 +67,7 @@ export type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,
+    ExtendedHttpService,
     ...SHARED_SERVICES
   ]
 })

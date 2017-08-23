@@ -39,8 +39,8 @@ export class ForgotPassword {
     });
 
     this.frm3 = fb.group({
-      'confirmPassword': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
-      'password': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+      'confirmPassword': ['', [Validators.required]],
+      'password': ['', [Validators.required]],
     }, {
       // Add validator for matching password and confirm password
       validator: EqualPasswordsValidator.validate('password', 'confirmPassword')

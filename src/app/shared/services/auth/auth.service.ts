@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 // 3rd modules
 import * as moment from 'moment';
@@ -10,6 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 import { UserInfo, UserToken, ApiResponse } from '../../models';
 import { AppConstant } from '../../../app.constant';
 import { Router } from "@angular/router";
+import { ExtendedHttpService } from "../http/http.service";
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class AuthService {
 
   private _refreshSubscription: Subscription;
 
-  constructor(private _http: Http,
+  constructor(private _http: ExtendedHttpService,
               private _localStorage: LocalStorageService,
               private _router: Router) {
   }
@@ -102,8 +102,9 @@ export class AuthService {
 
     } else {
       let userToken: UserToken = this._localStorage.get('userToken') as UserToken;
+      console.log('try refreshtoken', UserToken);
       let body = {
-        refreshToken: userToken.refreshToken
+        refreshToken: userToken ? userToken.refreshToken : ''
       };
       return this._http.post(`${AppConstant.domain}/w-api/token/refresh`, body)
         .map((resp) => resp.json());
@@ -136,6 +137,16 @@ export class AuthService {
 
   public resetPassword(data): Observable<ApiResponse<any>> {
     return this._http.post(`${AppConstant.domain}/w-api/forgot-password/new-password`, data)
+      .map((resp) => resp.json());
+  }
+
+  /**
+   * Change password for profile
+   * @param data
+   * @returns {Observable<R>}
+   */
+  public changePassword(data): Observable<ApiResponse<any>> {
+    return this._http.post(`${AppConstant.domain}/w-api/profile/password`, data)
       .map((resp) => resp.json());
   }
 

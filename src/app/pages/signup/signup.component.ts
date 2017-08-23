@@ -31,10 +31,10 @@ export class Signup {
       'firstName': ['', Validators.compose([Validators.required])],
       'lastName': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
-      'password': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
-      'confirmPassword': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+      'password': ['', [Validators.required]],
+      'confirmPassword': ['', [Validators.required]],
 
-    },{
+    }, {
       validator: EqualPasswordsValidator.validate('password', 'confirmPassword')
     });
 

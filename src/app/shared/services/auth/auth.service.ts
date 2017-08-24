@@ -115,7 +115,7 @@ export class AuthService {
 
   public logout(): Observable<ApiResponse<any>> {
     this.clear();
-    return this._http.delete(`${AppConstant.domain}/api/token`).flatMap(() => {
+    return this._http.delete(`${AppConstant.domain}/w-api/logout`).flatMap(() => {
       return new Observable((observer) => {
         if (this._refreshSubscription) {
           this._refreshSubscription.unsubscribe();
@@ -148,7 +148,7 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   public changePassword(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/w-api/profile/password`, data)
+    return this._http.put(`${AppConstant.domain}/w-api/profile/password`, data)
       .map((resp) => resp.json());
   }
 
@@ -162,7 +162,8 @@ export class AuthService {
         this._refreshSubscription.unsubscribe();
       }
       this._refreshSubscription = Observable.timer(dueTime, scheduleTime).subscribe(() => {
-        this.authorize(null, true).subscribe((resp: ApiResponse<UserToken>) => {
+        let p = this.authorize(null, true);
+        p && p.subscribe((resp: ApiResponse<UserToken>) => {
           this.userToken = resp.data;
         }, () => {
           this.clear();

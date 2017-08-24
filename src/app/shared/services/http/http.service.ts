@@ -73,11 +73,12 @@ export class ExtendedHttpService extends Http {
 
     if (url && token) {
 
-      options.headers.append('Authorization', `${token.accessToken}`);
+      options.headers.append('Authorization', `Bearer ${token.accessToken}`);
     }
 
     return options;
   }
+
   public intercept(observable: Observable<Response>, config?: any): Observable<Response> {
     let args = arguments;
     config = config || {};
@@ -86,6 +87,9 @@ export class ExtendedHttpService extends Http {
     shareRequest.map((resp) => resp.json()).subscribe(
       (resp) => {
         // subscribe
+        if (resp.message) {
+          this._toast.success(resp.message, 'Success');
+        }
         this.hideProgress();
       },
       (err) => {
@@ -126,6 +130,7 @@ export class ExtendedHttpService extends Http {
         return Observable.throw(err);
       });
   }
+
   private showProgress() {
     // this.progressService.start();
   }

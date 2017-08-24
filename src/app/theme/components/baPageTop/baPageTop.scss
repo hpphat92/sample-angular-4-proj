@@ -33,7 +33,9 @@
     float: left;
     outline: none !important;
     line-height: 60px;
-
+    img {
+      max-height: $top-height;
+    }
     span {
       color: $primary;
     }

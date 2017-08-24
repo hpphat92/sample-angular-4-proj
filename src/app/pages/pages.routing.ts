@@ -3,6 +3,7 @@ import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
 import { AnonymousPage, AuthGuard } from "./../shared/services/auth-guard";
 import { AuthorizedPage } from "../shared/services/auth-guard/auth-guard.service";
+import { UnAuthPage } from "./un-auth-page/un-auth-page.component";
 
 // noinspection TypeScriptValidateTypes
 
@@ -11,6 +12,7 @@ import { AuthorizedPage } from "../shared/services/auth-guard/auth-guard.service
 export const routes: Routes = [
   {
     path: 'home',
+    component: UnAuthPage,
     canActivateChild: [AnonymousPage],
     children: [
       {

@@ -34,6 +34,7 @@
   label {
     margin-bottom: 5px;
     color: $content-text;
+    font-family: sans-serif;
     font-weight: $font-normal;
     font-size: 13px;
   }
@@ -41,7 +42,7 @@
 
 .form-control {
   color: $content-text;
-  @include placeholderStyle($content-text, 1);
+  @include placeholderStyle($content-text, 0.8);
   border: 1px solid $input-border;
   border-radius: 5px;
   background-color: $input-background;

@@ -28,7 +28,7 @@ $angle-right: '\f101';
       height: auto;
       line-height: 29px;
       &:hover {
-        color: $primary;
+        color: $primary-light;
       }
     }
     &.selected:not(.with-sub-menu) > a {

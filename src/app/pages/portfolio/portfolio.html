@@ -1,10 +1,10 @@
 <div class="header-button pull-right">
-  <button class="btn btn-default btn-with-icon" placement="top" ngbTooltip="Tooltip on top">
+  <a class="btn btn-default btn-with-icon" [routerLink]="['/app/active-service']" placement="top" ngbTooltip="Tooltip on top">
     <i class="fa fa-plus"></i>
-  </button>
-  <button class="btn btn-default btn-with-icon" placement="top" ngbTooltip="Tooltip on top">
+  </a>
+  <a class="btn btn-default btn-with-icon" [routerLink]="['/app/inactive-service']" placement="top" ngbTooltip="Tooltip on top">
     <i class="fa fa-minus"></i>
-  </button>
+  </a>
 </div>
 <table class="table table-porfolio">
   <thead>

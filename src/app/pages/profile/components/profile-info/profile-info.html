@@ -1,9 +1,10 @@
-<div class="auth-main">
-  <div class="auth-content row">
-    <div class="col-md-12">
-      <form [formGroup]="frm" (ngSubmit)="onSubmit()">
-        <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.dirty || firstName.touched)}">
-          <label>First Name</label>
+<div class="auth-content row">
+  <div class="col-md-12">
+    <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+      <div class="form-group row"
+           [ngClass]="{'has-error': firstName.invalid && (firstName.dirty || firstName.touched)}">
+        <label class="col-md-2">First Name</label>
+        <div class="col-md-10">
           <input [formControl]="firstName" id="firstName" type="text" class="form-control" placeholder="First Name">
           <p class="form-error-message">
           <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
@@ -13,8 +14,10 @@
           </span>
           </p>
         </div>
-        <div class="form-group" [ngClass]="{'has-error': lastName.invalid && (lastName.dirty || lastName.touched)}">
-          <label>Last Name</label>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-error': lastName.invalid && (lastName.dirty || lastName.touched)}">
+        <label class="col-md-2">Last Name</label>
+        <div class="col-md-10">
           <input [formControl]="lastName" type="text" class="form-control" placeholder="Last Name">
           <p class="form-error-message">
           <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
@@ -24,8 +27,10 @@
           </span>
           </p>
         </div>
-        <div class="form-group" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
-          <label>Email</label>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
+        <label class="col-md-2">Email</label>
+        <div class="col-md-10">
           <input [formControl]="email" type="email" class="form-control" placeholder="Email">
           <p class="form-error-message">
           <span *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -38,8 +43,12 @@
           </span>
           </p>
         </div>
-        <div class="form-group" [ngClass]="{'has-error': telephone.invalid && (telephone.dirty || telephone.touched)}">
-          <label>Phone</label>
+      </div>
+      <div class="form-group row"
+           [ngClass]="{'has-error': telephone.invalid && (telephone.dirty || telephone.touched)}">
+        <label class="col-md-2">Phone</label>
+        <div class="col-md-10">
+
           <input [formControl]="telephone" type="text" class="form-control" placeholder="Phone Number">
           <p class="form-error-message">
           <span *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)">
@@ -52,12 +61,10 @@
           </span>
           </p>
         </div>
-        <div>
-          <button type="submit" class="btn btn-submit btn-primary" [disabled]="frm.invalid || submitted">Save
-          </button>
-        </div>
-      </form>
-    </div>
+        <button type="submit" class="btn btn-primary" [disabled]="frm.invalid || submitted">Save
+        </button>
+      </div>
+    </form>
   </div>
 </div>
 

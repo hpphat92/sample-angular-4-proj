@@ -1,7 +1,32 @@
 @import 'conf/conf';
 
 $text-color: $default-text;
-
+.auth-top {
+  background-color: $sidebar;
+  position: fixed;
+  z-index: 904;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);
+  height: $top-height;
+  width: 100%;
+  min-width: 320px;
+  padding: 0 32px 0 40px;
+  .al-logo {
+    color: $sidebar-text;
+    display: block;
+    font-size: 24px;
+    font-family: $font-family;
+    white-space: nowrap;
+    float: left;
+    outline: none !important;
+    line-height: 60px;
+    img {
+      max-height: $top-height;
+    }
+    span {
+      color: $primary;
+    }
+  }
+}
 .auth-main {
   display: flex;
   align-items: center;

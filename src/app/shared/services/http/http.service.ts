@@ -18,6 +18,7 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { UserToken } from '../../models/user-token.model';
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { ProgressService } from "../progress/progress.service";
 
 // https://www.illucit.com/blog/2016/03/angular2-http-authentication-interceptor/
 @Injectable()
@@ -29,7 +30,8 @@ export class ExtendedHttpService extends Http {
               defaultOptions: RequestOptions,
               private localStorageService: LocalStorageService,
               private _toast: ToastrService,
-              private _router: Router) {
+              private _router: Router,
+              private progressService: ProgressService) {
     super(backend, defaultOptions);
   }
 
@@ -132,11 +134,11 @@ export class ExtendedHttpService extends Http {
   }
 
   private showProgress() {
-    // this.progressService.start();
+    this.progressService.start();
   }
 
   private hideProgress() {
-    // this.progressService.done();
+    this.progressService.done();
   }
 }
 

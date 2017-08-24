@@ -6,22 +6,24 @@
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
 
   <div class="user-profile clearfix text-center">
-    <a class="text-white d-block" href="javascript:void(0)" (click)="goProfile()">
-      Hello {{currentUser?.email}}
-    </a>
-    <a class="text-white d-block" href="javascript:void(0)" (click)="logout()">
-      Logout
-    </a>
-    <!--<div class="dropdown al-user-profile">-->
-    <!--<a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">-->
-    <!--<img src="{{ ( 'Nasta' | baProfilePicture ) }}">-->
+    <!--<a class="text-white d-block" href="javascript:void(0)" (click)="goProfile()">-->
+      <!--Hello {{currentUser?.email}}-->
     <!--</a>-->
-    <!--<ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">-->
-    <!--<li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i class="fa fa-user"></i>Profile</a></li>-->
-    <!--<li class="dropdown-item"><a href><i class="fa fa-cog"></i>Settings</a></li>-->
-    <!--<li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i class="fa fa-power-off"></i>Sign-->
-    <!--out</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-</div>
+    <!--<a class="text-white d-block" href="javascript:void(0)" (click)="logout()">-->
+      <!--Logout-->
+    <!--</a>-->
+    <div class="dropdown al-user-profile">
+      <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+        <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
+      </a>
+      <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+        <li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i
+          class="fa fa-user"></i>Profile</a></li>
+        <li class="dropdown-item"><a href><i class="fa fa-cog"></i>Settings</a></li>
+        <li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i
+          class="fa fa-power-off"></i>Sign
+          out</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

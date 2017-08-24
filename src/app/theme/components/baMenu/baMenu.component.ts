@@ -4,7 +4,9 @@ import { Subscription } from 'rxjs/Rx';
 
 import { BaMenuService } from '../../services';
 import { GlobalState } from '../../../global.state';
-
+import { Http } from "@angular/http";
+import { AppConstant } from "../../../app.constant";
+import * as _ from 'lodash';
 @Component({
   selector: 'ba-menu',
   templateUrl: './baMenu.html',
@@ -24,8 +26,36 @@ export class BaMenu {
   public hoverElemTop: number;
   protected _onRouteChange: Subscription;
   public outOfArea: number = -200;
+  public items = [];
 
-  constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState) {
+  constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http) {
+    this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
+      this.items = _.map(resp.data, (d, id) => {
+        return {
+          hidden: false,
+          title: (d as any).name,
+          icon: 'ion-stats-bars',
+          selected: false,
+          expanded: false,
+          order: id + 1,
+          route: {
+            paths: 'app'
+          },
+          path: 'app',
+          children: _.map((d as any).services, (sub) => {
+            return {
+              title: (sub as any).name,
+              hidden: false,
+              route: {
+                paths: 'portfolio-detail/' + (sub as any).mappingId
+              },
+              path: 'portfolio-detail/' + (sub as any).mappingId,
+            }
+          })
+        };
+      });
+
+    })
   }
 
   public updateMenu(newMenuItems) {

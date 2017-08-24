@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../app.translation.module';
 import { NgaModule } from '../../theme/nga.module';
 
-import { portfolio } from './portfolio.component';
+import { Portfolio } from './portfolio.component';
 import { routing } from './portfolio.routing';
+import { Ng2TooltipOverlayModule } from "ng2-tooltip-overlay";
 
 @NgModule({
   imports: [
@@ -13,10 +14,11 @@ import { routing } from './portfolio.routing';
     FormsModule,
     AppTranslationModule,
     NgaModule,
+    Ng2TooltipOverlayModule,
     routing
   ],
   declarations: [
-    portfolio
+    Portfolio
   ],
   providers: [
   ]

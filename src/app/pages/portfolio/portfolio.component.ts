@@ -7,8 +7,11 @@ import { ExtendedHttpService } from "../../shared/services/http/http.service";
   styleUrls: ['./portfolio.scss'],
   templateUrl: './portfolio.html'
 })
-export class portfolio {
+export class Portfolio {
   public items = [];
+  public position = {
+    position: 'top cursor'
+  };
 
   constructor(private _http: ExtendedHttpService) {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {

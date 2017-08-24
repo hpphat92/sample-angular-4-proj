@@ -4,6 +4,13 @@
     [menuItem]="menuItems[0]"
     (itemHover)="hoverItem($event)"
     (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item>
+  <div *ngIf="items.length">
+    <ba-menu-item
+      [menuItem]="i"
+      (itemHover)="hoverItem($event)"
+      (toggleSubMenu)="toggleSubMenu($event)"
+      *ngFor="let i of items"></ba-menu-item>
+  </div>
 </ul>
 <ul id="al-sidebar-list-bottom" class="al-sidebar-list" baSlimScroll [baSlimScrollOptions]="{}"
     (mouseleave)="hoverElemTop=outOfArea">
@@ -14,5 +21,5 @@
     *ngFor="let item of menuItems | slice: 1"></ba-menu-item>
 </ul>
 <!--<div class="sidebar-hover-elem" [ngStyle]="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}"-->
-     <!--[ngClass]="{'show-hover-elem': showHoverElem }">-->
+<!--[ngClass]="{'show-hover-elem': showHoverElem }">-->
 <!--</div>-->

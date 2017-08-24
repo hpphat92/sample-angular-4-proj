@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'portfolio',
         data: {
           menu: {
-            title: 'general.menu.porfolioView',
+            title: 'Porfolio View',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,

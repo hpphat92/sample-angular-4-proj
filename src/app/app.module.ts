@@ -24,7 +24,7 @@ import { SHARED_SERVICES } from './shared/services';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { ExtendedHttpService } from "./shared/services/http/http.service";
 
-
+//noinspection TypeScriptCheckImport
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,

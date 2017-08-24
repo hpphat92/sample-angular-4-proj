@@ -1,0 +1,40 @@
+.form-control {
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid #6EA4CA;
+  border-radius: 0;
+  line-height: 14px;
+}
+.has-error .form-control {
+  border: 1px solid #ff3d3d;
+}
+.form-error-message {
+  font-family: Helvetica;
+  color: #ff3d3d;
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 300;
+  text-align: left;
+  padding-bottom: 24px;
+  margin: 0;
+  height: 0;
+}
+ng-select {
+  .ui-select-container {
+    padding: 5px 12px !important;
+    .ui-select-choices {
+      display: inherit;
+    }
+    &.ui-select-multiple {
+      .ui-select-match-item {
+        margin: 0;
+        padding: 3px;
+        font-size: 14px;
+        border-radius: 3px;
+        .close {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}

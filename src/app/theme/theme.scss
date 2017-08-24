@@ -1,5 +1,4 @@
 @import 'sass/conf/conf';
-@import 'sass/bootstrap-overrides/overrides';
 @import '~animate.css/animate';
 @import 'sass/typography';
 //@import 'sass/buttons';
@@ -14,3 +13,5 @@
 @import 'sass/ionicons';
 @import 'sass/fonts';
 @import 'sass/mixins';
+
+@import 'sass/bootstrap-overrides/overrides';

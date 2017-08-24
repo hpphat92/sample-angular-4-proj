@@ -1,0 +1,29 @@
+
+.btn {
+  &:hover {
+    cursor: pointer;
+  }
+  &.btn-alythex {
+    background: #fff;
+    font-family: $font-family;
+    color: $default-text;
+    border: 2px solid #1E5155;
+    border-radius: 0;
+    &:hover {
+      background-color: #def9fb;
+    }
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+  &.btn-cancel {
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 0;
+    color: #666;
+    &:hover {
+      background: #f3f4f5;
+    }
+  }
+}

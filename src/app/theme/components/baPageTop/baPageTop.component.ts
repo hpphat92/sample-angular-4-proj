@@ -20,7 +20,7 @@ export class BaPageTop implements AfterViewInit {
 
   constructor(private _state: GlobalState,
               private _authService: AuthService,
-              private _router: Router,) {
+              private _router: Router) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });

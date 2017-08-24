@@ -120,7 +120,7 @@ export class AuthService {
 
   public logout(): Observable<ApiResponse<any>> {
     this.clear();
-    return this._http.delete(`${AppConstant.domain}/w-api/logout`).flatMap(() => {
+    return this._http.post(`${AppConstant.domain}/w-api/logout`, null).flatMap(() => {
       return new Observable((observer) => {
         if (this._refreshSubscription) {
           this._refreshSubscription.unsubscribe();

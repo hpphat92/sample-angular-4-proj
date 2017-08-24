@@ -7,6 +7,7 @@ import { GlobalState } from '../../../global.state';
 import { Http } from "@angular/http";
 import { AppConstant } from "../../../app.constant";
 import * as _ from 'lodash';
+import { AuthService } from "../../../shared/services/auth/auth.service";
 @Component({
   selector: 'ba-menu',
   templateUrl: './baMenu.html',
@@ -27,8 +28,15 @@ export class BaMenu {
   protected _onRouteChange: Subscription;
   public outOfArea: number = -200;
   public items = [];
+  public itemLogout = {
+    title: 'Logout',
+    icon: 'ion-log-out',
+    hidden: false,
+    selected: false,
+    expanded: false,
+  };
 
-  constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http) {
+  constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http, private _authService: AuthService) {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
       this.items = _.map(resp.data, (d, id) => {
         return {
@@ -112,5 +120,10 @@ export class BaMenu {
     }
 
     return false;
+  }
+
+  public logout() {
+    this._authService.logout();
+    this._router.navigateByUrl('/home/login');
   }
 }

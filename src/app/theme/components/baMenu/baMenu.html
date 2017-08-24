@@ -19,6 +19,11 @@
     (itemHover)="hoverItem($event)"
     (toggleSubMenu)="toggleSubMenu($event)"
     *ngFor="let item of menuItems | slice: 1"></ba-menu-item>
+  <ba-menu-item
+    [menuItem]="itemLogout"
+    (itemHover)="hoverItem($event)"
+    (onClick)="logout()"
+    (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item>
 </ul>
 <!--<div class="sidebar-hover-elem" [ngStyle]="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}"-->
 <!--[ngClass]="{'show-hover-elem': showHoverElem }">-->

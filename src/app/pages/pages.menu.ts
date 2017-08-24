@@ -51,6 +51,18 @@ export const PAGES_MENU = [
           }
         }
       },
+      {
+        path: 'profile',
+        data: {
+          menu: {
+            title: 'Profile',
+            icon: 'ion-person-stalker',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      }
       // {
       //   path: 'editors',
       //   data: {

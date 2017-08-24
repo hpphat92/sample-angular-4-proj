@@ -24,7 +24,7 @@
 
 :host {
   .table-porfolio {
-    border-spacing: 0 16px;
+    border-spacing: 0 12px;
     border-collapse: separate;
     thead {
       font-weight: bolder;
@@ -52,9 +52,12 @@
         padding: 0 5px;
         img {
           cursor: pointer;
-          width: 60px;
+          width: 40px;
         }
       }
+    }
+    .width-small {
+      width: 30%;
     }
   }
 }

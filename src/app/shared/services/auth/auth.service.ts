@@ -10,6 +10,7 @@ import { UserInfo, UserToken, ApiResponse } from '../../models';
 import { AppConstant } from '../../../app.constant';
 import { Router } from "@angular/router";
 import { ExtendedHttpService } from "../http/http.service";
+import { Subject } from "rxjs/Subject";
 
 
 @Injectable()
@@ -19,13 +20,16 @@ export class AuthService {
   private subscription: any = null;
 
   private _refreshSubscription: Subscription;
+  private nameSource = new Subject<any>();
 
   constructor(private _http: ExtendedHttpService,
               private _localStorage: LocalStorageService,
               private _router: Router) {
+    this.currentUserInfo$ = this.nameSource.asObservable();
   }
 
   public fromUnAuthPage: boolean = false;
+  public currentUserInfo$;
 
   get currentUser(): UserInfo {
     if (this._currentUser && this._currentUser.id) {
@@ -43,6 +47,7 @@ export class AuthService {
   set currentUser(info: UserInfo) {
     this._currentUser = Object.assign(this.currentUser, info);
     this._localStorage.set('userInfo', info);
+    this.nameSource.next(this._currentUser);
   }
 
   get isAuthenticated(): boolean {
@@ -193,8 +198,9 @@ export class AuthService {
       }
       if (this.subscription) {
         this.subscription.subscribe(() => {
+          this.subscription = null;
           resolve();
-        })
+        });
         return;
       }
       this.subscription = this._http.get(`${AppConstant.domain}/w-api/profile/basic-info`);
@@ -202,6 +208,7 @@ export class AuthService {
         .map((resp) => resp.json())
         .catch(this._handleError)
         .subscribe((resp) => {
+          this.subscription = null;
           this.updateUserInfo(resp.data);
           resolve();
         });

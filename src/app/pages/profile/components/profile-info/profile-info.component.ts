@@ -48,6 +48,7 @@ export class ProfileInfoComponent {
     this.submitted = true;
     this._authService.updateUserProfile(this.frm.value).subscribe((resp) => {
       this.submitted = false;
+      this._authService.currentUser.email = this.email.value;
     })
   }
 }

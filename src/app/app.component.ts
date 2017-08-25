@@ -17,6 +17,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ['./app.component.scss'],
   template: `
     <main [class.menu-collapsed]="isMenuCollapsed" baThemeRun>
+      <loading-bar loadingBarId="global-app"></loading-bar>
       <div class="additional-bg"></div>
       <router-outlet></router-outlet>
     </main>

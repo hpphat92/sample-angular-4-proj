@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import NProgress from 'nprogress';
+import { LoadingBarService } from "../../loading-bar/loading-bar.service";
 
 @Injectable()
 export class ProgressService {
@@ -14,10 +15,14 @@ export class ProgressService {
   private _counter: number = 0;
   private _doneTimeout;
 
+  constructor(private _loadingBarService: LoadingBarService) {
+  }
+
   public start() {
     this._isStarted = true;
     this._counter++;
-    NProgress.start();
+    this._loadingBarService.showLoading('global-app');
+    // NProgress.start();
     if (this._doneTimeout) {
       clearTimeout(this._doneTimeout);
     }
@@ -30,7 +35,7 @@ export class ProgressService {
       this._counter = 0;
       this._isStarted = false;
       this._doneTimeout = setTimeout(() => {
-        NProgress.done();
+        this._loadingBarService.hideLoading('global-app');
       }, 400);
       this.onDone.emit(true);
     }

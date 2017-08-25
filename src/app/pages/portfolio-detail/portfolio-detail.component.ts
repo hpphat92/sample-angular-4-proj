@@ -17,7 +17,7 @@ export class PortfolioDetail {
       this._http.get(`${AppConstant.domain}/w-api/portfolios/${params['id']}`).map((json) => json.json()).subscribe((resp) => {
         this.portfolioDetail = resp.data;
         this._state.notifyDataChanged('menu.activeLink', {
-          title: 'Portfolio Detail'
+          title: 'Portfolio ' + (this.portfolioDetail as any).company.name
         });
       })
     })

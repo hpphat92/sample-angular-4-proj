@@ -23,6 +23,7 @@ import { PagesModule } from './pages/pages.module';
 import { SHARED_SERVICES } from './shared/services';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { ExtendedHttpService } from "./shared/services/http/http.service";
+import { LoadingBarModule } from "./shared/loading-bar/loading-bar.module";
 
 //noinspection TypeScriptCheckImport
 // Application wide providers
@@ -63,6 +64,7 @@ export type StoreType = {
     ToastrModule.forRoot(),
     ToastContainerModule.forRoot(),
     PagesModule,
+    LoadingBarModule,
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'portfolio',
         data: {
           menu: {
-            title: 'Porfolio View',
+            title: 'Portfolio View',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
@@ -55,7 +55,7 @@ export const PAGES_MENU = [
         path: 'profile',
         data: {
           menu: {
-            title: 'Profile',
+            title: 'My Profile',
             icon: 'ion-person-stalker',
             selected: false,
             expanded: false,

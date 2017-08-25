@@ -33,11 +33,11 @@
       "option1": "Option 1"
     },
     "menu": {
-      "porfolioView": "Porfolio View",
+      "porfolioView": "Portfolio View",
       "submitData": "Submit Data",
-      "profile": "Profile",
+      "profile": "My Profile",
       "submitDataAlter": "Secure data submission",
-      "support": "Support",
+      "support": "Help & Support",
       "service": "Service",
       "editors": "Editors",
       "ck_editor": "CKEditor",

@@ -27,7 +27,7 @@ export class ProfileInfoComponent {
 
     }, () => {
       this._state.notifyDataChanged('menu.activeLink', {
-        title: 'Profile'
+        title: 'My Profile'
       });
     });
     this.frm = fb.group({

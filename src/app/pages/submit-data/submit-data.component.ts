@@ -16,6 +16,7 @@ export class SubmitData implements AfterViewInit {
     s.type = "text/javascript";
     s.onload = (e) => {
       document.write = oldDocumentWrite;
+      this.elementRef.nativeElement.querySelector('iframe').style.width = 'auto';
     };
     s.src = "https://alythex.app.box.com/upload-widget/embed.js?folderID=33922264492&title=Secure%20File%20Submission%3A%20Client%20Demo&isDescriptionFieldShown=1&isEmailRequired=1&width=385&height=420&token=33c71g6l77ppaugb5c14vz6l1oyr01kb&callback=callback";
     // this.elementRef.nativeElement.appendChild(s);

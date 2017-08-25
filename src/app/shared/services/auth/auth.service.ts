@@ -200,6 +200,8 @@ export class AuthService {
         this.subscription.subscribe(() => {
           this.subscription = null;
           resolve();
+        }, () => {
+          reject();
         });
         return;
       }
@@ -211,6 +213,8 @@ export class AuthService {
           this.subscription = null;
           this.updateUserInfo(resp.data);
           resolve();
+        }, () => {
+          reject();
         });
     });
   }

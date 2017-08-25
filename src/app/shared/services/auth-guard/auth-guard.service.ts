@@ -78,6 +78,9 @@ export class AuthorizedPage implements CanActivateChild {
         this._authService.refreshToken();
         this._authService.getUserInfo().then((response) => {
           resolve(true);
+        }, () => {
+          resolve(false);
+          this.router.navigateByUrl('/home/login');
         });
       } else {
         // this._authService.fromUnAuthPage = true;

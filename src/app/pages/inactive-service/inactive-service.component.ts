@@ -22,8 +22,7 @@ export class InactiveService implements AfterViewInit {
       this.elementRef.nativeElement.querySelector('.container-iframe').innerHTML = strHtml;
       document.write = oldDocumentWrite;
     };
-    s.src = "htt3" +
-      "ps://alythex.formstack.com/forms/js.php/fv_deactivate";
+    s.src = "https://alythex.formstack.com/forms/js.php/fv_deactivate";
     // this.elementRef.nativeElement.appendChild(s);
     let oldDocumentWrite = document.write;
     let strHtml = '';

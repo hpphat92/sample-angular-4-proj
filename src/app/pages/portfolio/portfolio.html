@@ -1,31 +1,42 @@
-<div class="header-button pull-right">
-  <a class="btn btn-default btn-with-icon" [routerLink]="['/app/active-service']" placement="top" ngbTooltip="Tooltip on top">
-    <i class="fa fa-plus"></i>
-  </a>
-  <a class="btn btn-default btn-with-icon" [routerLink]="['/app/inactive-service']" placement="top" ngbTooltip="Tooltip on top">
-    <i class="fa fa-minus"></i>
-  </a>
-</div>
-<table class="table table-portfolio">
-  <thead>
-  <td>Company</td>
-  <td>Manager</td>
-  <td class="width-small">Active services</td>
-  </thead>
+<div class="row">
+  <div class="col-md-10">
+    <div class="header-button pull-right">
+      <a class="btn btn-primary btn-with-icon" title="Activate Services" [routerLink]="['/app/active-service']" placement="top" ngbTooltip="Tooltip on top">
+        <i class="fa fa-plus"></i>
+      </a>
+      <a class="btn btn-default btn-with-icon" title="Deactivate Services" [routerLink]="['/app/inactive-service']" placement="top" ngbTooltip="Tooltip on top">
+        <i class="fa fa-minus"></i>
+      </a>
+    </div>
+    <table class="table table-portfolio">
+      <thead>
+      <td>Company</td>
+      <td>Manager</td>
+      <td class="width-small">Active services</td>
+      </thead>
 
-  <tbody>
-  <tr *ngFor="let item of items">
-    <td class="text-left">{{item.name}}</td>
-    <td class="text-left">{{item.manager?.firstName + ' ' + item.manager?.lastName}}</td>
-    <td class="service-container">
-      <div *ngFor="let i of item.services" class="item">
-        <div class="image">
-          <a [routerLink]="['/app/portfolio-detail/'+i.mappingId]">
-            <img [src]="i.imageUrl" alt="">
-          </a>
-        </div>
-      </div>
-    </td>
-  </tr>
-  </tbody>
-</table>
+      <tbody>
+      <tr *ngFor="let item of items">
+        <td class="text-left">{{item.name}}</td>
+        <td class="text-left">{{item.manager?.firstName + ' ' + item.manager?.lastName}}</td>
+        <td class="service-container">
+          <div *ngFor="let i of item.services" class="item">
+            <div class="image">
+              <a [routerLink]="['/app/portfolio-detail/'+i.mappingId]">
+                <img [src]="i.imageUrl" alt="">
+              </a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-2">
+    <div class="google-alert-panel">
+      <h5>
+        Google Alert bar here
+      </h5>
+    </div>
+  </div>
+</div>

@@ -40,10 +40,10 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'service',
+        path: 'services',
         data: {
           menu: {
-            title: 'general.menu.service',
+            title: 'Services',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,

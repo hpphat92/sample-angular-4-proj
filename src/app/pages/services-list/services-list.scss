@@ -1,0 +1,13 @@
+:host {
+  .box-item {
+    height: 220px;
+    padding: 20px;
+    .box-item-container {
+      border: 1px solid #b8b8b8;
+      background: #ebebeb;
+      height: 100%;
+      text-align: center;
+      padding: 5px;
+    }
+  }
+}

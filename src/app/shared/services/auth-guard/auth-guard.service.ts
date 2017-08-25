@@ -73,20 +73,20 @@ export class AuthorizedPage implements CanActivateChild {
 
   public canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       if (this._authService.isAuthenticated) {
         this._authService.refreshToken();
         this._authService.getUserInfo().then((response) => {
           resolve(true);
         }, () => {
-          resolve(false);
           this.router.navigateByUrl('/home/login');
+          reject(false);
         });
       } else {
         // this._authService.fromUnAuthPage = true;
         // this._toast.info('You are already signed in', 'Info');
-        resolve(false);
         this.router.navigateByUrl('/home/login');
+        reject(false);
       }
     });
   }

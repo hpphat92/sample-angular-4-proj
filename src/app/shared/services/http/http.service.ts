@@ -104,7 +104,7 @@ export class ExtendedHttpService extends Http {
             this.localStorageService.remove('userInfo');
             this.localStorageService.remove('userToken');
             this.localStorageService.remove('logged-time');
-            this._router.navigate(['page', 'login']);
+            this._router.navigate(['home', 'login']);
 
             // error
             this.hideProgress();
@@ -123,7 +123,7 @@ export class ExtendedHttpService extends Http {
       },
       () => {
         // complete
-        this.hideProgress();
+        // this.hideProgress();
       }
     );
 

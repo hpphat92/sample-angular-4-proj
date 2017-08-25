@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-3 col-lg-3 col-sm-4 col-xs-6 box-item" *ngFor="let item of items; let i = index;">
+    <div class="box-item-container">
+      <h3>Service {{i+1}}: {{item.name}}</h3>
+      <h4>{{item.description}}</h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Click <a [routerLink]="['/app/active-service']"><b>here</b></a> to activate a Service.</h4>
+  </div>
+</div>

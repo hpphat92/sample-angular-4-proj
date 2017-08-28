@@ -57,6 +57,11 @@ $angle-right: '\f101';
   .slimScrollDiv {
     height: auto !important;
     overflow: auto !important;
+    &:nth-child(2) {
+      height: auto !important;
+      margin-top: 10%;
+      overflow: unset !important;
+    }
   }
   .al-sidebar-list {
     margin: 0;

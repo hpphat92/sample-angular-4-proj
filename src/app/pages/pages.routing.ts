@@ -39,6 +39,8 @@ export const routes: Routes = [
       { path: 'portfolio-detail/:id', loadChildren: './portfolio-detail/portfolio-detail.module#PortfolioDetailModule' },
       { path: 'submit-data', loadChildren: './submit-data/submit-data.module#SubmitDataModule' },
       { path: 'support', loadChildren: './support/support.module#SupportModule' },
+      { path: 'support2', loadChildren: './support2/support.module#SupportModule' },
+      { path: 'support3', loadChildren: './support3/support.module#SupportModule' },
       { path: 'services', loadChildren: './services-list/services-list.module#ServicesListModule' },
       { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
       { path: 'active-service', loadChildren: './active-service/active-service.module#ActiveServiceModule' },

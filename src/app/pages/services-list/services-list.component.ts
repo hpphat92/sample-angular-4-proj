@@ -17,9 +17,9 @@ export class ServicesList {
   constructor(private _http: ExtendedHttpService, private _state: GlobalState) {
     this._http.get(`${AppConstant.domain}/w-api/services/all`).map((json) => json.json()).subscribe((resp) => {
       this.items = resp.data;
-      this._state.notifyDataChanged('menu.activeLink', {
-        title: 'Alythex Services'
-      });
+      // this._state.notifyDataChanged('menu.activeLink', {
+      //   title: 'Alythex Services'
+      // });
     });
   }
 

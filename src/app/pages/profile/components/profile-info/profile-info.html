@@ -1,10 +1,10 @@
 <div class="auth-content row">
   <div class="col-md-8">
     <form [formGroup]="frm" (ngSubmit)="onSubmit()">
-      <div class="form-group row"
+      <div class="form-group row m-b-0"
            [ngClass]="{'has-error': firstName.invalid && (firstName.dirty || firstName.touched)}">
         <label class="col-md-2">First Name</label>
-        <div class="col-md-10">
+        <div class="col-md-8">
           <input [formControl]="firstName" id="firstName" type="text" class="form-control" placeholder="First Name">
           <p class="form-error-message">
           <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
@@ -15,9 +15,9 @@
           </p>
         </div>
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': lastName.invalid && (lastName.dirty || lastName.touched)}">
+      <div class="form-group row m-b-0" [ngClass]="{'has-error': lastName.invalid && (lastName.dirty || lastName.touched)}">
         <label class="col-md-2">Last Name</label>
-        <div class="col-md-10">
+        <div class="col-md-8">
           <input [formControl]="lastName" type="text" class="form-control" placeholder="Last Name">
           <p class="form-error-message">
           <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
@@ -28,9 +28,9 @@
           </p>
         </div>
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
+      <div class="form-group row m-b-0" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
         <label class="col-md-2">Email</label>
-        <div class="col-md-10">
+        <div class="col-md-8">
           <input [formControl]="email" type="email" class="form-control" placeholder="Email">
           <p class="form-error-message">
           <span *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -44,10 +44,10 @@
           </p>
         </div>
       </div>
-      <div class="form-group row"
+      <div class="form-group row m-b-0"
            [ngClass]="{'has-error': telephone.invalid && (telephone.dirty || telephone.touched)}">
         <label class="col-md-2">Phone</label>
-        <div class="col-md-10">
+        <div class="col-md-8">
 
           <input [formControl]="telephone" type="text" class="form-control" placeholder="Phone Number">
           <p class="form-error-message">
@@ -61,7 +61,7 @@
           </span>
           </p>
         </div>
-        <div class="col-md-12 text-right">
+        <div class="col-md-10 text-right">
           <button type="submit" class="btn btn-alythex" [disabled]="frm.invalid || submitted">Save
           </button>
         </div>

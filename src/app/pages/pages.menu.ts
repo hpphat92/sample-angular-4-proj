@@ -20,7 +20,7 @@ export const PAGES_MENU = [
           menu: {
             title: 'general.menu.submitData',
             alternateTitle: 'Secure Data Submission',
-            icon: 'ion-android-home',
+            icon: 'ion-paper-airplane',
             selected: false,
             expanded: false,
             order: 0
@@ -32,7 +32,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'general.menu.support',
-            icon: 'ion-android-home',
+            icon: 'ion-help-circled',
             selected: false,
             expanded: false,
             order: 0
@@ -44,7 +44,8 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Services',
-            icon: 'ion-android-home',
+            alternateTitle: 'Service Overview',
+            icon: 'ion-ios-pricetags',
             selected: false,
             expanded: false,
             order: 0

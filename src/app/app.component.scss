@@ -130,10 +130,10 @@
     font-family: Helvetica;
     color: #ff3d3d;
     font-size: 12px;
-    line-height: 24px;
+    line-height: 16px;
     font-weight: 300;
     text-align: left;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     margin: 0;
     height: 0;
   }
@@ -167,6 +167,12 @@
 
   .m-r-sm {
     margin-right: 10px;
+  }
+  .m-r-lg {
+    margin-right: 60px;
+  }
+  .m-b-0 {
+    margin-bottom: 0 !important;
   }
 }
 

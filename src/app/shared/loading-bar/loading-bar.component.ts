@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { LoadingBarService } from "./loading-bar.service";
 @Component({
   selector: 'loading-bar',
-  template: '',
+  template: '<div></div>',
   styleUrls: ['./loading-bar.scss']
 })
 export class LoadingBar implements AfterViewInit{

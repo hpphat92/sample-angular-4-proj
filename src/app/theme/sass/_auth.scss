@@ -30,12 +30,13 @@ $text-color: $default-text;
 .auth-main {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: calc(100% - 70px);
   width: 100%;
   background: #fff;
   font-family: Helvetica;
   font-weight: 300;
-  color: #1E5155;
+  color: #1e5155;
+  min-height: 500px;
   position: absolute;
   .auth-content {
     width: 450px;

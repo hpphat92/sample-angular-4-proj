@@ -21,7 +21,7 @@ profile {
           }
           &::after {
             content: '';
-            background: #fff;
+            background: $body-bg;
             position: absolute;
             bottom: -2px;
             left: 0;
@@ -37,13 +37,13 @@ profile {
         &.active {
           a {
             background: #1e5155;
-            color: #fff;
+            color: $body-bg;
           }
         }
       }
     }
     .content {
-      background-color: #fff;
+      background-color: $body-bg;
       min-height: 500px;
       padding: 30px;
     }
@@ -79,14 +79,14 @@ profile {
         &.active {
           a {
             background: #1e5155;
-            color: #fff;
+            color: $body-bg;
           }
         }
       }
     }
     .content {
       flex: 1;
-      background-color: #fff;
+      background-color: $body-bg;
       min-height: 500px;
       padding: 30px;
       border-radius: 0 3px 3px 3px;

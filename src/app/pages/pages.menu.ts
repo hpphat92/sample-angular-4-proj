@@ -19,7 +19,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'general.menu.submitData',
-            alternateTitle: 'general.menu.submitDataAlter',
+            alternateTitle: 'Secure Data Submission',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,

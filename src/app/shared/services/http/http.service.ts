@@ -116,6 +116,7 @@ export class ExtendedHttpService extends Http {
             this.hideProgress();
             return;
           }
+          this.hideProgress();
         } catch (e) {
           this.hideProgress();
         }

@@ -1,5 +1,5 @@
 export const AppConstant = {
-  domain: 'http://115.75.6.162:44459',
+  domain: 'https://alythexapi.azurewebsites.net',
   format: {
     moment: {
       shortDate: 'YYYY-MM-DD',

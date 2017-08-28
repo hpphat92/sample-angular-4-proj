@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Component } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { AppConstant } from "../../app.constant";
 import { AuthService } from "app/shared/services";
 import { ToastrService } from "ngx-toastr";
-import { Route, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { EqualPasswordsValidator } from "../../theme/validators/equalPasswords.validator";
 import { ApiResponse } from "app/shared/models";
 
@@ -56,13 +56,15 @@ export class ForgotPassword {
   public onSubmitStep1(formValue: any): void {
     this.submitted = true;
     if (this.frm.valid) {
+
       this._auth.forgotPassword({
         email: formValue.email
       }).subscribe((resp) => {
-        this.currentStep = 2;
       }, (err: any) => {
         this.submitted = false;
-      });
+      }, () => {
+        this.currentStep = 2;
+      })
       // your code goes here
       // console.log(values);
     }

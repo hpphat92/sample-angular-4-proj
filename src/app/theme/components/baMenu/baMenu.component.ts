@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+import { Subscription } from "rxjs/Rx";
 
-import { BaMenuService } from '../../services';
-import { GlobalState } from '../../../global.state';
+import { BaMenuService } from "../../services";
+import { GlobalState } from "../../../global.state";
 import { Http } from "@angular/http";
 import { AppConstant } from "../../../app.constant";
-import * as _ from 'lodash';
+import * as _ from "lodash";
 import { AuthService } from "../../../shared/services/auth/auth.service";
 @Component({
   selector: 'ba-menu',
@@ -30,7 +30,7 @@ export class BaMenu {
   public items = [];
   public itemLogout = {
     title: 'Logout',
-    icon: 'ion-log-out',
+    icon: 'fa fa-fw fa-power-off',
     hidden: false,
     selected: false,
     expanded: false,

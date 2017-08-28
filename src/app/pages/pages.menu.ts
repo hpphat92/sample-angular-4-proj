@@ -57,7 +57,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'My Profile',
-            icon: 'ion-person-stalker',
+            icon: 'ion-person',
             selected: false,
             expanded: false,
             order: 0

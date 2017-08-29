@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Renderer2 } from '@angular/core';
-import { isViewDebugError } from "@angular/core/src/view/errors";
+import { AfterViewInit, Component, ElementRef, Renderer2 } from "@angular/core";
 
 @Component({
   selector: 'support',
@@ -33,12 +32,9 @@ export class Support implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.loadScript('.container-iframe', "https://alythex.formstack.com/forms/js.php/fv_support").then(()=>{
-    //   this.loadScript('.container-faq-iframe', "https://alythex.formstack.com/forms/js.php/fv_faq");
+    // this.loadScript('.container-faq-iframe', "https://alythex.formstack.com/forms/js.php/fv_faq").then(() => {
+    //   this.loadScript('.container-iframe', "https://alythex.formstack.com/forms/js.php/fv_support");
     // });
-    this.loadScript('.container-faq-iframe', "https://alythex.formstack.com/forms/js.php/fv_faq").then(() => {
-      this.loadScript('.container-iframe', "https://alythex.formstack.com/forms/js.php/fv_support");
-    });
   }
 
 

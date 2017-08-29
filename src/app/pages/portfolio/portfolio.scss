@@ -49,9 +49,28 @@
       display: flex;
       .item {
         padding: 0 5px;
+        &:hover {
+          opacity: 0.8;
+        }
         img {
           cursor: pointer;
           width: 55px;
+        }
+      }
+      .item-placeholder {
+        cursor: pointer;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #000;
+        font-size: 1.1em;
+        font-weight: bold;
+        &:hover {
+          opacity: 0.8;
         }
       }
     }

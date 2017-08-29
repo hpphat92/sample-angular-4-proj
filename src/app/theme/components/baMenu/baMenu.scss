@@ -1,6 +1,6 @@
 @import '../../sass/conf/conf';
 
-:host {
+:host /deep/ {
   display: flex;
   flex-direction: column;
   height: calc(100% - 70px);

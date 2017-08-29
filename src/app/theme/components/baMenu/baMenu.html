@@ -1,10 +1,10 @@
-<ul id="al-sidebar-list-top" class="al-sidebar-list" baSlimScroll [baSlimScrollOptions]="{}"
+<ul id="al-sidebar-list-top" class="al-sidebar-list"
     (mouseleave)="hoverElemTop=outOfArea">
   <ba-menu-item
     [menuItem]="menuItems[0]"
     (itemHover)="hoverItem($event)"
     (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item>
-  <div *ngIf="items.length">
+  <div *ngIf="items.length" baSlimScroll [baSlimScrollOptions]="{}">
     <ba-menu-item
       [menuItem]="i"
       (itemHover)="hoverItem($event)"

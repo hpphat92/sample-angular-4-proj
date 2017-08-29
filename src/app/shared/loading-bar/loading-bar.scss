@@ -1,6 +1,6 @@
 $primary: #1e5155 !default;
-$warning: #f0ad4e !default;
-$danger: #d9534f !default;
+$warning: #f2c80f !default;
+$info: #01b8aa !default;
 :host {
   display: block;
   position: absolute;
@@ -24,7 +24,7 @@ $danger: #d9534f !default;
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: $danger;
+    border-top-color: $info;
     transform: translate3d(0, 0, 0);
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
     &:before {

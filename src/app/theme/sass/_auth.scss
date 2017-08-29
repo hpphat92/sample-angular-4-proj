@@ -27,6 +27,7 @@ $text-color: $default-text;
     }
   }
 }
+
 .auth-main {
   display: flex;
   align-items: center;
@@ -35,7 +36,7 @@ $text-color: $default-text;
   background: #fff;
   font-family: Helvetica;
   font-weight: 300;
-  color: #1e5155;
+  color: $primary;
   min-height: 500px;
   position: absolute;
   .auth-content {
@@ -45,14 +46,14 @@ $text-color: $default-text;
       margin: 0;
       padding-top: 10px;
       padding-bottom: 85px;
-      line-height: .8em;
+      line-height: 0.8em;
       font-size: 56px;
       font-weight: normal;
       text-align: center;
       font-family: raleway, sans-serif;
     }
     a {
-      color: #1e5155;
+      color: $primary;
       &:hover {
         text-decoration: underline;
       }
@@ -66,15 +67,15 @@ $text-color: $default-text;
       line-height: 14px;
       text-align: left;
       padding: 0 12px;
-      border: 1px solid #6EA4CA;
+      border: 1px solid $info;
       border-radius: 0;
     }
     .has-error .form-control {
-      border: 1px solid #ff3d3d;
+      border: 1px solid $danger;
     }
     .form-error-message {
       font-family: Helvetica;
-      color: #ff3d3d;
+      color: $danger;
       font-size: 12px;
       line-height: 16px;
       font-weight: 300;
@@ -86,13 +87,13 @@ $text-color: $default-text;
     .btn-submit {
       height: 44px;
       margin-top: 14px;
-      background: #1eabc7;
+      background: $primary;
       color: #fff;
-      font: normal normal normal 16px/1.4em tahoma,'tahoma-w01-regular','tahoma-w02-regular','tahoma-w10-regular','tahoma-w15--regular','tahoma-w99-regular',sans-serif;
+      font: normal normal normal 16px/1.4em tahoma, 'tahoma-w01-regular', 'tahoma-w02-regular', 'tahoma-w10-regular', 'tahoma-w15--regular', 'tahoma-w99-regular', sans-serif;
       border-radius: 0;
       transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
       &:hover {
-        background: #147285;
+        background: $primary-light;
       }
     }
   }

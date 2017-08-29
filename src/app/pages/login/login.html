@@ -37,7 +37,7 @@
         </div>
       </div>
       <div>
-        <button type="submit" class="btn btn-block btn-primary">GO</button>
+        <button type="submit" class="btn btn-block btn-primary" [disabled]="frm.invalid || submitted">GO</button>
       </div>
     </form>
     <div class="auth-footer">

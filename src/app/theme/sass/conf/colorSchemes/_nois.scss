@@ -1,7 +1,7 @@
 $default: #ffffff;
-$body-bg: #f7f5f5;
+$body-bg: #fdfcfc;
 
-$default-text: #1E5155;
+$default-text: #1e5155;
 $content-text: $default-text;
 $help-text: #949494;
 
@@ -30,10 +30,10 @@ $bootstrap-panel-header-border: 1px solid rgba(0, 0, 0, 0.12);
 $bootstrap-panel-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
 
 $primary: #1e5155 !default;
-$info: #5bc0de !default;
+$info: #01b8aa !default;
 $success: #5cb85c !default;
-$warning: #f0ad4e !default;
-$danger: #d9534f !default;
+$warning: #f2c80f !default;
+$danger: #bf0000 !default;
 
 $primary-light: tint($primary, 30%);
 $info-light: tint($info, 30%);

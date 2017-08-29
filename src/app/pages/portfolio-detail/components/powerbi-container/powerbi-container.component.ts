@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, Renderer2 } from '@angular/core';
-import { isViewDebugError } from "@angular/core/src/view/errors";
-import'./powerbi.js';
+import { AfterViewInit, Component, ElementRef, Input } from "@angular/core";
+import "./powerbi.js";
 @Component({
   selector: 'powerbi-container',
   styleUrls: ['./powerbi-container.scss'],
@@ -25,6 +24,10 @@ export class PowerbiContainerComponent implements AfterViewInit {
       }
     };
     (window as any).powerbi.embed(this.elementRef.nativeElement, config);
+    this.elementRef.nativeElement.querySelector('iframe').setAttribute('frameBorder', 0);
+    this.elementRef.nativeElement.querySelector('iframe').setAttribute('width', '100%');
+    this.elementRef.nativeElement.querySelector('iframe').setAttribute('height', 610);
+    this.elementRef.nativeElement.querySelector('iframe').setAttribute('style', '');
   }
 
   constructor(private elementRef: ElementRef) {

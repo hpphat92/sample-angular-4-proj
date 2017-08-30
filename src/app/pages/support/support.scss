@@ -1,39 +1,33 @@
-@media screen and (min-width: 1620px) {
-  .row.shift-up {
-    > * {
-      margin-top: -573px;
-    }
-  }
-}
-
-@media screen and (max-width: 1620px) {
-  .card.feed-panel.large-card {
-    height: 824px;
-  }
-}
-
-.user-stats-card {
-  .card-title {
-    padding: 0 0 15px;
-  }
-}
-
-.blurCalendar {
-  height: 475px;
-}
-
-support {
-  height: auto;
-  display: block;
+:host {
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   .title-sub {
     margin-bottom: 10px;
+  }
+  .container-data {
+    flex-grow: 1;
+    overflow: hidden;
   }
   .footer-title {
     font-weight: bolder;
     margin-top: 10px;
     font-size: 0.9em;
   }
+  .container-faq-iframe {
+    height: 100%;
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
+  }
   .container-iframe {
+    height: 100%;
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
     .fsBody .fsForm {
       background-color: #1e5155 !important;
       background-color: rgba(30, 81, 85, 1) !important;

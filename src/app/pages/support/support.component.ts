@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Renderer2 } from "@angular/core";
 
 @Component({
   selector: 'support',
-  styleUrls: ['./support.scss'],
+  styleUrls: ['support.scss'],
   templateUrl: './support.html'
 })
 export class Support implements AfterViewInit {

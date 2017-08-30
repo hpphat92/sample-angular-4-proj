@@ -26,8 +26,8 @@ export class PowerbiContainerComponent implements AfterViewInit {
     (window as any).powerbi.embed(this.elementRef.nativeElement, config);
     this.elementRef.nativeElement.querySelector('iframe').setAttribute('frameBorder', 0);
     this.elementRef.nativeElement.querySelector('iframe').setAttribute('width', '100%');
-    this.elementRef.nativeElement.querySelector('iframe').setAttribute('height', 610);
-    this.elementRef.nativeElement.querySelector('iframe').setAttribute('style', '');
+    this.elementRef.nativeElement.querySelector('iframe').setAttribute('height', '100%');
+    this.elementRef.nativeElement.querySelector('iframe').setAttribute('style', 'overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px');
   }
 
   constructor(private elementRef: ElementRef) {

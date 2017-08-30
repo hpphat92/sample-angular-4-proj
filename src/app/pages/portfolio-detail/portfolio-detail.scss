@@ -23,7 +23,15 @@
 }
 
 :host {
-  height: auto;
-  display: block;
-  padding-bottom: 1em;
+  //height: auto;
+  //display: block;
+  //padding-bottom: 1em;
+
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  powerbi-container {
+    flex-grow: 1;
+  }
 }

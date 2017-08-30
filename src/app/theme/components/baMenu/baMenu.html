@@ -1,0 +1,30 @@
+<ul id="al-sidebar-list-top" class="al-sidebar-list"
+    (mouseleave)="hoverElemTop=outOfArea">
+  <ba-menu-item
+    [menuItem]="menuItems[0]"
+    (itemHover)="hoverItem($event)"
+    (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item>
+  <div *ngIf="items.length" baSlimScroll [baSlimScrollOptions]="{}">
+    <ba-menu-item
+      [menuItem]="i"
+      (itemHover)="hoverItem($event)"
+      (toggleSubMenu)="toggleSubMenu($event)"
+      *ngFor="let i of items"></ba-menu-item>
+  </div>
+</ul>
+<ul id="al-sidebar-list-bottom" class="al-sidebar-list" baSlimScroll [baSlimScrollOptions]="{}"
+    (mouseleave)="hoverElemTop=outOfArea">
+  <ba-menu-item
+    [menuItem]="item"
+    (itemHover)="hoverItem($event)"
+    (toggleSubMenu)="toggleSubMenu($event)"
+    *ngFor="let item of menuItems | slice: 1"></ba-menu-item>
+  <ba-menu-item
+    [menuItem]="itemLogout"
+    (itemHover)="hoverItem($event)"
+    (onClick)="logout()"
+    (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item>
+</ul>
+<!--<div class="sidebar-hover-elem" [ngStyle]="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}"-->
+<!--[ngClass]="{'show-hover-elem': showHoverElem }">-->
+<!--</div>-->

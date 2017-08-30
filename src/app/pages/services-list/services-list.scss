@@ -1,0 +1,42 @@
+:host {
+  .box-item {
+    height: 350px;
+    padding: 20px;
+    .box-item-container {
+      border: 1px solid #b8b8b8;
+      background: #ebebeb;
+      height: 100%;
+      text-align: center;
+      padding: 5px;
+      .description {
+        height: 230px;
+        overflow: auto;
+        padding-top: 5px;
+      }
+      .header-container {
+        border-bottom: 1px solid #aaa;
+        height: 65px;
+        padding: 5px 0 5px 0;
+        display: flex;
+        align-items: flex-end;
+        .img-service {
+          img {
+            height: 60px;
+            width: 60px;
+          }
+        }
+        .service-name {
+          flex-grow: 1;
+          padding: 5px 0 5px 0;
+          overflow: auto;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          height: 100%;
+          h1, h2, h3, h4, h5, h6 {
+            margin: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}

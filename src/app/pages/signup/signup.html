@@ -1,0 +1,81 @@
+<div class="auth-main">
+  <div class="auth-content">
+    <h1>Sign up</h1>
+    <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+      <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.dirty || firstName.touched)}">
+        <input [formControl]="firstName" type="text" class="form-control" placeholder="First Name">
+        <p class="form-error-message">
+          <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+            <span *ngIf="firstName.errors?.required">
+              First Name cannot be blank
+            </span>
+          </span>
+        </p>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': lastName.invalid && (lastName.dirty || lastName.touched)}">
+        <input [formControl]="lastName" type="text" class="form-control" placeholder="Last Name">
+        <p class="form-error-message">
+          <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <span *ngIf="lastName.errors?.required">
+              Last Name cannot be blank
+            </span>
+          </span>
+        </p>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
+        <input [formControl]="email" type="email" class="form-control" placeholder="Email">
+        <p class="form-error-message">
+          <span *ngIf="email.invalid && (email.dirty || email.touched)">
+            <span *ngIf="email.errors?.required">
+              Email cannot be blank
+            </span>
+            <span *ngIf="email.errors?.pattern">
+              Email is invalid
+            </span>
+          </span>
+        </p>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': password.invalid && (password.dirty || password.touched)}">
+        <input [formControl]="password" type="password" class="form-control" placeholder="Password">
+        <p class="form-error-message">
+          <span *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.required">
+            Password cannot be blank
+          </span>
+        </p>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)}">
+        <input [formControl]="confirmPassword" type="password" class="form-control" placeholder="Re-type password">
+        <p class="form-error-message">
+          <span
+            *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched) && confirmPassword.errors?.required">
+            Confirm Password cannot be blank
+          </span>
+          <span
+            *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched) && (confirmPassword.errors?.minlength || confirmPassword.errors?.maxlength)">
+            Password length must be between 4 and 15
+          </span>
+        </p>
+      </div>
+      <!--<div class="d-flex text-left">-->
+        <!--<div class="flex-1">-->
+          <!--<div class="checkbox">-->
+            <!--<input formControlName="rememberMe" id="rememberMeCheckbox" type="checkbox">-->
+            <!--<label for="rememberMeCheckbox">Remember Me</label>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="flex-1 text-right">-->
+          <!--<a class="pull-right" [routerLink]="['/forgot-password']">Forgot password?</a>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div>
+        <button type="submit" class="btn btn-block btn-submit" [disabled]="frm.invalid || submitted">GO</button>
+      </div>
+    </form>
+    <div class="auth-footer">
+      <span>I am already a user. </span>
+      <a [routerLink]="['/home/login']">Log in</a>
+    </div>
+  </div>
+</div>

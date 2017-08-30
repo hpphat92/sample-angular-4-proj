@@ -1,0 +1,87 @@
+/* Generic Margin Helpers
+------------------------------------
+ */
+ @mixin generate-margin-options($n, $j: 0) {
+  @if $j <= $n {
+    @for $i from $j through $n {
+      $step : $i*1;
+      .m-#{$step} {
+        margin: ($step*1px);
+      }
+      .m-t-#{$step} {
+        margin-top: ($step*1px);
+      }
+      .m-r-#{$step} {
+        margin-right: ($step*1px);
+      }
+      .m-l-#{$step} {
+        margin-left: ($step*1px);
+      }
+      .m-b-#{$step} {
+        margin-bottom: ($step*1px);
+      }
+    }
+  }
+}
+
+@include generate-margin-options(20);
+
+.m-l-auto {
+  margin-left: auto;
+}
+.m-r-auto {
+  margin-right: auto;
+}
+
+
+/* Generic Padding Helpers
+------------------------------------
+*/
+
+@mixin generate-paddings-options($n, $j:0){
+  @if $j <= $n {
+    @for $i from $j through $n {
+      $step : $i*1;
+
+      .p-#{$step} {
+        padding: ($step*1px) !important;
+      }
+
+      .p-t-#{$step} {
+        padding-top: ($step*1px) !important;
+      }
+      .p-r-#{$step} {
+        padding-right: ($step*1px) !important;
+      }
+      .p-l-#{$step} {
+        padding-left: ($step*1px) !important;
+      }
+      .p-b-#{$step} {
+        padding-bottom: ($step*1px) !important;
+      }
+      .padding-#{$step} {
+        padding: ($step*1px) !important;
+      }
+    }
+  }
+}
+
+@include generate-paddings-options(20);
+
+.d-flex {
+  display: flex;
+}
+
+@mixin generate-flex-options($n, $j:0){
+  @if $j <= $n {
+    @for $i from $j through $n {
+      $step : $i*1;
+
+      .flex-#{$step} {
+        flex: ($step*1) !important;
+      }
+    }
+  }
+}
+
+@include generate-flex-options(10);

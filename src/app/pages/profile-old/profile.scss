@@ -1,0 +1,58 @@
+@media screen and (min-width: 1620px) {
+  .row.shift-up {
+    > * {
+      margin-top: -573px;
+    }
+  }
+}
+
+@media screen and (max-width: 1620px) {
+  .card.feed-panel.large-card {
+    height: 824px;
+  }
+}
+
+.user-stats-card {
+  .card-title {
+    padding: 0 0 15px;
+  }
+}
+
+.blurCalendar {
+  height: 475px;
+}
+
+:host {
+  .table-portfolio {
+    border-spacing: 0 16px;
+    border-collapse: separate;
+    thead {
+      font-weight: bolder;
+    }
+    tr {
+      background-color: rgba(247, 245, 245, 1);
+      border-radius: 5px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(160, 160, 159, 1);
+      background-image: url(~assets/apple_box.png);
+      background-repeat: repeat-x;
+      background-position: 0 0;
+      font-size: 18px;
+      td {
+        vertical-align: middle;
+        border: none;
+      }
+    }
+    .service-container {
+      padding: 1em 5px;
+      display: flex;
+      .item {
+        padding: 0 5px;
+        img {
+          cursor: pointer;
+          width: 60px;
+        }
+      }
+    }
+  }
+}

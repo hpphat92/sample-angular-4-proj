@@ -1,0 +1,24 @@
+<div class="modal-alythex">
+  <div class="modal-header">
+    <h4 class="modal-title">All Services Of <b>{{ serviceItem.name }}</b></h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Company <b>{{ serviceItem.name }}</b> has <b>{{ serviceItem.services.length }}</b> services</p>
+
+    <div class="items-container">
+      <div class="item" *ngFor="let i of serviceItem.services">
+        <a class="image-item" (click)="gotoService(i)" href="javascript:void(0)">
+          <img [src]="i.imageUrl" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer text-right">
+    <button class="btn btn-alythex" (click)="close()">
+      Close
+    </button>
+  </div>
+</div>

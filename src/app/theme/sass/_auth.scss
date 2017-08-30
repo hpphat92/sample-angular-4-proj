@@ -1,0 +1,108 @@
+@import 'conf/conf';
+
+$text-color: $default-text;
+.auth-top {
+  background-color: $sidebar;
+  position: fixed;
+  z-index: 904;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);
+  height: $top-height;
+  width: 100%;
+  min-width: 320px;
+  padding: 0 32px 0 40px;
+  .al-logo {
+    color: $sidebar-text;
+    display: block;
+    font-size: 24px;
+    font-family: $font-family;
+    white-space: nowrap;
+    float: left;
+    outline: none !important;
+    line-height: 60px;
+    img {
+      max-height: $top-height;
+    }
+    span {
+      color: $primary;
+    }
+  }
+}
+
+.auth-main {
+  display: flex;
+  align-items: center;
+  height: calc(100% - 70px);
+  width: 100%;
+  background: #fff;
+  font-family: Helvetica;
+  font-weight: 300;
+  color: $primary;
+  min-height: 500px;
+  position: absolute;
+  .auth-content {
+    width: 450px;
+    margin: 0 auto;
+    h1 {
+      margin: 0;
+      padding-top: 10px;
+      padding-bottom: 85px;
+      line-height: 0.8em;
+      font-size: 56px;
+      font-weight: normal;
+      text-align: center;
+      font-family: raleway, sans-serif;
+    }
+    a {
+      color: $primary;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .form-group {
+      margin-bottom: 0;
+    }
+    .form-control {
+      height: 48px;
+      font-size: 14px;
+      line-height: 14px;
+      text-align: left;
+      padding: 0 12px;
+      border: 1px solid $info;
+      border-radius: 0;
+    }
+    .has-error .form-control {
+      border: 1px solid $danger;
+    }
+    .form-error-message {
+      font-family: Helvetica;
+      color: $danger;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 300;
+      text-align: left;
+      padding-bottom: 16px;
+      margin: 0;
+      height: 0;
+    }
+    .btn-submit {
+      height: 44px;
+      margin-top: 14px;
+      background: $primary;
+      color: #fff;
+      font: normal normal normal 16px/1.4em tahoma, 'tahoma-w01-regular', 'tahoma-w02-regular', 'tahoma-w10-regular', 'tahoma-w15--regular', 'tahoma-w99-regular', sans-serif;
+      border-radius: 0;
+      transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+      &:hover {
+        background: $primary-light;
+      }
+    }
+  }
+
+  .auth-footer {
+    padding-top: 24px;
+    text-align: center;
+    a {
+      font-weight: bold;
+    }
+  }
+}

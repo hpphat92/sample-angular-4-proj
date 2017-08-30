@@ -1,0 +1,11 @@
+@import '../../sass/conf/conf';
+
+:host /deep/ {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 70px);
+  justify-content: space-between;
+  #al-sidebar-list-bottom {
+    margin-bottom: 20px;
+  }
+}

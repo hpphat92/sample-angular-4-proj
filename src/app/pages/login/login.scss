@@ -1,0 +1,10 @@
+@import '../../theme/sass/auth';
+
+:host {
+  .auth-main {
+    background-color: $body-bg;
+    .auth-content {
+      margin-top: 50px !important;
+    }
+  }
+}

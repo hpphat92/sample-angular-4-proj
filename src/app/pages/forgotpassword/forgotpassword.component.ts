@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
 import { EqualPasswordsValidator } from "../../theme/validators/equalPasswords.validator";
 import { ApiResponse } from "app/shared/models";
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Component({
   selector: 'forgotpassword',
@@ -30,7 +31,8 @@ export class ForgotPassword {
   constructor(fb: FormBuilder,
               private _auth: AuthService,
               private _router: Router,
-              private _toast: ToastrService) {
+              private _toast: ToastrService,
+              private _localStorage: LocalStorageService) {
     this.frm = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
     });
@@ -53,16 +55,36 @@ export class ForgotPassword {
     this.verifyCode = this.frm2.controls['verifyCode'];
   }
 
-  public onSubmitStep1(formValue: any): void {
-    this.submitted = true;
-    if (this.frm.valid) {
+  /**
+   * Create key from email to store expired time to storage
+   * @param email
+   * @private
+   */
+  private _buildStorageKeyFromEmail(email): string {
+    return `__expired__${email}__`;
+  }
 
+  public isEmailInvalidFromStorage(email) {
+    let time = this._localStorage.get(this._buildStorageKeyFromEmail(email));
+    return time ? (+time - Date.now()) : 0;
+  }
+
+  public onSubmitStep1(formValue: any): void {
+    if (this.frm.valid) {
+      let invalidTimeRange = this.isEmailInvalidFromStorage(formValue.email);
+      if (invalidTimeRange > 0) {
+        this.frm.enable();
+        this._toast.error(`Your account is blocked. Please wait after ${~~(invalidTimeRange / 60000)} minute(s)`);
+        return;
+      }
+      this.submitted = true;
       this._auth.forgotPassword({
         email: formValue.email
       }).subscribe((resp) => {
       }, (err: any) => {
         this.submitted = false;
       }, () => {
+        this.frm.enable();
         this.currentStep = 2;
       })
       // your code goes here
@@ -73,15 +95,31 @@ export class ForgotPassword {
   public onSubmitStep2(formValue: any): void {
     this.submitted = true;
     if (this.frm.valid) {
+      let timeRangeInvalid = this.isEmailInvalidFromStorage(this.frm.value.email);
+      if (timeRangeInvalid > 0) {
+        this.frm.enable();
+        this._toast.error(`Your account is blocked. Please wait after ${~~(timeRangeInvalid / 60000)} minute(s)`);
+        return;
+      }
       this._auth.verifyCode({
         email: this.frm.value.email,
         code: formValue.verifyCode
+      }).map((data) => {
       }).subscribe((resp) => {
         // this._toast.success("Your password has successful reset", "Success");
         // this._router.navigate(['page', 'login']);
         this.currentStep = 3;
       }, (err: any) => {
+        err = err.json();
+        this.frm2.enable();
         this.submitted2 = false;
+        if (err.data) {
+          this._localStorage.set(this._buildStorageKeyFromEmail(this.frm.value.email), err.data.blockTo);
+          let invalidTimeRange = this.isEmailInvalidFromStorage(this.frm.value.email);
+          this._toast.error(`Your account is blocked. Please wait after ${~~(invalidTimeRange / 60000)} minute(s)`);
+        } else {
+          this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
+        }
       });
       // your code goes here
       // console.log(values);

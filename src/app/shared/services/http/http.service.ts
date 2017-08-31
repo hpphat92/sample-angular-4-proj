@@ -35,32 +35,33 @@ export class ExtendedHttpService extends Http {
     super(backend, defaultOptions);
   }
 
-  public request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+  public request(url: string | Request, options?: any): Observable<Response> {
     return super.request(url, options);
     // return this.intercept(super.request(url, this.getRequestOptionArgs(null, options)), config);
   }
 
-  public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.get(url, this.getRequestOptionArgs(url, options)));
+  public get(url: string, options?: any): Observable<Response> {
+    // debugger;
+    return this.intercept(super.get(url, this.getRequestOptionArgs(url, options)), options);
   }
 
-  public post<T>(url: string, body: T, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.post(url, body, this.getRequestOptionArgs(url, options)));
+  public post<T>(url: string, body: T, options?: any): Observable<Response> {
+    return this.intercept(super.post(url, body, this.getRequestOptionArgs(url, options)), options);
   }
 
-  public put<T>(url: string, body: T, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.put(url, body, this.getRequestOptionArgs(url, options)));
+  public put<T>(url: string, body: T, options?: any): Observable<Response> {
+    return this.intercept(super.put(url, body, this.getRequestOptionArgs(url, options)), options);
   }
 
-  public delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.delete(url, this.getRequestOptionArgs(url, options)));
+  public delete(url: string, options?: any): Observable<Response> {
+    return this.intercept(super.delete(url, this.getRequestOptionArgs(url, options)), options);
   }
 
-  public patch<T>(url: string, body: T, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.patch(url, body, this.getRequestOptionArgs(url, options)));
+  public patch<T>(url: string, body: T, options?: any): Observable<Response> {
+    return this.intercept(super.patch(url, body, this.getRequestOptionArgs(url, options)), options);
   }
 
-  public getRequestOptionArgs(url?: string, options?: RequestOptionsArgs): RequestOptionsArgs {
+  public getRequestOptionArgs(url?: string, options?: any): any {
     if (options == null) {
       options = new RequestOptions();
     }

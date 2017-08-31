@@ -137,8 +137,12 @@ export class AuthService {
   }
 
   public verifyCode(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/verify-code`, data)
-      .map((resp) => resp.json());
+    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/verify-code`, data, {
+      skipAlert: true
+    })
+      .map((resp) => {
+        return resp.json();
+      });
   }
 
   public resetPassword(data): Observable<ApiResponse<any>> {

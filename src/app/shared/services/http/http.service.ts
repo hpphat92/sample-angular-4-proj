@@ -97,7 +97,7 @@ export class ExtendedHttpService extends Http {
       },
       (err) => {
         try {
-          if (!config.skipAlert && err.status !== 403 && err.status !== 401) {
+          if (!config.skipAlert && err.status !== 403) {
             let errObj = JSON.parse(err._body);
             this._toast.error(errObj.message, "Error");
           }
@@ -106,7 +106,6 @@ export class ExtendedHttpService extends Http {
             this.localStorageService.remove('userToken');
             this.localStorageService.remove('logged-time');
             this._router.navigate(['home', 'login']);
-
             // error
             this.hideProgress();
             return;

@@ -27,7 +27,6 @@ export class Portfolio {
     }
     (window as any).fg_widgets.push("fgid_183015e79f00b89d8312db3bf");
     this.loadScript("https://www.feedgrabbr.com/widget/fgwidget.js").then(() => {
-      debugger;
 
     });
   }

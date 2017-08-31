@@ -14,7 +14,9 @@ export class GlobalState {
   }
 
   notifyDataChanged(event, value) {
-
+    if (!value.route && !value.title) {
+      return;
+    }
     let current = this._data[event];
     if (current !== value) {
       this._data[event] = value;

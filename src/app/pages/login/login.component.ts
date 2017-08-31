@@ -24,8 +24,8 @@ export class Login {
               private _toast: ToastrService,
               private _router: Router) {
     this.frm = fb.group({
-      'email': ['phat@mailinator.com', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
-      'password': ['1111', [Validators.required]],
+      'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
+      'password': ['', [Validators.required]],
       'rememberMe': ['']
     });
 

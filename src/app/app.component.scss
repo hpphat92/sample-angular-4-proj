@@ -2,6 +2,8 @@
 @import './theme/components/baSidebar/baSidebar';
 
 :host /deep/ {
+  display: block;
+  height: 100%;
   @mixin layout-collapsed() {
     .al-main {
       margin-left: 50px;

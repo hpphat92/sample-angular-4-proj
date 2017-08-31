@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Component } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { AppConstant } from "../../app.constant";
 import { ToastrService } from "ngx-toastr";
@@ -24,7 +24,7 @@ export class Login {
               private _toast: ToastrService,
               private _router: Router) {
     this.frm = fb.group({
-      'email': ['phat@mail.com', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
+      'email': ['phat@mailinator.com', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
       'password': ['1111', [Validators.required]],
       'rememberMe': ['']
     });

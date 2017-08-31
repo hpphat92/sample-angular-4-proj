@@ -1,12 +1,12 @@
 <div class="modal-alythex">
   <div class="modal-header">
-    <h4 class="modal-title">All Services Of <b>{{ serviceItem.name }}</b></h4>
+    <h4 class="modal-title"><b>{{ serviceItem.name }}</b> has <b>{{ serviceItem.services.length }}</b> active services</h4>
     <button type="button" class="close" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <p>Company <b>{{ serviceItem.name }}</b> has <b>{{ serviceItem.services.length }}</b> services</p>
+    <!--<p><b>{{ serviceItem.name }}</b> has <b>{{ serviceItem.services.length }}</b> active services</p>-->
 
     <div class="items-container">
       <div class="item" *ngFor="let i of serviceItem.services">

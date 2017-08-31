@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-md-10">
+  <div class="col-md-9">
     <div class="header-button pull-right">
       <a class="btn btn-primary btn-with-icon" title="Activate Services" [routerLink]="['/app/active-service']"
          placement="top" ngbTooltip="Tooltip on top">
@@ -12,11 +12,11 @@
       </a>
     </div>
     <table class="table table-portfolio">
-      <thead>
-      <td>Company</td>
-      <td>Manager</td>
-      <td class="width-small">Active services</td>
-      </thead>
+      <!--<thead>-->
+      <!--<td>Company</td>-->
+      <!--<td>Manager</td>-->
+      <!--<td class="width-small">Active services</td>-->
+      <!--</thead>-->
 
       <tbody>
       <tr *ngFor="let item of items">
@@ -40,11 +40,9 @@
       </tbody>
     </table>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="google-alert-panel">
-      <h5>
-        Google Alert bar here
-      </h5>
+      <div class="feedgrabbr_widget" id="fgid_183015e79f00b89d8312db3bf"></div>
     </div>
   </div>
 </div>

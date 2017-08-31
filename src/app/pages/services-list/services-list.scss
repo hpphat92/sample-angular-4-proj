@@ -4,36 +4,38 @@
     padding: 20px;
     .box-item-container {
       border: 1px solid #b8b8b8;
-      background: #ebebeb;
+      background: #f7f5f5;
       height: 100%;
       text-align: center;
-      padding: 5px;
+      padding: 0 5px 5px 5px;
       .description {
         height: 230px;
         overflow: auto;
-        padding-top: 5px;
+        padding: 5px 10px;
+        margin: 0;
       }
       .header-container {
         border-bottom: 1px solid #aaa;
-        height: 65px;
-        padding: 5px 0 5px 0;
+        min-height: 65px;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 10px 0;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         .img-service {
+          margin: auto;
           img {
-            height: 60px;
-            width: 60px;
+            height: 55px;
+            width: 55px;
           }
         }
         .service-name {
           flex-grow: 1;
-          padding: 5px 0 5px 0;
-          overflow: auto;
           text-overflow: ellipsis;
           word-wrap: break-word;
-          height: 100%;
-          h1, h2, h3, h4, h5, h6 {
+          .name {
             margin: 0 !important;
+            text-align: left;
           }
         }
       }

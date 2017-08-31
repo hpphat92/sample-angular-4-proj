@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
 @import '~nprogress/nprogress.css';
+@import "app/theme/sass/conf/_variables";
 
 $progress-loader-color: #f8ff71;
 #nprogress {
@@ -37,3 +38,10 @@ ngui-tooltip .tooltip-down-arrow:before {
   transform:rotate(-45deg);
 }
 
+
+.toast-success {
+  background-color: #01b8aa !important;
+}
+.toast-error {
+  background-color: #bf0000 !important;
+}

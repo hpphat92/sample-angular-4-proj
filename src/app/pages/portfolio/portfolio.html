@@ -23,16 +23,16 @@
         <td class="text-left">{{item.name}}</td>
         <td class="text-left">{{item.manager?.firstName + ' ' + item.manager?.lastName}}</td>
         <td class="service-container">
-          <div *ngFor="let i of item.services  | slice: 0 : 5" class="item">
+          <div *ngFor="let i of item.services  | slice: 0 : 4" class="item">
             <div class="image">
               <a [routerLink]="['/app/portfolio-detail/'+i.mappingId]">
                 <img [src]="i.imageUrl" alt="">
               </a>
             </div>
           </div>
-          <div *ngIf="item.services.length>5" class="item item-placeholder" (click)="viewAllServices(item)">
+          <div *ngIf="item.services.length>4" class="item item-placeholder" (click)="viewAllServices(item)">
             <div class="image">
-              +{{ item.services.length-5 }}
+              +{{ item.services.length-4 }}
             </div>
           </div>
         </td>

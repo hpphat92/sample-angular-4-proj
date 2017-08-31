@@ -3,20 +3,6 @@
 @import '~nprogress/nprogress.css';
 @import "app/theme/sass/conf/_variables";
 
-$progress-loader-color: #f8ff71;
-#nprogress {
-  .bar {
-    height: 3px;
-    background: $progress-loader-color !important;
-  }
-  .peg {
-    box-shadow: 0 0 10px $progress-loader-color, 0 0 5px $progress-loader-color !important;
-  }
-  .spinner-icon {
-    border-top-color: $progress-loader-color !important;
-    border-left-color: $progress-loader-color !important;
-  }
-}
 ngui-tooltip .tooltip-contents {
   border: 1px solid #ccc;
   padding: 5px;

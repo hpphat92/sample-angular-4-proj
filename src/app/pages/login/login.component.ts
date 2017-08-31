@@ -44,7 +44,6 @@ export class Login {
         this._router.navigate(['app', 'portfolio']);
       }, (err: ApiResponse<any>) => {
         this.submitted = false;
-        this._toast.error(err.message, "Error");
         this.frm.enable();
       });
     }

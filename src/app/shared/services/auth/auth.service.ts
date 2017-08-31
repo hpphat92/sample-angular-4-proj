@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable } from "@angular/core";
 // 3rd modules
-import * as moment from 'moment';
-import { LocalStorageService } from 'angular-2-local-storage';
-import { Observable, Subscription } from 'rxjs';
-
+import * as moment from "moment";
+import { LocalStorageService } from "angular-2-local-storage";
+import { Observable, Subscription } from "rxjs";
 // App modules
-import { UserInfo, UserToken, ApiResponse } from '../../models';
-import { AppConstant } from '../../../app.constant';
+import { ApiResponse, UserInfo, UserToken } from "../../models";
+import { AppConstant } from "../../../app.constant";
 import { Router } from "@angular/router";
 import { ExtendedHttpService } from "../http/http.service";
 import { Subject } from "rxjs/Subject";
@@ -99,7 +97,8 @@ export class AuthService {
     if (!refreshToken) {
       let body = {
         email: data.email,
-        password: data.password
+        password: data.password,
+        rememberMe: !!data.rememberMe
       };
       return this._http.post(`${AppConstant.domain}/w-api/login`, body)
         .map((resp) => resp.json())

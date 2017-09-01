@@ -23,6 +23,7 @@
 }
 
 :host {
+  flex-grow: 1;
   .table-portfolio {
     border-spacing: 0 12px;
     border-collapse: separate;
@@ -78,5 +79,8 @@
   }
   .google-alert-panel {
     height: 100%;
+  }
+  .portfolio-container {
+    height: calc(100vh - 120px);
   }
 }

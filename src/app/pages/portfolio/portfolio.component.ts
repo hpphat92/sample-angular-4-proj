@@ -40,16 +40,20 @@ export class Portfolio implements AfterViewInit {
     iframe.setAttribute('style', 'width: 100%; height: 100%;display:block;');
     iframe.setAttribute('frameBorder', '0');
     this._renderer2.appendChild(this.elementRef.nativeElement.querySelector('.google-alert-panel'), iframe);
-    let iframeDoc = iframe.contentWindow || iframe.contentDocument;
+
+    let iframeDoc = iframe.contentDocument || iframe.contentWindow;
     if ((iframeDoc as any).document) {
       iframeDoc = (iframeDoc as any).document;
     }
     iframeDoc.open();
-    let style = document.createElement('style');
-    style.innerText = "iframe {border: 0; width: 100%; height: 100%;} body {margin: 0}";
     (iframeDoc as any).write(htmlString);
-    (iframeDoc as any).body.appendChild(style);
+    (iframeDoc as any).write('<style>iframe {border: 0; width: 100%; height: 100%;} body {margin: 0}</style>');
     iframeDoc.close();
+    setTimeout(() => {
+      (iframe as any).width = (iframeDoc as any).body.scrollWidth;
+      (iframe as any).height = (iframeDoc as any).body.scrollHeight;
+    }, 5000);
+
   }
 
   public viewAllServices(service) {

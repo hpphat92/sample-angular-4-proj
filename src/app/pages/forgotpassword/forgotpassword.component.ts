@@ -69,12 +69,25 @@ export class ForgotPassword {
     return time ? (+time - Date.now()) : 0;
   }
 
+  public showMessageInvalidTime(email) {
+    let invalidTimeRange = this.isEmailInvalidFromStorage(email);
+    if (invalidTimeRange <= 0) {
+      this._localStorage.remove(this._buildStorageKeyFromEmail(email));
+      return false;
+    }
+    let nMins = (~~(invalidTimeRange / 60000));
+    if (nMins > 0) {
+      this._toast.error(`Your account is blocked. Please wait after ${nMins} minute(s)`);
+    } else {
+      this._toast.error(`Your account is blocked. Please wait after ${~~(invalidTimeRange / 1000)} second(s)`);
+    }
+    return true;
+  }
+
   public onSubmitStep1(formValue: any): void {
     if (this.frm.valid) {
-      let invalidTimeRange = this.isEmailInvalidFromStorage(formValue.email);
-      if (invalidTimeRange > 0) {
+      if (this.showMessageInvalidTime(formValue.email)) {
         this.frm.enable();
-        this._toast.error(`Your account is blocked. Please wait after ${~~(invalidTimeRange / 60000)} minute(s)`);
         return;
       }
       this.submitted = true;
@@ -95,10 +108,8 @@ export class ForgotPassword {
   public onSubmitStep2(formValue: any): void {
     this.submitted = true;
     if (this.frm.valid) {
-      let timeRangeInvalid = this.isEmailInvalidFromStorage(this.frm.value.email);
-      if (timeRangeInvalid > 0) {
+      if (this.showMessageInvalidTime(this.frm.value.email)) {
         this.frm.enable();
-        this._toast.error(`Your account is blocked. Please wait after ${~~(timeRangeInvalid / 60000)} minute(s)`);
         return;
       }
       this._auth.verifyCode({
@@ -115,8 +126,7 @@ export class ForgotPassword {
         this.submitted2 = false;
         if (err.data) {
           this._localStorage.set(this._buildStorageKeyFromEmail(this.frm.value.email), err.data.blockTo);
-          let invalidTimeRange = this.isEmailInvalidFromStorage(this.frm.value.email);
-          this._toast.error(`Your account is blocked. Please wait after ${~~(invalidTimeRange / 60000)} minute(s)`);
+          this.showMessageInvalidTime(this.frm.value.email);
         } else {
           this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
         }

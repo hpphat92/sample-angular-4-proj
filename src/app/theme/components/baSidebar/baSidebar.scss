@@ -126,7 +126,7 @@ $angle-right: '\f101';
   }
 
   a.al-sidebar-list-link {
-    display: block;
+    display: flex;
     height: 42px;
     padding-left: 18px;
     text-shadow: none;
@@ -164,6 +164,11 @@ $angle-right: '\f101';
       text-align: center;
       color: $sidebar-text;
       transition: transform 0.2s linear;
+    }
+    span {
+      width: 65%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 

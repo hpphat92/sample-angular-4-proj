@@ -38,7 +38,7 @@ export class BaMenu {
 
   constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http, private _authService: AuthService) {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
-      this.items = _.map(resp.data, (d, id) => {
+      this.items = _.map(resp.data.companies, (d, id) => {
         return {
           hidden: false,
           title: (d as any).name,

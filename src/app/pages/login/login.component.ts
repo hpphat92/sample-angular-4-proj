@@ -6,6 +6,7 @@ import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../../shared/services/auth/auth.service";
 import { ApiResponse } from "../../shared/models/api-response.model";
 import { Router } from "@angular/router";
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Component({
   selector: 'login',
@@ -21,6 +22,7 @@ export class Login {
 
   constructor(private fb: FormBuilder,
               private _auth: AuthService,
+              private _localStorageService: LocalStorageService,
               private _toast: ToastrService,
               private _router: Router) {
     this.frm = fb.group({
@@ -41,7 +43,13 @@ export class Login {
         this._auth.setToken(resp.data);
         this._auth.refreshToken();
         this.submitted = false;
-        this._router.navigate(['app', 'portfolio']);
+        let previousState = this._localStorageService.get('previous-state');
+        if (!previousState) {
+          this._router.navigate(['app', 'portfolio']);
+        } else {
+          this._localStorageService.remove('previous-state');
+          this._router.navigateByUrl((previousState as string));
+        }
       }, (err: ApiResponse<any>) => {
         this.submitted = false;
         this.frm.enable();

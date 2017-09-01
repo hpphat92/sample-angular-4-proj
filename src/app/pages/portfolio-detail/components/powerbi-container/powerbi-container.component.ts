@@ -10,6 +10,8 @@ export class PowerbiContainerComponent implements AfterViewInit {
   @Input()
   public config: any;
 
+  public powerBiRecord;
+
   ngAfterViewInit() {
     let config = {
       type: 'report',
@@ -19,15 +21,24 @@ export class PowerbiContainerComponent implements AfterViewInit {
       id: this.config.reportId,
       permissions: 7,
       settings: {
-        filterPaneEnabled: true,
-        navContentPaneEnabled: true
+        // filterPaneEnabled: true,
+        // navContentPaneEnabled: true
       }
     };
-    (window as any).powerbi.embed(this.elementRef.nativeElement, config);
-    this.elementRef.nativeElement.querySelector('iframe').setAttribute('frameBorder', 0);
-    this.elementRef.nativeElement.querySelector('iframe').setAttribute('width', '100%');
-    this.elementRef.nativeElement.querySelector('iframe').setAttribute('height', '100%');
-    this.elementRef.nativeElement.querySelector('iframe').setAttribute('style', 'overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px');
+    this.powerBiRecord = (window as any).powerbi.embed(this.elementRef.nativeElement.querySelector('div'), config);
+    let iframe = this.elementRef.nativeElement.querySelector('iframe');
+    iframe.setAttribute('frameBorder', 0);
+    iframe.setAttribute('height', '100%');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;position:absolute;top:0px;left:0px;right:0px;bottom:35px`);
+    let iframeHeight = iframe.getBoundingClientRect().height;
+    let iframeWidth = iframeHeight * 1.625;
+    iframe.setAttribute('style', `${iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)
+
+  }
+
+  goFullScreen() {
+    this.powerBiRecord.fullscreen();
   }
 
   constructor(private elementRef: ElementRef) {

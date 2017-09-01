@@ -1,4 +1,9 @@
 :host {
   height: 100%;
   position: relative;
+  p {
+    position: absolute;
+    bottom: -12px;
+    left: 10px;
+  }
 }

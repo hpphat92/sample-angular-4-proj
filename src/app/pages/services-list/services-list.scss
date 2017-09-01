@@ -32,8 +32,13 @@
         .service-name {
           flex-grow: 1;
           text-overflow: ellipsis;
-          word-wrap: break-word;
+          white-space: nowrap;
+          width: 80%;
           .name {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: bold;
             margin: 0 !important;
             text-align: left;
           }

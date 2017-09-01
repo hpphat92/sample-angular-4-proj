@@ -7,40 +7,48 @@
 
   <div class="user-profile clearfix text-center">
     <!--<a class="text-white d-block" href="javascript:void(0)" (click)="goProfile()">-->
-      <!--Hello {{currentUser?.email}}-->
+    <!--Hello {{currentUser?.email}}-->
     <!--</a>-->
     <!--<a class="text-white d-block" href="javascript:void(0)" (click)="logout()">-->
-      <!--Logout-->
+    <!--Logout-->
     <!--</a>-->
-    <div class="dropdown al-user-profile">
-      <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+    <div class="al-user-profile">
+      <a class="profile-toggle-link">
         <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
       </a>
-      <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
-        <li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i
-          class="fa fa-user"></i>My Profile</a></li>
-        <li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i
-          class="fa fa-power-off"></i>Logout</a></li>
-      </ul>
+      <!--<ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">-->
+        <!--<li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i-->
+          <!--class="fa fa-user"></i>My Profile</a></li>-->
+        <!--<li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i-->
+          <!--class="fa fa-power-off"></i>Logout</a></li>-->
+      <!--</ul>-->
     </div>
   </div>
-  <div class="user-profile clearfix text-center m-r-lg m-t-md">
-    <a class="text-white d-block" href="javascript:void(0)" (click)="goProfile()">
+  <div class="user-profile clearfix text-center m-r-lg m-t-md dropdown">
+    <a class="text-white d-block dropdown-toggle" href="javascript:void(0)"  data-toggle="dropdown" id="user-profile-dd">
       {{currentUser?.email}} <i class="fa fa-user"></i>
     </a>
-    <a class="text-white d-block" href="javascript:void(0)" (click)="logout()">
-      Logout
-    </a>
-    <!--<div class="dropdown al-user-profile">-->
-    <!--<a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">-->
-    <!--<img src="{{ ( 'Nasta' | baProfilePicture ) }}">-->
+    <!--<a class="text-white d-block" href="javascript:void(0)" (click)="logout()">-->
+    <!--Logout-->
     <!--</a>-->
-    <!--<ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">-->
-    <!--<li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i-->
-    <!--class="fa fa-user"></i>Profile</a></li>-->
-    <!--<li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i-->
-    <!--class="fa fa-power-off"></i>Logout</a></li>-->
-    <!--</ul>-->
+    <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+      <li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i
+        class="fa fa-user"></i>Profile</a></li>
+      <li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i
+        class="fa fa-power-off"></i>Logout</a></li>
+    </ul>
+
+
+    <!--<div class="dropdown al-user-profile">-->
+      <!--<a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">-->
+        <!--<img src="{{ ( 'Nasta' | baProfilePicture ) }}">-->
+      <!--</a>-->
+      <!--<ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">-->
+        <!--<li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i-->
+          <!--class="fa fa-user"></i>Profile</a></li>-->
+        <!--<li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i-->
+          <!--class="fa fa-power-off"></i>Logout</a></li>-->
+      <!--</ul>-->
     <!--</div>-->
   </div>
 </div>

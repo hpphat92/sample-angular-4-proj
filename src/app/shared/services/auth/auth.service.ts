@@ -175,6 +175,7 @@ export class AuthService {
           this.userToken = resp.data;
         }, () => {
           this.clear();
+          this._localStorage.set('previous-state', this._router.url);
           this._router.navigateByUrl('/home/login');
         });
       });

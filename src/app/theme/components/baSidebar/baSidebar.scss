@@ -27,6 +27,9 @@ $angle-right: '\f101';
       padding-left: 52px;
       height: auto;
       line-height: 29px;
+      width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:hover {
         color: $primary-light;
       }
@@ -61,12 +64,11 @@ $angle-right: '\f101';
     }
   }
   .slimScrollDiv {
-    height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     &:nth-child(2) {
       height: auto !important;
-      margin-top: 30%;
+      margin-top: 20%;
       overflow: unset !important;
     }
   }

@@ -1,1 +1,6 @@
 @import '../../../../sass/conf/conf';
+
+:host {
+  height: auto;
+  display: block;
+}

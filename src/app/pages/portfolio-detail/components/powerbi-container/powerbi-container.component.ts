@@ -30,7 +30,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
     iframe.setAttribute('frameBorder', 0);
     iframe.setAttribute('height', '100%');
     iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;position:absolute;top:0px;left:0px;right:0px;bottom:35px`);
+    iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;position:absolute;top:0px;left:0px;right:0px;bottom:45px`);
     let iframeHeight = iframe.getBoundingClientRect().height;
     let iframeWidth = iframeHeight * 1.625;
     iframe.setAttribute('style', `${iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)

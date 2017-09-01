@@ -3,7 +3,11 @@
   position: relative;
   p {
     position: absolute;
-    bottom: -12px;
+    bottom: 0;
     left: 10px;
+    font-size: 21px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
   }
 }

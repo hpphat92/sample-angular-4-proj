@@ -11,7 +11,7 @@
     <div class="items-container">
       <div class="item" *ngFor="let i of serviceItem.services">
         <a class="image-item" (click)="gotoService(i)" href="javascript:void(0)">
-          <img [src]="i.imageUrl" alt="">
+          <img [src]="i.imageUrl || 'assets/img/img-placeholder.jpg'" alt="">
         </a>
       </div>
     </div>

@@ -9,7 +9,10 @@
           <img [src]="item.imageUrl  || 'assets/img/img-placeholder.jpg'">
         </div>
       </div>
-      <h5 class="description" [innerHtml]="item.description"></h5>
+      <!-- <h5 class="description" [innerHtml]="item.description | safeHtml"></h5> -->
+      <h5 class="description">
+        <iframe [attr.id]="item.id" frameborder="0"></iframe>
+      </h5>
     </div>
   </div>
 </div>

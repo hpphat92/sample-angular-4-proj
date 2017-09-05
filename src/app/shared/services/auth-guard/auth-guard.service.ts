@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
 
     return new Promise((resolve) => {
       if (!this._authService.isAuthenticated) {
-        this._authService.logout();
+        // this._authService.logout();
         this.router.navigateByUrl('/home/login');
         resolve(false);
       } else {
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
 
             resolve(true);
           }, (err) => {
-            this._authService.clear();
+            // this._authService.clear();
             this.router.navigateByUrl('/home/login');
             resolve(false);
           });
@@ -53,7 +53,7 @@ export class AnonymousPage implements CanActivateChild {
   public canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     return new Promise((resolve) => {
-      if (!this._authService.isAuthenticated) {
+      if (!this._authService.isAuthenticated || this._authService.isTokenExpired()) {
         resolve(true);
       } else {
         this._authService.fromUnAuthPage = true;
@@ -75,13 +75,30 @@ export class AuthorizedPage implements CanActivateChild {
 
     return new Promise((resolve, reject) => {
       if (this._authService.isAuthenticated) {
-        this._authService.refreshToken();
-        this._authService.getUserInfo().then((response) => {
-          resolve(true);
-        }, () => {
-          this.router.navigateByUrl('/home/login');
-          reject(false);
-        });
+        if(this._authService.isTokenExpired()) {
+          this._authService.authorize(null, true).subscribe((resp) => {
+            this._authService.setToken(resp.data);
+            this._authService.refreshToken();
+            this._authService.getUserInfo().then((response) => {
+              resolve(true);
+            }, () => {
+              this.router.navigateByUrl('/home/login');
+              reject(false);
+            });
+          }, (err) => {
+            this._authService.clear();
+            this.router.navigate(['login']);
+            resolve(false);
+          });
+        } else {
+          this._authService.refreshToken();
+          this._authService.getUserInfo().then((response) => {
+            resolve(true);
+          }, () => {
+            this.router.navigateByUrl('/home/login');
+            reject(false);
+          });
+        }
       } else {
         // this._authService.fromUnAuthPage = true;
         // this._toast.info('You are already signed in', 'Info');

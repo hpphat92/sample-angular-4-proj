@@ -167,6 +167,9 @@ $angle-right: '\f101';
       color: $sidebar-text;
       transition: transform 0.2s linear;
     }
+    i.fa {
+      line-height: 42px;
+    }
     span {
       width: 65%;
       overflow: hidden;

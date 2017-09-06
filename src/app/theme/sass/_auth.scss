@@ -57,9 +57,14 @@ $text-color: $default-text;
         }
       }
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 768px) and (max-width: 1268px) {
       & {
         width: 50%;
+      }
+    }
+    @media screen and (min-width: 1268px) {
+      & {
+        width: 28%;
       }
     }
     width: 450px;
@@ -77,7 +82,11 @@ $text-color: $default-text;
     a {
       color: $primary;
       &:hover {
+        color: $primary !important;
         text-decoration: underline;
+      }
+      &:focus, &:visited {
+        color: $primary !important;
       }
     }
     .form-group {

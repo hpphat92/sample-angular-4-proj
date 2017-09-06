@@ -139,6 +139,13 @@ $angle-right: '\f101';
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
+    &.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+      &:hover {
+        color: #ccc;
+      }
+    }
     &:hover {
       color: $primary-light;
       font-weight: lighter;

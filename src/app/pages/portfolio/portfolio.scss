@@ -57,6 +57,16 @@
         &:hover {
           opacity: 0.8;
         }
+        &.disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+          a {
+            cursor: not-allowed;
+          }
+          img {
+            cursor: not-allowed;
+          }
+        }
         img {
           cursor: pointer;
           width: 55px;

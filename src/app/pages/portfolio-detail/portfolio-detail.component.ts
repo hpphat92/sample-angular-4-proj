@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { AppConstant } from "../../app.constant";
 import { ExtendedHttpService } from "../../shared/services/http/http.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -9,10 +9,14 @@ import { GlobalState } from "../../global.state";
   styleUrls: ['./portfolio-detail.scss'],
   templateUrl: './portfolio-detail.html'
 })
-export class PortfolioDetail {
+export class PortfolioDetail implements OnDestroy {
+
   public portfolioDetail = [];
 
   constructor(private _http: ExtendedHttpService, private _activatedRoute: ActivatedRoute, private _state: GlobalState) {
+    this._state.notifyDataChanged('menu.toggleDisplay', {
+      hide: true
+    });
     this._activatedRoute.params.subscribe((params) => {
       this._http.get(`${AppConstant.domain}/w-api/portfolios/${params['id']}`).map((json) => json.json()).subscribe((resp) => {
         this.portfolioDetail = resp.data;
@@ -21,5 +25,11 @@ export class PortfolioDetail {
         });
       })
     })
+  }
+
+  public ngOnDestroy(): void {
+    this._state.notifyDataChanged('menu.toggleDisplay', {
+      hide: false
+    });
   }
 }

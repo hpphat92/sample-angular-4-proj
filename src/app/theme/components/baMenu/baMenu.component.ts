@@ -51,14 +51,23 @@ export class BaMenu {
           },
           path: 'app',
           children: _.map((d as any).services, (sub) => {
-            return {
+            let objMenuConfig = {
               title: (sub as any).name,
               hidden: false,
-              route: {
-                paths: 'portfolio-detail/' + (sub as any).mappingId
-              },
-              path: 'portfolio-detail/' + (sub as any).mappingId,
+              // route: {
+              //   paths: 'portfolio-detail/' + (sub as any).mappingId
+              // },
+              // path: 'portfolio-detail/' + (sub as any).mappingId,
+            };
+            if ((sub as any).reportId) {
+              let path = 'portfolio-detail/' + (sub as any).mappingId;
+              (objMenuConfig as any).route = {
+                paths: path
+              };
+              (objMenuConfig as any).path = path;
             }
+
+            return objMenuConfig;
           })
         };
       });

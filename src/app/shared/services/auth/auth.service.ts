@@ -218,6 +218,7 @@ export class AuthService {
           this.updateUserInfo(resp.data);
           resolve();
         }, () => {
+          this.subscription = null;
           reject();
         });
     });

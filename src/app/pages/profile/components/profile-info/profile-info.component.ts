@@ -35,8 +35,7 @@ export class ProfileInfoComponent {
       'firstName': ['', Validators.compose([Validators.required])],
       'lastName': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
-      'telephone': ['', Validators.compose([Validators.required, Validators.pattern('[\\d-+]*')
-      ])]
+      'telephone': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.phone)])]
     });
     this.firstName = this.frm.controls['firstName'];
     this.lastName = this.frm.controls['lastName'];

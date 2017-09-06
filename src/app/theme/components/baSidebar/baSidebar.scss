@@ -150,6 +150,7 @@ $angle-right: '\f101';
       margin-right: 18px;
       width: 16px;
       display: inline-block;
+      float: left;
     }
     b {
       display: block;
@@ -174,6 +175,7 @@ $angle-right: '\f101';
       width: 65%;
       overflow: hidden;
       text-overflow: ellipsis;
+      float: left;
     }
   }
 

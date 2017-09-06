@@ -15,6 +15,10 @@
   font-size: 18px;
   text-transform: uppercase;
   opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40%;
+  white-space: nowrap;
 }
 
 .al-breadcrumb {

@@ -92,4 +92,97 @@ profile {
       border-radius: 0 3px 3px 3px;
     }
   }
+
+  .responsive-tab {
+    display: flex;
+    .nav.nav-tabs {
+      background: transparent;
+      display: block;
+      .nav-item {
+        a {
+          position: relative;
+          background: $body-bg;
+          padding: 15px;
+          margin-bottom: 1px;
+          text-transform: uppercase;
+          color: #1e5155;
+          font-weight: bold;
+          border-radius: 3px 0 0 3px;
+          text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
+          &:hover {
+            background: rgba(#1e5155, 0.1);
+          }
+          &::after {
+            content: none;
+          }
+        }
+        &:first-of-type {
+          a {
+          }
+        }
+        &.active {
+          a {
+            background: #1e5155;
+            color: $body-bg;
+          }
+        }
+      }
+    }
+    .content {
+      flex: 1;
+      background-color: $body-bg;
+      min-height: 500px;
+      padding: 30px;
+      border-radius: 0 3px 3px 3px;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: unset;
+      .nav.nav-tabs {
+        background: transparent;
+        display: flex !important;
+        .nav-item {
+          a {
+            position: relative;
+            background: $body-bg;
+            padding: 12px 15px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: #1e5155;
+            font-weight: bold;
+            border-radius: 3px 3px 0 0;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
+            &:hover {
+              background: rgba(#1e5155, 0.1);
+            }
+            &::after {
+              content: '';
+              background: $body-bg;
+              position: absolute;
+              bottom: -2px;
+              left: 0;
+              width: 100%;
+              height: 2px;
+              display: block;
+            }
+          }
+          &:first-of-type {
+            a {
+            }
+          }
+          &.active {
+            a {
+              background: #1e5155;
+              color: $body-bg;
+            }
+          }
+        }
+      }
+      .content {
+        background-color: $body-bg;
+        min-height: 500px;
+        padding: 30px;
+      }
+    }
+  }
 }

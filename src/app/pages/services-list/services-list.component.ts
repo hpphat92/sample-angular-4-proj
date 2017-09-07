@@ -16,7 +16,7 @@ export class ServicesList implements AfterViewInit {
 
   @ViewChildren('allTheseThings') things: QueryList<any>;
 
-  constructor(private _http: ExtendedHttpService,
+  constructor(private _http: ExtendedHttpService, 
               private _state: GlobalState,
               private _elementRef: ElementRef) {
     this._http.get(`${AppConstant.domain}/w-api/services/all`).map((json) => json.json()).subscribe((resp) => {
@@ -36,12 +36,11 @@ export class ServicesList implements AfterViewInit {
       this.items.forEach((service) => {
         let iframe = iframes.find((i) => service.id == (i as any).getAttribute('id'));
         if (iframe) {
-          (iframe as any).style.width = '100%';
           (iframe as any).contentDocument.open();
           (iframe as any).contentDocument.write(service.description);
           (iframe as any).contentDocument.close();
-          (iframe as any).height = (iframe as any).contentWindow.document.body.scrollHeight;
-          (iframe as any).contentWindow.document.body.style.overflow = 'hidden';
+          // (iframe as any).width = (iframe as any).contentWindow.document.body.width;
+          // (iframe as any).height = (iframe as any).contentWindow.document.body.scrollHeight;
         }
       })
     })

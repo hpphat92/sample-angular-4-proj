@@ -16,7 +16,6 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
-    let t = this.elementRef.nativeElement;
     let config = {
       type: 'report',
       tokenType: 1,
@@ -36,7 +35,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
     if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
 
       this.iframe.setAttribute('height', '100%');
-      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:calc(100% - 25px)'};position:absolute;top:25px;left:0px;right:0px;bottom:50px`);
+      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (nativeSize.height - 25) + 'px'};position:absolute;top:25px;left:0px;right:0px;bottom:50px`);
       let iframeHeight = this.iframe.getBoundingClientRect().height - 50;
       let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
       this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)
@@ -64,7 +63,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
       let iframeHeight = this.iframe.getBoundingClientRect().height - 50;
       let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
       this.iframe.style.width = iframeWidth + 'px';
-      this.iframe.style.height = 'calc(100% - 25px)';
+      this.iframe.style.height = `${nativeSize.height - 25}px`;
     } else {
       let iframeWidth = this.iframe.getBoundingClientRect().width;
       let iframeHeight = iframeWidth / this.ratioHeightPerWidth - 50;

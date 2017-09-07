@@ -29,7 +29,7 @@ export class BaMenu {
   public outOfArea: number = -200;
   public items = [];
   public itemLogout = {
-    title: 'Logout',
+    title: 'Log out',
     icon: 'fa fa-fw fa-power-off',
     hidden: false,
     selected: false,

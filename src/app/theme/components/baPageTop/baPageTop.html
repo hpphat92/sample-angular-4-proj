@@ -1,7 +1,7 @@
 <div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
      [ngClass]="{scrolled: isScrolled}">
   <a routerLink="/app/portfolio" class="al-logo clearfix">
-    <img src="assets/img/logo.webp" alt="Alythex">
+    <img src="assets/img/logo.png" alt="Alythex">
   </a>
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
 
@@ -10,7 +10,7 @@
     <!--Hello {{currentUser?.email}}-->
     <!--</a>-->
     <!--<a class="text-white d-block" href="javascript:void(0)" (click)="logout()">-->
-    <!--Logout-->
+    <!--Log out-->
     <!--</a>-->
     <div class="al-user-profile">
       <a class="profile-toggle-link">
@@ -20,7 +20,7 @@
         <!--<li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i-->
           <!--class="fa fa-user"></i>My Profile</a></li>-->
         <!--<li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i-->
-          <!--class="fa fa-power-off"></i>Logout</a></li>-->
+          <!--class="fa fa-power-off"></i>Log out</a></li>-->
       <!--</ul>-->
     </div>
   </div>
@@ -29,13 +29,13 @@
       {{currentUser?.email}} <i class="fa fa-user"></i>
     </a>
     <!--<a class="text-white d-block" href="javascript:void(0)" (click)="logout()">-->
-    <!--Logout-->
+    <!--Log out-->
     <!--</a>-->
     <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
       <li class="dropdown-item"><a href="javascript:void(0)" (click)="goProfile()"><i
         class="fa fa-user"></i>My Profile</a></li>
       <li class="dropdown-item" (click)="logout()"><a href="javascript:void(0)" class="signout"><i
-        class="fa fa-power-off"></i>Logout</a></li>
+        class="fa fa-power-off"></i>Log out</a></li>
     </ul>
 
 

@@ -19,11 +19,16 @@
     (itemHover)="hoverItem($event)"
     (toggleSubMenu)="toggleSubMenu($event)"
     *ngFor="let item of menuItems | slice: 1"></ba-menu-item>
-  <ba-menu-item
+  <!-- <ba-menu-item
     [menuItem]="itemLogout"
     (itemHover)="hoverItem($event)"
     (onClick)="logout()"
-    (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item>
+    (toggleSubMenu)="toggleSubMenu($event)"></ba-menu-item> -->
+  <li class="al-sidebar-list-item" title="Users" (mouseenter)="hoverItem($event)">
+    <a href="javascript:void(0)" class="al-sidebar-list-link" (click)="logout()">
+      <i class="fa fa-fw fa-power-off"></i><span>Log out</span>
+    </a>
+  </li>
 </ul>
 <!--<div class="sidebar-hover-elem" [ngStyle]="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}"-->
 <!--[ngClass]="{'show-hover-elem': showHoverElem }">-->

@@ -51,6 +51,7 @@ export class Login {
           this._router.navigateByUrl((previousState as string));
         }
       }, (err: ApiResponse<any>) => {
+        this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
         this.submitted = false;
         this.frm.enable();
       });

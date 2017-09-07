@@ -39,8 +39,8 @@ export class ServicesList implements AfterViewInit {
           (iframe as any).contentDocument.open();
           (iframe as any).contentDocument.write(service.description);
           (iframe as any).contentDocument.close();
-          (iframe as any).width = (iframe as any).contentWindow.document.body.scrollWidth;
-          (iframe as any).height = (iframe as any).contentWindow.document.body.scrollHeight;
+          // (iframe as any).width = (iframe as any).contentWindow.document.body.width;
+          // (iframe as any).height = (iframe as any).contentWindow.document.body.scrollHeight;
         }
       })
     })

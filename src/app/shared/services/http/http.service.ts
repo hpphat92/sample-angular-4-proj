@@ -97,24 +97,24 @@ export class ExtendedHttpService extends Http {
       },
       (err) => {
         try {
-          if (!config.skipAlert && err.status !== 403) {
-            let errObj = JSON.parse(err._body);
-            this._toast.error(errObj.message, "Error");
-          }
+          let errObj = JSON.parse(err._body);
           if (err.status === 401) {
             this.localStorageService.remove('userInfo');
             this.localStorageService.remove('userToken');
             this.localStorageService.remove('logged-time');
             this._router.navigate(['home', 'login']);
             // error
-            this.hideProgress();
-            return;
-          }
-          if (err.status === 403) {
+            if(!config.skipAlert) {
+              this._toast.success(errObj.message, "Error");
+            }
+          } else if (err.status === 403) {
             this._router.navigate(['forbidden']);
             // error
-            this.hideProgress();
             return;
+          } else {
+            if(!config.skipAlert) {
+              this._toast.error(errObj.message, "Error");
+            }
           }
           this.hideProgress();
         } catch (e) {

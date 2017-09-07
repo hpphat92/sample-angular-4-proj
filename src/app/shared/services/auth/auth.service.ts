@@ -100,7 +100,7 @@ export class AuthService {
         password: data.password,
         rememberMe: !!data.rememberMe
       };
-      return this._http.post(`${AppConstant.domain}/w-api/login`, body)
+      return this._http.post(`${AppConstant.domain}/w-api/login`, body, { skipAlert: true })
         .map((resp) => resp.json())
         .catch(this._handleError);
 

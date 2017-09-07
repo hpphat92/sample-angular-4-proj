@@ -12,17 +12,22 @@ import { GlobalState } from "../../global.state";
 export class PortfolioDetail implements OnDestroy {
 
   public portfolioDetail = [];
+  public hideReport: boolean = true;
 
   constructor(private _http: ExtendedHttpService, private _activatedRoute: ActivatedRoute, private _state: GlobalState) {
     this._state.notifyDataChanged('menu.toggleDisplay', {
       hide: true
     });
     this._activatedRoute.params.subscribe((params) => {
+      this.hideReport = true;
       this._http.get(`${AppConstant.domain}/w-api/portfolios/${params['id']}`).map((json) => json.json()).subscribe((resp) => {
         this.portfolioDetail = resp.data;
+        this.hideReport = false;
         this._state.notifyDataChanged('menu.activeLink', {
-          title: `Portfolio ${(this.portfolioDetail as any).company.name} / ${(this.portfolioDetail as any).service.name}`
+          title: ` ${(this.portfolioDetail as any).company.name} / ${(this.portfolioDetail as any).service.name}`
         });
+      }, () => {
+        this.hideReport = false;
       })
     })
   }

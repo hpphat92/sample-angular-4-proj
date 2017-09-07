@@ -34,6 +34,7 @@ export class BaMenu {
     hidden: false,
     selected: false,
     expanded: false,
+    enabled: true
   };
 
   constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http, private _authService: AuthService) {

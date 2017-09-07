@@ -15,6 +15,8 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public powerBiRecord;
 
   ngAfterViewInit() {
+    let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
+    let t = this.elementRef.nativeElement;
     let config = {
       type: 'report',
       tokenType: 1,
@@ -30,12 +32,22 @@ export class PowerbiContainerComponent implements AfterViewInit {
     this.powerBiRecord = (window as any).powerbi.embed(this.elementRef.nativeElement.querySelector('div'), config);
     this.iframe = this.elementRef.nativeElement.querySelector('iframe');
     this.iframe.setAttribute('frameBorder', 0);
-    this.iframe.setAttribute('height', '100%');
     this.iframe.setAttribute('allowfullscreen', '');
-    this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;position:absolute;top:0px;left:0px;right:0px;bottom:45px`);
-    let iframeHeight = this.iframe.getBoundingClientRect().height;
-    let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
-    this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)
+    if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
+
+      this.iframe.setAttribute('height', '100%');
+      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:calc(100% - 25px)'};position:absolute;top:25px;left:0px;right:0px;bottom:50px`);
+      let iframeHeight = this.iframe.getBoundingClientRect().height - 50;
+      let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
+      this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)
+    } else {
+
+      this.iframe.setAttribute('width', '100%');
+      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'width:100%'};position:absolute;top:25px;left:0px;right:0px;bottom:50px`);
+      let iframeWidth = this.iframe.getBoundingClientRect().width;
+      let iframeHeight = iframeWidth / this.ratioHeightPerWidth - 50;
+      this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};height:${iframeHeight}px; margin: auto;`)
+    }
   }
 
   goFullScreen() {
@@ -47,9 +59,18 @@ export class PowerbiContainerComponent implements AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event']) onWindowResize(event) {
-    let iframeHeight = this.iframe.getBoundingClientRect().height;
-    let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
-    this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)
+    let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
+    if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
+      let iframeHeight = this.iframe.getBoundingClientRect().height - 50;
+      let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
+      this.iframe.style.width = iframeWidth + 'px';
+      this.iframe.style.height = 'calc(100% - 25px)';
+    } else {
+      let iframeWidth = this.iframe.getBoundingClientRect().width;
+      let iframeHeight = iframeWidth / this.ratioHeightPerWidth - 50;
+      this.iframe.style.height = iframeHeight + 'px';
+      this.iframe.style.width = '100%';
+    }
   }
 
 }

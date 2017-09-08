@@ -76,7 +76,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
       this.powerBiRecord.fullscreen();
     } else {
       this.isFullScreen = true;
-      this.iframe.style = `position:fixed; top:0px; left:0px; width:100%; height:${window.innerHeight - 50}px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;`;
+      this.iframe.setAttribute('style', `position:fixed; top:0px; left:0px; width:100%; height:${window.innerHeight - 50}px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;`);
     }
   }
 

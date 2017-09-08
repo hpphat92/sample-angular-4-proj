@@ -9,7 +9,7 @@
           <p class="form-error-message">
           <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
             <span *ngIf="firstName.errors?.required">
-              First Name cannot be blank
+              {{'error.firstname_required' | translate}}
             </span>
           </span>
           </p>
@@ -20,7 +20,7 @@
           <p class="form-error-message">
           <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
             <span *ngIf="lastName.errors?.required">
-              Last Name cannot be blank
+              {{'error.lastname_required' | translate}}
             </span>
           </span>
           </p>
@@ -31,10 +31,10 @@
           <p class="form-error-message">
           <span *ngIf="email.invalid && (email.dirty || email.touched)">
             <span *ngIf="email.errors?.required">
-              Email cannot be blank
+              {{'error.email_required' | translate}}
             </span>
             <span *ngIf="email.errors?.pattern">
-              Email is invalid
+              {{'error.email_invalid' | translate}}
             </span>
           </span>
           </p>
@@ -45,10 +45,10 @@
           <p class="form-error-message">
           <span *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)">
             <span *ngIf="telephone.errors?.required">
-              Phone cannot be blank
+              {{'error.phone_required' | translate}}
             </span>
             <span *ngIf="telephone.errors?.pattern">
-              Phone is invalid
+              {{'error.phone_invalid' | translate}}
             </span>
           </span>
           </p>

@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { EqualPasswordsValidator } from "../../theme/validators/equalPasswords.validator";
 import { ApiResponse } from "app/shared/models";
 import { LocalStorageService } from "angular-2-local-storage";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'forgotpassword',
@@ -31,6 +32,7 @@ export class ForgotPassword {
   constructor(fb: FormBuilder,
               private _auth: AuthService,
               private _router: Router,
+              private _translate: TranslateService,
               private _toast: ToastrService,
               private _localStorage: LocalStorageService) {
     this.frm = fb.group({
@@ -77,9 +79,15 @@ export class ForgotPassword {
     }
     let nMins = (~~(invalidTimeRange / 60000));
     if (nMins > 0) {
-      this._toast.error(`Your account is blocked. Please wait after ${nMins} minute(s)`);
+      this._translate.get('error.account_blocked_minutes').subscribe((msg: string) => {
+        msg = msg.replace('{nMins}', `${nMins}`);
+        this._toast.error(msg);
+      });
     } else {
-      this._toast.error(`Your account is blocked. Please wait after ${~~(invalidTimeRange / 1000)} second(s)`);
+      this._translate.get('error.account_blocked_seconds').subscribe((msg: string) => {
+        msg = msg.replace('{nSecs}', `${~~(invalidTimeRange / 1000)}`);
+        this._toast.error(msg);
+      });
     }
     return true;
   }

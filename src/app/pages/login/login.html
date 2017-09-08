@@ -7,10 +7,10 @@
         <p class="form-error-message">
           <span *ngIf="email.invalid && (email.dirty || email.touched)">
             <span *ngIf="email.errors?.required">
-              Email cannot be blank
+              {{'error.email_required' | translate}}
             </span>
             <span *ngIf="email.errors?.pattern">
-              Email is invalid
+              {{'error.email_invalid' | translate}}
             </span>
           </span>
         </p>
@@ -20,7 +20,7 @@
         <input [formControl]="password" type="password" class="form-control" autocomplete="off" placeholder="Password">
         <p class="form-error-message">
           <span *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.required">
-            Password cannot be blank
+            {{'error.password_required' | translate}}
           </span>
         </p>
       </div>

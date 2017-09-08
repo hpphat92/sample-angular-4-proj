@@ -11,8 +11,28 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public config: any;
   public iframe: any;
   public size: any;
-  public ratioHeightPerWidth: number = 1.70;
+  public ratioHeightPerWidth: number = 1.83722037125;
+  // public ratioHeightPerWidth: number = 1.815;
   public powerBiRecord;
+
+
+  private calculateFrameSize(nativeSize) {
+    if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
+      let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
+      return {
+        width: Math.floor(iframeWidth),
+        height: Math.floor(+nativeSize.height)
+      }
+    } else {
+      let iframeWidth = nativeSize.width;
+      let iframeHeight = (iframeWidth) / this.ratioHeightPerWidth + 36;
+      return {
+        width: Math.floor(iframeWidth),
+        height: Math.floor(+iframeHeight)
+      }
+    }
+
+  }
 
   ngAfterViewInit() {
     let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
@@ -32,21 +52,20 @@ export class PowerbiContainerComponent implements AfterViewInit {
     this.iframe = this.elementRef.nativeElement.querySelector('iframe');
     this.iframe.setAttribute('frameBorder', 0);
     this.iframe.setAttribute('allowfullscreen', '');
-    if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
-
-      this.iframe.setAttribute('height', '100%');
-      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (nativeSize.height - 25) + 'px'};position:absolute;top:25px;left:0px;right:0px;bottom:50px`);
-      let iframeHeight = this.iframe.getBoundingClientRect().height - 50;
-      let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
-      this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};width:${iframeWidth}px; margin: auto;`)
-    } else {
-
-      this.iframe.setAttribute('width', '100%');
-      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'width:100%'};position:absolute;top:25px;left:0px;right:0px;bottom:50px`);
-      let iframeWidth = this.iframe.getBoundingClientRect().width;
-      let iframeHeight = iframeWidth / this.ratioHeightPerWidth - 50;
-      this.iframe.setAttribute('style', `${this.iframe.getAttribute('style')};height:${iframeHeight}px; margin: auto;`)
-    }
+    let size = this.calculateFrameSize({
+      width: nativeSize.width,
+      height: nativeSize.height - 50
+    });
+    this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (size.height) + 'px'};position:absolute;left:0px;right:0px;width:${size.width}px; margin: auto;`);
+    // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
+    //   let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
+    //   this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (nativeSize.height) + 'px'};position:absolute;left:0px;right:0px;width:${iframeWidth}px; margin: auto;`);
+    // } else {
+    //
+    //   let iframeWidth = nativeSize.width;
+    //   let iframeHeight = (iframeWidth) / this.ratioHeightPerWidth + 36;
+    //   this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;width:${iframeWidth}px;position:absolute;left:0px;right:0px;height:${iframeHeight}px; margin: auto;`);
+    // }
   }
 
   goFullScreen() {
@@ -59,17 +78,23 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event']) onWindowResize(event) {
     let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
-    if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
-      let iframeHeight = this.iframe.getBoundingClientRect().height - 50;
-      let iframeWidth = iframeHeight * this.ratioHeightPerWidth;
-      this.iframe.style.width = iframeWidth + 'px';
-      this.iframe.style.height = `${nativeSize.height - 25}px`;
-    } else {
-      let iframeWidth = this.iframe.getBoundingClientRect().width;
-      let iframeHeight = iframeWidth / this.ratioHeightPerWidth - 50;
-      this.iframe.style.height = iframeHeight + 'px';
-      this.iframe.style.width = '100%';
-    }
+    let size = this.calculateFrameSize({
+      width: nativeSize.width,
+      height: nativeSize.height - 50
+    });
+
+    this.iframe.style.height = size.height + 'px';
+    this.iframe.style.width = size.width + 'px';
+    // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
+    //   let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
+    //   this.iframe.style.width = iframeWidth + 'px';
+    //   this.iframe.style.height = `${nativeSize.height}px`;
+    // } else {
+    //   let iframeWidth = nativeSize.width;
+    //   let iframeHeight = (iframeWidth) / this.ratioHeightPerWidth + 36;
+    //   this.iframe.style.height = iframeHeight + 'px';
+    //   this.iframe.style.width = iframeWidth + 'px';
+    // }
   }
 
 }

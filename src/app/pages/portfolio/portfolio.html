@@ -23,7 +23,9 @@
       <tbody>
       <tr *ngFor="let item of items">
         <td class="text-left">{{item.name}}</td>
-        <td class="text-left">{{item.manager?.firstName + ' ' + item.manager?.lastName}}</td>
+        <td class="text-left">{{((item.manager && item.manager.firstName) ? item.manager.firstName:'') + ' ' +
+          ((item.manager && item.manager.lastName) ?item.manager.lastName:'')}}
+        </td>
         <td class="service-container">
           <div *ngFor="let i of item.services  | slice: 0 : 4" class="item" [class.disabled]="!i.reportId">
             <div class="image">

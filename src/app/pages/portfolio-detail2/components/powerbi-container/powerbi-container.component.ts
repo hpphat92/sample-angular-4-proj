@@ -73,7 +73,6 @@ export class PowerbiContainerComponent implements AfterViewInit {
   }
 
   goFullScreen() {
-    this.iOS = true;
     this.isFullScreen = true;
     if(!this.iOS) {
       this.powerBiRecord.fullscreen();

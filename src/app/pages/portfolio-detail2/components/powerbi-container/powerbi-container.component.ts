@@ -16,6 +16,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public powerBiRecord;
   public iOS: boolean = false;
   public isFullScreen: boolean = false;
+  public currentStyle: any;
 
 
   private calculateFrameSize(nativeSize) {
@@ -76,6 +77,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
       this.powerBiRecord.fullscreen();
     } else {
       this.isFullScreen = true;
+      this.currentStyle = this.iframe.getAttribute('style');
       this.iframe.setAttribute('style', `position:fixed; top:0px; left:0px; width:100%; height:${window.innerHeight - 50}px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;`);
     }
   }
@@ -83,12 +85,13 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public exitFullScreen(): void {
     if(this.iOS && this.isFullScreen) {
       this.isFullScreen = false;
-      let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
-      let size = this.calculateFrameSize({
-        width: nativeSize.width,
-        height: nativeSize.height - 50
-      });
-      this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (size.height) + 'px'};position:absolute;left:0px;right:0px;width:${size.width}px; margin: auto;`);
+      this.iframe.setAttribute('style', this.currentStyle);
+      // let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
+      // let size = this.calculateFrameSize({
+      //   width: nativeSize.width,
+      //   height: nativeSize.height - 50
+      // });
+      // this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (size.height) + 'px'};position:absolute;left:0px;right:0px;width:${size.width}px; margin: auto;`);
     }
   }
 

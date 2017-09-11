@@ -36,8 +36,8 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
-      { path: 'portfolio-detail/:id', loadChildren: './portfolio-detail/portfolio-detail.module#PortfolioDetailModule' },
-      { path: 'portfolio-detail2/:id', loadChildren: './portfolio-detail2/portfolio-detail2.module#PortfolioDetail2Module' },
+      { path: 'portfolio-detail2/:id', loadChildren: './portfolio-detail/portfolio-detail.module#PortfolioDetailModule' },
+      { path: 'portfolio-detail/:id', loadChildren: './portfolio-detail2/portfolio-detail2.module#PortfolioDetail2Module' },
       { path: 'submit-data', loadChildren: './submit-data/submit-data.module#SubmitDataModule' },
       { path: 'test1', loadChildren: './test1/test1.module#Test1Module' },
       { path: 'support', loadChildren: './support/support.module#SupportModule' },

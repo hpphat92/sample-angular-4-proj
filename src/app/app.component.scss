@@ -180,6 +180,9 @@
   .m-t-md {
     margin-top: 27px !important;
   }
-
+  .scrollable {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
 }
 

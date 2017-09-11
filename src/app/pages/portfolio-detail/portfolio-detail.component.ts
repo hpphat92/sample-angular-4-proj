@@ -24,7 +24,7 @@ export class PortfolioDetail implements OnDestroy {
         this.portfolioDetail = resp.data;
         this.hideReport = false;
         this._state.notifyDataChanged('menu.activeLink', {
-          title: ` ${(this.portfolioDetail as any).company.name} / ${(this.portfolioDetail as any).service.name}`
+          title: `${(this.portfolioDetail as any).company.name} / ${(this.portfolioDetail as any).service.name}`
         });
       }, () => {
         this.hideReport = false;

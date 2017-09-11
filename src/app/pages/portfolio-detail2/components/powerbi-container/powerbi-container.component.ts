@@ -73,12 +73,17 @@ export class PowerbiContainerComponent implements AfterViewInit {
   }
 
   goFullScreen() {
+    this.iOS = true;
+    this.isFullScreen = true;
     if(!this.iOS) {
       this.powerBiRecord.fullscreen();
     } else {
-      this.isFullScreen = true;
       this.currentStyle = this.iframe.getAttribute('style');
-      this.iframe.setAttribute('style', `position:fixed; top:0px; left:0px; width:100%; height:${window.innerHeight - 50}px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;`);
+      let size = this.calculateFrameSize({
+        width: window.innerWidth,
+        height: Math.max(window.innerHeight - 50, 320)
+      });
+      this.iframe.setAttribute('style', `position:fixed; top:0; left:0; right: 0; width:${size.width}px; height:${size.height}px; border:none; margin:auto; overflow:hidden; z-index:999999;`);
     }
   }
 
@@ -119,8 +124,13 @@ export class PowerbiContainerComponent implements AfterViewInit {
       //   this.iframe.style.height = iframeHeight + 'px';
       //   this.iframe.style.width = iframeWidth + 'px';
       // }
-    }else {
-      this.iframe.style.height = (window.innerHeight - 50) + 'px';
+    } else {
+      let size = this.calculateFrameSize({
+        width: window.innerWidth,
+        height: Math.max(window.innerHeight - 50, 320)
+      });
+      this.iframe.style.width = `${size.width}px`;
+      this.iframe.style.height = `${size.height}px`;
     }
   }
 

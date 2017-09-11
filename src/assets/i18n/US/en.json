@@ -8,21 +8,21 @@
     "password_required": "Password cannot be blank",
     "confirm_password_required": "Confirm password cannot be blank",
     "confirm_password_not_macth": "Confirm password does not match",
-    "phone_required": "Phone cannot be blank",
+    "phone_required": "Phone cannot be blank (required for Help & Support)",
     "phone_invalid": "Phone number is invalid",
-    "firstname_required": "First name cannot be blank",
-    "lastname_required": "Last name cannot be blank",
+    "firstname_required": "First Name cannot be blank",
+    "lastname_required": "Last Name cannot be blank",
     "company_name_required": "Company Name cannot be blank",
-    "account_blocked_minutes": "Your account is blocked. Please wait after {nMins} minute(s)",
-    "account_blocked_seconds": "Your account is blocked. Please wait after {nSecs} second(s)"
+    "account_blocked_minutes": "Your account is blocked. Please retry after {nMins} minute(s)",
+    "account_blocked_seconds": "Your account is blocked. Please retry after {nSecs} second(s)"
   },
   "label": {
     "enter_email": "Please enter your email address",
-    "enter_verify_code": "Please enter verification code",
+    "enter_verify_code": "Please enter your verification code",
     "enter_new_password": "Enter your new password below",
-    "reset_password_send_email": "If your email address matches the one we have on record, we will send a password reset message.",
+    "reset_password_send_email": "If your email address matches the one we have on record, we will send a password reset message",
     "click_full_screen": "Click here for full screen",
-    "submit_data_title": "Use the link below to transmit data files directly to Alythex's encrypted Box account",
-    "submit_data_footer": "Encrypted to transit using high-strength TLS encryption. Content is also encrypted at rest by Box using 256-bit AES encryption, and is further protected by an encryption key-wrapping strategy that also utilizes 256-bit AES encryption."
+    "submit_data_title": "Use the link below to transmit data files directly to the Alythex encrypted Box account",
+    "submit_data_footer": "Encrypted in transit using high-strength TLS encryption. Content encrypted at rest by Box using 256-bit AES encryption, and is further protected by a key-wrapping strategy utilising 256-bit AES encryption"
   }
 }

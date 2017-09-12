@@ -118,6 +118,9 @@ export class AuthService {
   }
 
   public logout(): Observable<ApiResponse<any>> {
+    (window as any).appInsights && (window as any).appInsights.trackEvent("Logout", {
+      "Email": this.currentUser.email
+    });
     this.clear();
     return this._http.post(`${AppConstant.domain}/w-api/logout`, null).flatMap(() => {
       return new Observable((observer) => {

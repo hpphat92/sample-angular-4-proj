@@ -1,5 +1,5 @@
 <div></div>
-<a href="javascript:void(0)" (click)="goFullScreen()">
+<a href="javascript:void(0)" (click)="goFullScreen()" *ngIf="!isIPhone">
   <p>{{'label.click_full_screen' | translate}}<img src="assets/img/full-screen.png"></p>
 </a>
 <div class="ios-fullscreen" *ngIf="this.iOS && this.isFullScreen">

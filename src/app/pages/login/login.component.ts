@@ -43,6 +43,7 @@ export class Login {
         this._auth.setToken(resp.data);
         this._auth.refreshToken();
         this.submitted = false;
+        (window as any).appInsights && (window as any).appInsights.trackEvent("Login", { "Email": this.email.value });
         let previousState = this._localStorageService.get('previous-state');
         if (!previousState) {
           this._router.navigate(['app', 'portfolio']);

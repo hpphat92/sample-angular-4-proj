@@ -35,8 +35,16 @@
       color: $primary-light;
     }
 
-    &.breadcrumb-item.active {
-      color: $default-text;
+    &.breadcrumb-item {
+      &.active {
+        color: $default-text;
+      }
+      & + .breadcrumb-item {
+        &:before {
+          padding-left: 0.2rem !important;
+          padding-right: 0.2rem !important;
+        }
+      }
     }
   }
 }

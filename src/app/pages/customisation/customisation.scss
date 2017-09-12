@@ -1,0 +1,27 @@
+:host /deep/ {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  //.customisation-container {
+  //  height: 100%;
+  //  display: flex;
+  //}
+
+  ng-select .ui-select-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    outline: none;
+    width: 100%;
+  }
+  .instruction {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  iframe {
+    flex-grow: 1;
+    margin-top: 10px;
+  }
+  .placeholder-iframe {
+    margin-top: 1em;
+  }
+}

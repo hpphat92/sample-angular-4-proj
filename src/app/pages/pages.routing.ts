@@ -38,6 +38,7 @@ export const routes: Routes = [
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'portfolio-detail2/:id', loadChildren: './portfolio-detail/portfolio-detail.module#PortfolioDetailModule' },
       { path: 'portfolio-detail/:id', loadChildren: './portfolio-detail2/portfolio-detail2.module#PortfolioDetail2Module' },
+      { path: 'customisation/:id', loadChildren: './customisation/customisation.module#CustomisationModule' },
       { path: 'submit-data', loadChildren: './submit-data/submit-data.module#SubmitDataModule' },
       { path: 'test1', loadChildren: './test1/test1.module#Test1Module' },
       { path: 'support', loadChildren: './support/support.module#SupportModule' },
@@ -51,6 +52,9 @@ export const routes: Routes = [
     path: '**',
     redirectTo: 'home/login'
   }
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
+
+

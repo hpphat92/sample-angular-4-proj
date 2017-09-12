@@ -22,6 +22,7 @@
     "enter_new_password": "Enter your new password below",
     "reset_password_send_email": "If your email address matches the one we have on record, we will send a password reset message",
     "click_full_screen": "Click here for full screen",
+    "refresh": "Refresh",
     "submit_data_title": "Use the link below to transmit data files directly to the Alythex encrypted Box account",
     "submit_data_footer": "Encrypted in transit using high-strength TLS encryption. Content encrypted at rest by Box using 256-bit AES encryption, and is further protected by a key-wrapping strategy utilising 256-bit AES encryption"
   }

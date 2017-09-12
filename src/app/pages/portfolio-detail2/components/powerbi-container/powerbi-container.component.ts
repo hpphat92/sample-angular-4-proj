@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input } from "@angular/core";
 import "./powerbi.js";
+import { ExtendedHttpService } from "../../../../shared/services/http/http.service";
+import { AppConstant } from "../../../../app.constant";
 @Component({
   selector: 'powerbi-container',
   styleUrls: ['./powerbi-container.scss'],
@@ -38,21 +40,21 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
-    this.iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-    let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
+  configPowerbiReport() {
     let config = {
       type: 'report',
       tokenType: 1,
-      accessToken: this.config.embedToken,
-      embedUrl: this.config.embedUrl,
-      id: this.config.reportId,
+      accessToken: this.config.embedConfig.embedToken,
+      embedUrl: this.config.embedConfig.embedUrl,
+      id: this.config.embedConfig.reportId,
       permissions: 7,
       settings: {
         // filterPaneEnabled: true,
         // navContentPaneEnabled: true
       }
     };
+    let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
+
     this.powerBiRecord = (window as any).powerbi.embed(this.elementRef.nativeElement.querySelector('div'), config);
     this.iframe = this.elementRef.nativeElement.querySelector('iframe');
     this.iframe.setAttribute('frameBorder', 0);
@@ -62,6 +64,11 @@ export class PowerbiContainerComponent implements AfterViewInit {
       height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), 320)
     });
     this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (size.height) + 'px'};left:0px;right:0px;width:${size.width}px; margin: auto;`);
+  }
+
+  ngAfterViewInit() {
+    this.iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+    this.configPowerbiReport();
     // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
     //   let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
     //   this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (nativeSize.height) + 'px'};position:absolute;left:0px;right:0px;width:${iframeWidth}px; margin: auto;`);
@@ -100,7 +107,19 @@ export class PowerbiContainerComponent implements AfterViewInit {
     }
   }
 
-  constructor(private elementRef: ElementRef) {
+  public refreshDataset() {
+    this._http.post(`${AppConstant.domain}/w-api/portfolios/${this.config.datasetId}/refresh`, null)
+      .map((resp) => resp.json())
+      .subscribe((resp) => {
+        this.powerBiRecord && this.powerBiRecord.refresh();
+        setTimeout(() => {
+          this.configPowerbiReport();
+        }, 500);
+
+      })
+  }
+
+  constructor(private elementRef: ElementRef, private _http: ExtendedHttpService) {
 
   }
 

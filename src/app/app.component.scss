@@ -184,5 +184,19 @@
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
   }
+  .vertical-middle {
+    vertical-align: middle !important;
+  }
+  .pointer {
+    cursor: pointer !important;
+  }
+  select {
+    option {
+      color: #000 !important;
+      &[disabled] {
+        color: #ccc !important;
+      }
+    }
+  }
 }
 

@@ -13,5 +13,9 @@
   </div>
 </div>
 
-<iframe width="100%" height="100%" frameborder="0" *ngIf="customSheetURL"
-        [src]="customSheetURL"></iframe>
+<div class="iframe-container" *ngIf="customSheetURL">
+  <div class="hidden-banner left"></div>
+  <div class="hidden-banner top"></div>
+  <iframe width="100%" height="100%" frameborder="0"
+          [src]="customSheetURL"></iframe>
+</div>

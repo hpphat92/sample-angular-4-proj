@@ -124,6 +124,7 @@ export class AuthService {
     this.clear();
     return this._http.post(`${AppConstant.domain}/w-api/logout`, null).flatMap(() => {
       return new Observable((observer) => {
+        document.body.classList.remove('imperson');
         if (this._refreshSubscription) {
           this._refreshSubscription.unsubscribe();
         }

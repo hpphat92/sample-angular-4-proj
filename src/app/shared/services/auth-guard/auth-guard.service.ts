@@ -54,6 +54,7 @@ export class AnonymousPage implements CanActivateChild {
 
     return new Promise((resolve) => {
       if (!this._authService.isAuthenticated || this._authService.isTokenExpired()) {
+        document.body.classList.remove('imperson');
         resolve(true);
       } else {
         this._authService.fromUnAuthPage = true;
@@ -75,7 +76,7 @@ export class AuthorizedPage implements CanActivateChild {
 
     return new Promise((resolve, reject) => {
       if (this._authService.isAuthenticated) {
-        if(this._authService.isTokenExpired()) {
+        if (this._authService.isTokenExpired()) {
           this._authService.authorize(null, true).subscribe((resp) => {
             this._authService.setToken(resp.data);
             this._authService.refreshToken();

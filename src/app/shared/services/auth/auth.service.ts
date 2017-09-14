@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable } from "@angular/core";
 // 3rd modules
-import * as moment from 'moment';
-import { LocalStorageService } from 'angular-2-local-storage';
-import { Observable, Subscription } from 'rxjs';
-
+import * as moment from "moment";
+import { LocalStorageService } from "angular-2-local-storage";
+import { Observable, Subscription } from "rxjs";
 // App modules
-import { UserInfo, UserToken, ApiResponse } from '../../models';
-import { AppConstant } from '../../../app.constant';
+import { ApiResponse, UserInfo, UserToken } from "../../models";
+import { AppConstant } from "../../../app.constant";
 import { Router } from "@angular/router";
 import { ExtendedHttpService } from "../http/http.service";
 import { Subject } from "rxjs/Subject";
@@ -99,9 +97,10 @@ export class AuthService {
     if (!refreshToken) {
       let body = {
         email: data.email,
-        password: data.password
+        password: data.password,
+        rememberMe: !!data.rememberMe
       };
-      return this._http.post(`${AppConstant.domain}/w-api/login`, body)
+      return this._http.post(`${AppConstant.domain}/w-api/login`, body, { skipAlert: true })
         .map((resp) => resp.json())
         .catch(this._handleError);
 
@@ -119,9 +118,13 @@ export class AuthService {
   }
 
   public logout(): Observable<ApiResponse<any>> {
+    (window as any).appInsights && (window as any).appInsights.trackEvent("Logout", {
+      "Email": this.currentUser.email
+    });
     this.clear();
     return this._http.post(`${AppConstant.domain}/w-api/logout`, null).flatMap(() => {
       return new Observable((observer) => {
+        document.body.classList.remove('imperson');
         if (this._refreshSubscription) {
           this._refreshSubscription.unsubscribe();
         }
@@ -138,8 +141,12 @@ export class AuthService {
   }
 
   public verifyCode(data): Observable<ApiResponse<any>> {
-    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/verify-code`, data)
-      .map((resp) => resp.json());
+    return this._http.post(`${AppConstant.domain}/w-api/forgot-password/verify-code`, data, {
+      skipAlert: true
+    })
+      .map((resp) => {
+        return resp.json();
+      });
   }
 
   public resetPassword(data): Observable<ApiResponse<any>> {
@@ -172,6 +179,7 @@ export class AuthService {
           this.userToken = resp.data;
         }, () => {
           this.clear();
+          this._localStorage.set('previous-state', this._router.url);
           this._router.navigateByUrl('/home/login');
         });
       });
@@ -214,6 +222,7 @@ export class AuthService {
           this.updateUserInfo(resp.data);
           resolve();
         }, () => {
+          this.subscription = null;
           reject();
         });
     });

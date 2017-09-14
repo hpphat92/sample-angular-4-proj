@@ -1,28 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
 @import '~nprogress/nprogress.css';
+@import "app/theme/sass/conf/_variables";
 
-$progress-loader-color: #f8ff71;
-#nprogress {
-  .bar {
-    height: 3px;
-    background: $progress-loader-color !important;
-  }
-  .peg {
-    box-shadow: 0 0 10px $progress-loader-color, 0 0 5px $progress-loader-color !important;
-  }
-  .spinner-icon {
-    border-top-color: $progress-loader-color !important;
-    border-left-color: $progress-loader-color !important;
-  }
-}
 ngui-tooltip .tooltip-contents {
   border: 1px solid #ccc;
   padding: 5px;
 }
+
 ngui-tooltip .tooltip-down-arrow {
   height: 10px;
 }
+
 ngui-tooltip .tooltip-down-arrow:before {
   content: '';
   display: block;
@@ -32,8 +21,47 @@ ngui-tooltip .tooltip-down-arrow:before {
   left: 45%;
   bottom: 5px;
   background: #fff;
-  border-left:1px solid #ccc;
-  border-bottom:1px solid #ccc;
-  transform:rotate(-45deg);
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  transform: rotate(-45deg);
 }
 
+.toast-success {
+  background-color: #01b8aa !important;
+}
+
+.toast-error {
+  background-color: #bf0000 !important;
+}
+
+$imperson_height: 35px;
+.page-header-announce {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: $imperson_height;
+  top: 0;
+  background: #bf0000;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 1.2em;
+  text-align: center;
+  line-height: $imperson_height;
+}
+
+.imperson {
+  .page-header-announce {
+    display: block !important;
+  }
+  app {
+    height: calc(100% - #{$imperson_height}) !important;
+  }
+  pages {
+    margin-top: $imperson_height;
+    .al-sidebar {
+      top: calc(#{$top-height} + #{$imperson_height}) !important;
+      height: calc(100% - #{$imperson_height}) !important;
+      min-height: calc(100% - #{$imperson_height}) !important;
+    }
+  }
+}

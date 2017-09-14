@@ -7,7 +7,7 @@
         <p class="form-error-message">
           <span *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
             <span *ngIf="firstName.errors?.required">
-              First Name cannot be blank
+              {{'error.firstname_required' | translate}}
             </span>
           </span>
         </p>
@@ -17,7 +17,17 @@
         <p class="form-error-message">
           <span *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
             <span *ngIf="lastName.errors?.required">
-              Last Name cannot be blank
+              {{'error.lastname_required' | translate}}
+            </span>
+          </span>
+        </p>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': companyName.invalid && (companyName.dirty || companyName.touched)}">
+        <input [formControl]="companyName" type="text" class="form-control" placeholder="Company Name">
+        <p class="form-error-message">
+          <span *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+            <span *ngIf="companyName.errors?.required">
+              {{'error.company_name_required' | translate}}
             </span>
           </span>
         </p>
@@ -27,10 +37,10 @@
         <p class="form-error-message">
           <span *ngIf="email.invalid && (email.dirty || email.touched)">
             <span *ngIf="email.errors?.required">
-              Email cannot be blank
+              {{'error.email_required' | translate}}
             </span>
             <span *ngIf="email.errors?.pattern">
-              Email is invalid
+              {{'error.email_invalid' | translate}}
             </span>
           </span>
         </p>
@@ -40,7 +50,7 @@
         <input [formControl]="password" type="password" class="form-control" placeholder="Password">
         <p class="form-error-message">
           <span *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.required">
-            Password cannot be blank
+            {{'error.password_required' | translate}}
           </span>
         </p>
       </div>
@@ -50,14 +60,14 @@
         <p class="form-error-message">
           <span
             *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched) && confirmPassword.errors?.required">
-            Confirm Password cannot be blank
+            {{'error.confirm_password_required' | translate}}
           </span>
-          <span
-            *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched) && (confirmPassword.errors?.minlength || confirmPassword.errors?.maxlength)">
-            Password length must be between 4 and 15
+          <span *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched) && (confirmPassword.errors?.passwordsEqual)">
+            {{'error.confirm_password_not_macth' | translate}}
           </span>
         </p>
       </div>
+
       <!--<div class="d-flex text-left">-->
         <!--<div class="flex-1">-->
           <!--<div class="checkbox">-->

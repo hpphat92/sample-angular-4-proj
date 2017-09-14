@@ -24,6 +24,7 @@ import { SHARED_SERVICES } from './shared/services';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { ExtendedHttpService } from "./shared/services/http/http.service";
 import { LoadingBarModule } from "./shared/loading-bar/loading-bar.module";
+import { SelectModule } from "ng2-select";
 
 //noinspection TypeScriptCheckImport
 // Application wide providers
@@ -65,6 +66,7 @@ export type StoreType = {
     ToastContainerModule.forRoot(),
     PagesModule,
     LoadingBarModule,
+    SelectModule,
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

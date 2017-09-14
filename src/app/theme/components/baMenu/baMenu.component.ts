@@ -29,16 +29,17 @@ export class BaMenu {
   public outOfArea: number = -200;
   public items = [];
   public itemLogout = {
-    title: 'Logout',
+    title: 'Log out',
     icon: 'fa fa-fw fa-power-off',
     hidden: false,
     selected: false,
     expanded: false,
+    enabled: true
   };
 
   constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http, private _authService: AuthService) {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
-      this.items = _.map(resp.data, (d, id) => {
+      this.items = _.map(resp.data.companies, (d, id) => {
         return {
           hidden: false,
           title: (d as any).name,
@@ -51,14 +52,23 @@ export class BaMenu {
           },
           path: 'app',
           children: _.map((d as any).services, (sub) => {
-            return {
+            let objMenuConfig = {
               title: (sub as any).name,
               hidden: false,
-              route: {
-                paths: 'portfolio-detail/' + (sub as any).mappingId
-              },
-              path: 'portfolio-detail/' + (sub as any).mappingId,
+              // route: {
+              //   paths: 'portfolio-detail/' + (sub as any).mappingId
+              // },
+              // path: 'portfolio-detail/' + (sub as any).mappingId,
+            };
+            if ((sub as any).reportId) {
+              let path = 'portfolio-detail/' + (sub as any).mappingId;
+              (objMenuConfig as any).route = {
+                paths: path
+              };
+              (objMenuConfig as any).path = path;
             }
+
+            return objMenuConfig;
           })
         };
       });
@@ -74,7 +84,10 @@ export class BaMenu {
   public selectMenuAndNotify(): void {
     if (this.menuItems) {
       this.menuItems = this._service.selectMenuItem(this.menuItems);
-      this._state.notifyDataChanged('menu.activeLink', this._service.getCurrentItem());
+      let value = this._service.getCurrentItem();
+      if (value.route || value.title) {
+        this._state.notifyDataChanged('menu.activeLink', value);
+      }
     }
   }
 
@@ -122,8 +135,8 @@ export class BaMenu {
     return false;
   }
 
-  public logout() {
-    this._authService.logout();
-    this._router.navigateByUrl('/home/login');
-  }
+  // public logout() {
+  //   this._authService.logout();
+  //   this._router.navigateByUrl('/home/login');
+  // }
 }

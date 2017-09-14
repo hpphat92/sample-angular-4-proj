@@ -27,6 +27,9 @@ $angle-right: '\f101';
       padding-left: 52px;
       height: auto;
       line-height: 29px;
+      width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:hover {
         color: $primary-light;
       }
@@ -55,19 +58,32 @@ $angle-right: '\f101';
     position: fixed;
   }
   .al-sidebar-list {
-    .slimScrollDiv {
+    min-height: 42px;
+    .slimScrollDiv,.c-slimScrollDiv {
       margin-top: 0 !important;
       background: rgb(39, 106, 111);
     }
   }
   .slimScrollDiv {
-    height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    &:nth-child(2) {
-      height: auto !important;
-      margin-top: 30%;
-      overflow: unset !important;
+    margin-top: auto;
+    height: auto !important;
+    overflow: unset !important;
+    display: flex;
+    & > .al-sidebar-list {
+      width: 100% !important;
+    }
+
+  }
+  .c-slimScrollDiv {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: rgb(39, 106, 111);
+    //margin-bottom: 15%;
+    min-height: 50px;
+    & > div {
+      height: 100% !important;
     }
   }
   .al-sidebar-list {
@@ -137,6 +153,13 @@ $angle-right: '\f101';
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
+    &.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+      &:hover {
+        color: #ccc;
+      }
+    }
     &:hover {
       color: $primary-light;
       font-weight: lighter;
@@ -148,6 +171,7 @@ $angle-right: '\f101';
       margin-right: 18px;
       width: 16px;
       display: inline-block;
+      float: left;
     }
     b {
       display: block;
@@ -164,6 +188,15 @@ $angle-right: '\f101';
       text-align: center;
       color: $sidebar-text;
       transition: transform 0.2s linear;
+    }
+    i.fa {
+      line-height: 42px;
+    }
+    span {
+      width: 65%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      float: left;
     }
   }
 

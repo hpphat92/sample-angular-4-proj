@@ -2,6 +2,8 @@
 @import './theme/components/baSidebar/baSidebar';
 
 :host /deep/ {
+  display: block;
+  height: 100%;
   @mixin layout-collapsed() {
     .al-main {
       margin-left: 50px;
@@ -43,6 +45,7 @@
             padding-right: 18px;
             min-width: 130px;
             white-space: nowrap;
+
           }
         }
       }
@@ -175,7 +178,25 @@
     margin-bottom: 0 !important;
   }
   .m-t-md {
-    margin-top: 15px !important;
+    margin-top: 27px !important;
+  }
+  .scrollable {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+  .vertical-middle {
+    vertical-align: middle !important;
+  }
+  .pointer {
+    cursor: pointer !important;
+  }
+  select {
+    option {
+      color: #000 !important;
+      &[disabled] {
+        color: #ccc !important;
+      }
+    }
   }
 }
 

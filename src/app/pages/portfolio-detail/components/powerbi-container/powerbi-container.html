@@ -1,0 +1,9 @@
+<div></div>
+<a href="javascript:void(0)" (click)="goFullScreen()">
+  <p>{{'label.click_full_screen' | translate}}<img src="assets/img/full-screen.png"></p>
+</a>
+<div class="ios-fullscreen" *ngIf="this.iOS && this.isFullScreen">
+  <a href="javascript:void(0)" (click)="exitFullScreen()">
+    <p class="m-b-10">Click here to exit full screen<img src="assets/img/full-screen.png"></p>
+  </a>
+</div>

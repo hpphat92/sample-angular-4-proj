@@ -18,6 +18,7 @@ export class Signup {
   public frm: FormGroup;
   public firstName: AbstractControl;
   public lastName: AbstractControl;
+  public companyName: AbstractControl;
   public email: AbstractControl;
   public password: AbstractControl;
   public confirmPassword: AbstractControl;
@@ -30,6 +31,7 @@ export class Signup {
     this.frm = fb.group({
       'firstName': ['', Validators.compose([Validators.required])],
       'lastName': ['', Validators.compose([Validators.required])],
+      'companyName': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
       'password': ['', [Validators.required]],
       'confirmPassword': ['', [Validators.required]],
@@ -40,6 +42,7 @@ export class Signup {
 
     this.firstName = this.frm.controls['firstName'];
     this.lastName = this.frm.controls['lastName'];
+    this.companyName = this.frm.controls['companyName'];
     this.email = this.frm.controls['email'];
     this.password = this.frm.controls['password'];
     this.confirmPassword = this.frm.controls['confirmPassword'];

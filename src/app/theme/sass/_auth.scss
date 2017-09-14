@@ -40,12 +40,39 @@ $text-color: $default-text;
   min-height: 500px;
   position: absolute;
   .auth-content {
+
+    @media screen and (max-width: 486px) {
+      & {
+        width: 80%;
+        .title {
+          font-size: 40px;
+        }
+      }
+    }
+    @media screen and (min-width: 486px) and (max-width: 768px) {
+      & {
+        width: 70%;
+        .title {
+          font-size: 50px;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 1268px) {
+      & {
+        width: 50%;
+      }
+    }
+    @media screen and (min-width: 1268px) {
+      & {
+        width: 28%;
+      }
+    }
     width: 450px;
     margin: 0 auto;
     h1 {
       margin: 0;
       padding-top: 10px;
-      padding-bottom: 85px;
+      padding-bottom: 65px;
       line-height: 0.8em;
       font-size: 56px;
       font-weight: normal;
@@ -55,7 +82,11 @@ $text-color: $default-text;
     a {
       color: $primary;
       &:hover {
+        color: $primary !important;
         text-decoration: underline;
+      }
+      &:focus, &:visited {
+        color: $primary !important;
       }
     }
     .form-group {

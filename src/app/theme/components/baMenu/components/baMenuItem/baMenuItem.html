@@ -4,7 +4,7 @@
      [routerLink]="menuItem.route.paths" class="al-sidebar-list-link">
     <i *ngIf="menuItem.icon" class="{{ menuItem.icon }}"></i><span translate>{{ menuItem.title }}</span>
   </a>
-  <a *ngIf="!menuItem.children && !menuItem.url && !menuItem.route" (click)="onClickItem($event, item)" class="al-sidebar-list-link"
+  <a *ngIf="!menuItem.children && !menuItem.url && !menuItem.route" (click)="onClickItem($event, item)" class="al-sidebar-list-link" [class.disabled]="!menuItem.enabled"
      href="javascript:void(0)">
     <i *ngIf="menuItem.icon" class="{{ menuItem.icon }}"></i><span translate>{{ menuItem.title }}</span>
   </a>

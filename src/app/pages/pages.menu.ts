@@ -18,7 +18,7 @@ export const PAGES_MENU = [
         path: 'submit-data',
         data: {
           menu: {
-            title: 'general.menu.submitData',
+            title: 'Submit Data',
             alternateTitle: 'Secure Data Submission',
             icon: 'ion-paper-airplane',
             selected: false,
@@ -31,7 +31,7 @@ export const PAGES_MENU = [
         path: 'support',
         data: {
           menu: {
-            title: 'general.menu.support',
+            title: 'Help & Support',
             icon: 'ion-help-circled',
             selected: false,
             expanded: false,
@@ -52,18 +52,18 @@ export const PAGES_MENU = [
           }
         }
       },
-      {
-        path: 'profile',
-        data: {
-          menu: {
-            title: 'My Profile',
-            icon: 'ion-person',
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      }
+      // {
+      //   path: 'profile',
+      //   data: {
+      //     menu: {
+      //       title: 'My Profile',
+      //       icon: 'ion-person',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // }
       // {
       //   path: 'editors',
       //   data: {

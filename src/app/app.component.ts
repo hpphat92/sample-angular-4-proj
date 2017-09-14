@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 
 import { GlobalState } from './global.state';
@@ -26,14 +26,13 @@ import { ToastrService } from "ngx-toastr";
 export class App {
 
   isMenuCollapsed: boolean = false;
+  isLoggedInAsImperson: boolean = false;
 
   constructor(private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig,
-              private _authService: AuthService,
-              private _toast: ToastrService) {
+              private themeConfig: BaThemeConfig,) {
 
     themeConfig.config();
 

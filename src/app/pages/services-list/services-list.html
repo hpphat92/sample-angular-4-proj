@@ -1,15 +1,18 @@
 <div class="row">
-  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-6 box-item" *ngFor="let item of items; let i = index;">
+  <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6 box-item" *ngFor="let item of items; let i = index;">
     <div class="box-item-container">
       <div class="header-container">
         <div class="service-name">
-          <h3><b>{{item.name}}</b></h3>
+          <h3 class="name">{{item.name}}</h3>
         </div>
         <div class="img-service">
-          <img [src]="item.imageUrl">
+          <img [src]="item.imageUrl  || 'assets/img/img-placeholder.jpg'">
         </div>
       </div>
-      <h5 class="description" [innerHtml]="item.description"></h5>
+      <!-- <h5 class="description" [innerHtml]="item.description | safeHtml"></h5> -->
+      <h5 class="description">
+        <iframe [attr.id]="item.id" frameborder="0"></iframe>
+      </h5>
     </div>
   </div>
 </div>

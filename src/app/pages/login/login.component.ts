@@ -52,10 +52,10 @@ export class Login {
           this._router.navigateByUrl((previousState as string));
         }
       }, (err: ApiResponse<any>) => {
-        if (err.message || err.status) {
+        if (err && (err.message || err.status)) {
           this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
         } else {
-          this._toast.error('Network Error', 'Error');
+          this._toast.error('Internal Error', 'Error');
         }
         this.submitted = false;
         this.frm.enable();

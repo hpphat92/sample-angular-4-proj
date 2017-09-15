@@ -8,6 +8,7 @@ import { Http } from "@angular/http";
 import { AppConstant } from "../../../app.constant";
 import * as _ from "lodash";
 import { AuthService } from "../../../shared/services/auth/auth.service";
+import { ExtendedHttpService } from "../../../shared/services/http/http.service";
 @Component({
   selector: 'ba-menu',
   templateUrl: './baMenu.html',
@@ -37,7 +38,7 @@ export class BaMenu {
     enabled: true
   };
 
-  constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: Http, private _authService: AuthService) {
+  constructor(private _router: Router, private _service: BaMenuService, private _state: GlobalState, private _http: ExtendedHttpService, private _authService: AuthService) {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
       this.items = _.map(resp.data.companies, (d, id) => {
         return {

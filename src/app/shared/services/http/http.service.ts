@@ -7,7 +7,7 @@ import {
   Http,
   RequestOptionsArgs,
   Headers,
-  QueryEncoder
+  QueryEncoder, ResponseOptions
 } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
@@ -85,6 +85,19 @@ export class ExtendedHttpService extends Http {
   public intercept(observable: Observable<Response>, config?: any): Observable<Response> {
     let args = arguments;
     config = config || {};
+    if (!(window as any).navigator.onLine) {
+      if (!config.skipAlert) {
+        this._toast.error('Network Error', 'Error');
+      }
+      return new Observable<Response>((subscriber) => {
+        subscriber.error(new Response(new ResponseOptions({
+          body: {
+            message: 'Network error',
+            status: 0
+          }
+        })));
+      });
+    }
     let shareRequest = observable.share();
     this.showProgress();
     shareRequest.map((resp) => resp.json()).subscribe(
@@ -104,7 +117,7 @@ export class ExtendedHttpService extends Http {
             this.localStorageService.remove('logged-time');
             this._router.navigate(['home', 'login']);
             // error
-            if(!config.skipAlert) {
+            if (!config.skipAlert) {
               this._toast.success(errObj.message, "Error");
             }
           } else if (err.status === 403) {
@@ -112,12 +125,15 @@ export class ExtendedHttpService extends Http {
             // error
             return;
           } else {
-            if(!config.skipAlert) {
-              this._toast.error(errObj.message, "Error");
+            if (!config.skipAlert) {
+              this._toast.error(errObj.message || 'Internal Error', "Error");
             }
           }
           this.hideProgress();
         } catch (e) {
+          if (!config.skipAlert) {
+            this._toast.error('Internal Error', "Error");
+          }
           this.hideProgress();
         }
 

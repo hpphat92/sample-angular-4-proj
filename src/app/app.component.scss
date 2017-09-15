@@ -198,5 +198,11 @@
       }
     }
   }
+  .dropdown-item:active {
+    background-color: $primary-light !important;
+    a {
+      color: #fff !important;
+    }
+  }
 }
 

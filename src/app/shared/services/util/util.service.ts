@@ -104,7 +104,7 @@ export class Util {
       link.click();
       document.body.removeChild(link);
     }, (err) => {
-      this._toast.error(err.message || err, "Error");
+      this._toast.error(null, err.message || err);
     });
   }
 

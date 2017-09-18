@@ -87,7 +87,7 @@ export class ExtendedHttpService extends Http {
     config = config || {};
     if (!(window as any).navigator.onLine) {
       if (!config.skipAlert) {
-        this._toast.error('Network Error', 'Error');
+        this._toast.error(null, 'Network Error');
       }
       return new Observable<Response>((subscriber) => {
         subscriber.error(new Response(new ResponseOptions({
@@ -104,7 +104,7 @@ export class ExtendedHttpService extends Http {
       (resp) => {
         // subscribe
         if (resp.message) {
-          this._toast.success(resp.message, 'Success');
+          this._toast.success(null, resp.message);
         }
         this.hideProgress();
       },
@@ -118,7 +118,7 @@ export class ExtendedHttpService extends Http {
             this._router.navigate(['home', 'login']);
             // error
             if (!config.skipAlert) {
-              this._toast.success(errObj.message, "Error");
+              this._toast.error(null, errObj.message);
             }
           } else if (err.status === 403) {
             this._router.navigate(['forbidden']);
@@ -126,13 +126,13 @@ export class ExtendedHttpService extends Http {
             return;
           } else {
             if (!config.skipAlert) {
-              this._toast.error(errObj.message || 'Internal Error', "Error");
+              this._toast.error(null, errObj.message || 'An error has occurred');
             }
           }
           this.hideProgress();
         } catch (e) {
           if (!config.skipAlert) {
-            this._toast.error('Internal Error', "Error");
+            this._toast.error(null, 'An error has occurred');
           }
           this.hideProgress();
         }

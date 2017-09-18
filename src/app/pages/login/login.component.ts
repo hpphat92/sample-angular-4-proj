@@ -53,9 +53,9 @@ export class Login {
         }
       }, (err: ApiResponse<any>) => {
         if (err && (err.message || err.status)) {
-          this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
+          this._toast.error(null, err.message || `${err.status} ${(err as any).statusText}`);
         } else {
-          this._toast.error('Internal Error', 'Error');
+          this._toast.error(null, 'An error has occurred');
         }
         this.submitted = false;
         this.frm.enable();

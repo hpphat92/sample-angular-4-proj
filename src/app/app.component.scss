@@ -204,5 +204,10 @@
       color: #fff !important;
     }
   }
+  .text-nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 

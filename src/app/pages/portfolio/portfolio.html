@@ -27,7 +27,7 @@
       <!--</thead>-->
 
       <tbody>
-      <tr *ngFor="let item of items">
+      <tr *ngFor="let item of items" #listService>
 
         <td class="text-left">
           <a [routerLink]="item.id?['/app/customisation/'+item.id]:['']" *ngIf="item.customSheetUrlCount">
@@ -39,20 +39,21 @@
             <div class="name">{{item.name}}</div>
           </div>
         </td>
-        <td class="text-left nowrap">{{((item.manager && item.manager.firstName) ? item.manager.firstName:'') + ' ' +
+        <td class="text-left text-nowrap">{{((item.manager && item.manager.firstName) ? item.manager.firstName:'') + ' '
+          +
           ((item.manager && item.manager.lastName) ?item.manager.lastName:'')}}
         </td>
         <td class="service-container">
-          <div *ngFor="let i of item.services  | slice: 0 : 4" class="item" [class.disabled]="!i.reportId">
+          <div *ngFor="let i of item.services  | slice: 0 : (item.services.length-maxViewItem===1?item.services.length: maxViewItem)" class="item" [class.disabled]="!i.reportId">
             <div class="image">
               <a [routerLink]="i.reportId?['/app/portfolio-detail/'+i.mappingId]:['']">
                 <img [src]="i.imageUrl || 'assets/img/img-placeholder.jpg'" alt="">
               </a>
             </div>
           </div>
-          <div *ngIf="item.services.length>4" class="item item-placeholder" (click)="viewAllServices(item)">
+          <div *ngIf="item.services.length>(item.services.length-maxViewItem===1?item.services.length: maxViewItem)" class="item item-placeholder" (click)="viewAllServices(item)">
             <div class="image">
-              +{{ item.services.length-4 }}
+              +{{ item.services.length-maxViewItem }}
             </div>
           </div>
         </td>

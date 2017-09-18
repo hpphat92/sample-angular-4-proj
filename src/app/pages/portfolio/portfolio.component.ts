@@ -1,4 +1,7 @@
-import { AfterViewInit, Component, ElementRef, Renderer2 } from "@angular/core";
+import {
+  AfterContentChecked, AfterViewInit, Component, ElementRef, HostListener, Renderer2, ViewChild,
+  ViewChildren
+} from "@angular/core";
 import { AppConstant } from "../../app.constant";
 import { ExtendedHttpService } from "../../shared/services/http/http.service";
 import { AllServiceModalComponent } from "./all-services/all-services.component";
@@ -10,18 +13,26 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   templateUrl: './portfolio.html'
 })
 export class Portfolio implements AfterViewInit {
-
+  public maxViewItem = 4;
+  public firstServiceContainer = null;
+  public sizePerService = 55 + 10;
   public items = [];
   public position = {
     position: 'top cursor'
   };
 
+  @ViewChildren('listService') set content(list: any) {
+    if (list && list.length) {
+      this.firstServiceContainer = list.first.nativeElement.querySelector('.service-container');
+      this.computeMaxViewServices();
+    }
+  }
+
   ngAfterViewInit(): void {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
+
       this.items = (resp.data as any).companies;
       this.appendHtml((resp.data as any).embedCode);
-      // this.appendHtml('<iframe src="https://feed.mikle.com/widget/v2/44162/"></iframe>');
-
     });
   }
 
@@ -29,7 +40,6 @@ export class Portfolio implements AfterViewInit {
               private _modalService: NgbModal,
               private elementRef: ElementRef,
               private _renderer2: Renderer2) {
-
   }
 
   private appendHtml(htmlString) {
@@ -64,4 +74,17 @@ export class Portfolio implements AfterViewInit {
     });
   }
 
+  public computeMaxViewServices() {
+    if (this.firstServiceContainer) {
+      let width = this.firstServiceContainer.offsetWidth;
+      this.maxViewItem = Math.min(Math.floor(width / this.sizePerService) - 1, 5) - 1;
+      if (this.maxViewItem < 0) {
+        this.maxViewItem = 0;
+      }
+    }
+  }
+
+  @HostListener('window:resize', ['$event']) onWindowResize(event) {
+    this.computeMaxViewServices();
+  }
 }

@@ -36,6 +36,7 @@
   .table-portfolio {
     border-spacing: 0 12px;
     border-collapse: separate;
+    table-layout: fixed;
     thead {
       font-weight: bolder;
     }
@@ -105,5 +106,18 @@
   }
   .customisation-icon {
     width: 30px;
+  }
+  .name-group {
+    display: flex;
+    .name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    a{
+      position: relative;
+      left: 20px;
+    }
   }
 }

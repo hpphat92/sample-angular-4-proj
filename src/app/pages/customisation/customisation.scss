@@ -1,4 +1,5 @@
 @import '../../theme/sass/auth';
+
 :host /deep/ {
   flex-grow: 1;
   display: flex;
@@ -37,6 +38,15 @@
       &.top {
         width: 100%;
         height: 24px;
+      }
+      &.bottom-right {
+        width: 113px;
+        height: 38px;
+        bottom: 0;
+        right: 0;
+      }
+      &.sheet-color {
+        background-color: #eeeeee !important;
       }
     }
   }

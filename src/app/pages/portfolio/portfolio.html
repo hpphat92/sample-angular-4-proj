@@ -15,10 +15,10 @@
     </div>
     <table class="table table-portfolio">
       <colgroup>
-        <col width="50">
-        <col width="5">
-        <col width="20">
-        <col width="25">
+        <col width="40">
+        <col>
+        <col width="100">
+        <col>
       </colgroup>
       <!--<thead>-->
       <!--<td>Company</td>-->
@@ -27,14 +27,19 @@
       <!--</thead>-->
 
       <tbody>
-        <tr *ngFor="let item of items">
-        <td class="text-left">{{item.name}}</td>
-        <td class="text-left vertical-middle">
+      <tr *ngFor="let item of items">
+
+        <td class="text-left">
           <a [routerLink]="item.id?['/app/customisation/'+item.id]:['']" *ngIf="item.customSheetUrlCount">
             <img class="customisation-icon" src="assets/img/Customisation_icon.png" alt="">
           </a>
         </td>
-        <td class="text-left">{{((item.manager && item.manager.firstName) ? item.manager.firstName:'') + ' ' +
+        <td class="text-left">
+          <div class="name-group">
+            <div class="name">{{item.name}}</div>
+          </div>
+        </td>
+        <td class="text-left nowrap">{{((item.manager && item.manager.firstName) ? item.manager.firstName:'') + ' ' +
           ((item.manager && item.manager.lastName) ?item.manager.lastName:'')}}
         </td>
         <td class="service-container">

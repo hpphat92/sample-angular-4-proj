@@ -15,6 +15,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public size: any;
   // public ratioHeightPerWidth: number = 1.83722037125;
   public ratioHeightPerWidth: number = 1.815;
+  // public ratioHeightPerWidth: number = 1.83;
   public powerBiRecord;
   public subButtonContainer;
   public iOS: boolean = false;
@@ -128,14 +129,15 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event']) onWindowResize(event) {
     if (!this.iOS || !this.isFullScreen) {
-      let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
-      let size = this.calculateFrameSize({
-        width: nativeSize.width,
-        height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), 320)
-      });
+        let nativeSize = this.elementRef.nativeElement.parentElement.getBoundingClientRect();
+        let size = this.calculateFrameSize({
+          width: nativeSize.width,
+          height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), 320)
+        });
+        this.iframe.style.height = size.height + 'px';
+        this.iframe.style.width = size.width + 'px';
+        this.subButtonContainer && this.subButtonContainer.setAttribute('style', `width:${size.width}px`);
 
-      this.iframe.style.height = size.height + 'px';
-      this.iframe.style.width = size.width + 'px';
       // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
       //   let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
       //   this.iframe.style.width = iframeWidth + 'px';
@@ -153,6 +155,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
       });
       this.iframe.style.width = `${size.width}px`;
       this.iframe.style.height = `${size.height}px`;
+      this.subButtonContainer && this.subButtonContainer.setAttribute('style', `width:${size.width}px`);
     }
 
 

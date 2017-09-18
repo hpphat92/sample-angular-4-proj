@@ -136,7 +136,11 @@ export class ForgotPassword {
           this._localStorage.set(this._buildStorageKeyFromEmail(this.frm.value.email), err.data.blockTo);
           this.showMessageInvalidTime(this.frm.value.email);
         } else {
-          this._toast.error(null, err.message || `${err.status} ${(err as any).statusText}`);
+          if (err && (err.message || err.status)) {
+            this._toast.error(null, err.message || `${err.status} ${(err as any).statusText}`);
+          } else {
+            this._toast.error(null, 'An error has occurred');
+          }
         }
       });
       // your code goes here

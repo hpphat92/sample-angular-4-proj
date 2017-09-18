@@ -52,18 +52,18 @@ export const PAGES_MENU = [
           }
         }
       },
-      {
-        path: 'profile',
-        data: {
-          menu: {
-            title: 'My Profile',
-            icon: 'ion-person',
-            selected: false,
-            expanded: false,
-            order: 0
-          }
-        }
-      }
+      // {
+      //   path: 'profile',
+      //   data: {
+      //     menu: {
+      //       title: 'My Profile',
+      //       icon: 'ion-person',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 0
+      //     }
+      //   }
+      // }
       // {
       //   path: 'editors',
       //   data: {

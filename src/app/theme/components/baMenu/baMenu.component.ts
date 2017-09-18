@@ -136,8 +136,8 @@ export class BaMenu {
     return false;
   }
 
-  public logout() {
-    this._authService.logout();
-    this._router.navigateByUrl('/home/login');
-  }
+  // public logout() {
+  //   this._authService.logout();
+  //   this._router.navigateByUrl('/home/login');
+  // }
 }

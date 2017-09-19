@@ -1,3 +1,4 @@
+$item-service-width: 55px;
 @media screen and (min-width: 1620px) {
   .row.shift-up {
     > * {
@@ -40,6 +41,15 @@
     thead {
       font-weight: bolder;
     }
+    tbody {
+      & > tr {
+        & > td {
+          &:last-child {
+            padding-right: 3px !important;
+          }
+        }
+      }
+    }
     tr {
       background-color: #f7f5f5;
       //background-color: rgba(247, 245, 245, 1);
@@ -74,13 +84,13 @@
         }
         img {
           cursor: pointer;
-          width: 55px;
+          width: $item-service-width;
         }
       }
       .item-placeholder {
         cursor: pointer;
-        width: 55px;
-        height: 55px;
+        width: $item-service-width;
+        height: $item-service-width;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -90,6 +100,7 @@
         font-size: 1.1em;
         font-weight: bold;
         margin: 0 5px;
+        min-width: $item-service-width;
         &:hover {
           opacity: 0.8;
         }
@@ -107,7 +118,7 @@
     //height: calc(100vh - 120px);
   }
   .customisation-icon {
-    width: 30px;
+    width: 20px;
   }
   .name-group {
     display: flex;

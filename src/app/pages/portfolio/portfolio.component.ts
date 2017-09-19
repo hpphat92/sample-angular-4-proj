@@ -1,11 +1,12 @@
 import {
-  AfterContentChecked, AfterViewInit, Component, ElementRef, HostListener, Renderer2, ViewChild,
+  AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild,
   ViewChildren
 } from "@angular/core";
 import { AppConstant } from "../../app.constant";
 import { ExtendedHttpService } from "../../shared/services/http/http.service";
 import { AllServiceModalComponent } from "./all-services/all-services.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'portfolio',
@@ -25,13 +26,13 @@ export class Portfolio implements AfterViewInit {
     if (list && list.length) {
       this.firstServiceContainer = list.first.nativeElement.querySelector('.service-container');
       this.computeMaxViewServices();
+      this.changeDetectorRef.detectChanges();
     }
   }
 
   ngAfterViewInit(): void {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
-
-      this.items = (resp.data as any).companies;
+      this.items = _.sortBy((resp.data as any).companies, 'name');
       this.appendHtml((resp.data as any).embedCode);
     });
   }
@@ -39,7 +40,8 @@ export class Portfolio implements AfterViewInit {
   constructor(private _http: ExtendedHttpService,
               private _modalService: NgbModal,
               private elementRef: ElementRef,
-              private _renderer2: Renderer2) {
+              private _renderer2: Renderer2,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   private appendHtml(htmlString) {

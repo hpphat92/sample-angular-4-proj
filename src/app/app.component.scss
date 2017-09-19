@@ -198,5 +198,16 @@
       }
     }
   }
+  .dropdown-item:active {
+    background-color: $primary-light !important;
+    a {
+      color: #fff !important;
+    }
+  }
+  .text-nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 

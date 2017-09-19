@@ -83,6 +83,7 @@ export class AuthorizedPage implements CanActivateChild {
             this._authService.getUserInfo().then((response) => {
               resolve(true);
             }, () => {
+              this._authService.logout();
               this.router.navigateByUrl('/home/login');
               reject(false);
             });
@@ -96,6 +97,7 @@ export class AuthorizedPage implements CanActivateChild {
           this._authService.getUserInfo().then((response) => {
             resolve(true);
           }, () => {
+            this._authService.logout();
             this.router.navigateByUrl('/home/login');
             reject(false);
           });
@@ -103,6 +105,7 @@ export class AuthorizedPage implements CanActivateChild {
       } else {
         // this._authService.fromUnAuthPage = true;
         // this._toast.info('You are already signed in', 'Info');
+        this._authService.logout();
         this.router.navigateByUrl('/home/login');
         reject(false);
       }

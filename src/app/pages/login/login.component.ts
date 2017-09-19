@@ -43,7 +43,7 @@ export class Login {
         this._auth.setToken(resp.data);
         this._auth.refreshToken();
         this.submitted = false;
-        (window as any).appInsights && (window as any).appInsights.trackEvent("Login", { "Email": this.email.value });
+        (window as any).appInsights && (window as any).appInsights.trackEvent("Login", {"Email": this.email.value});
         let previousState = this._localStorageService.get('previous-state');
         if (!previousState) {
           this._router.navigate(['app', 'portfolio']);
@@ -52,7 +52,11 @@ export class Login {
           this._router.navigateByUrl((previousState as string));
         }
       }, (err: ApiResponse<any>) => {
-        this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
+        if (err && (err.message || err.status)) {
+          this._toast.error(null, err.message || `${err.status} ${(err as any).statusText}`);
+        } else {
+          this._toast.error(null, 'An error has occurred');
+        }
         this.submitted = false;
         this.frm.enable();
       });

@@ -1,8 +1,11 @@
 <div></div>
-<div class="sub-btn" [class.no-right]="!config.datasetId" [class.no-left]="isIPhone" *ngIf="config.datasetId || !isIPhone">
-  <p class="left-item" *ngIf="!isIPhone" (click)="goFullScreen()">{{'label.click_full_screen' | translate}}<img
-    src="assets/img/full-screen.png"></p>
-  <p class="right-item" *ngIf="config.datasetId" (click)="refreshDataset()">{{'label.refresh' | translate}} <i class="fa fa-refresh"></i></p>
+<div class="sub-button-container">
+  <div class="sub-btn" *ngIf="config.datasetId || !isIPhone">
+    <div class="fake-item"></div>
+    <p class="left-item item" *ngIf="!isIPhone" (click)="goFullScreen()">{{'label.click_full_screen' | translate}}<img
+      src="assets/img/full-screen.png"></p>
+    <p class="right-item item"><i class="fa fa-refresh" *ngIf="config.datasetId"  (click)="refreshDataset()"></i></p>
+  </div>
 </div>
 <div class="ios-fullscreen" *ngIf="this.iOS && this.isFullScreen">
   <a href="javascript:void(0)" (click)="exitFullScreen()">

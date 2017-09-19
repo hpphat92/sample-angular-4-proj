@@ -7,7 +7,7 @@ import {
   Http,
   RequestOptionsArgs,
   Headers,
-  QueryEncoder
+  QueryEncoder, ResponseOptions
 } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
@@ -85,13 +85,26 @@ export class ExtendedHttpService extends Http {
   public intercept(observable: Observable<Response>, config?: any): Observable<Response> {
     let args = arguments;
     config = config || {};
+    if (!(window as any).navigator.onLine) {
+      if (!config.skipAlert) {
+        this._toast.error(null, 'Network Error');
+      }
+      return new Observable<Response>((subscriber) => {
+        subscriber.error(new Response(new ResponseOptions({
+          body: {
+            message: 'Network error',
+            status: 0
+          }
+        })));
+      });
+    }
     let shareRequest = observable.share();
     this.showProgress();
     shareRequest.map((resp) => resp.json()).subscribe(
       (resp) => {
         // subscribe
         if (resp.message) {
-          this._toast.success(resp.message, 'Success');
+          this._toast.success(null, resp.message);
         }
         this.hideProgress();
       },
@@ -104,20 +117,23 @@ export class ExtendedHttpService extends Http {
             this.localStorageService.remove('logged-time');
             this._router.navigate(['home', 'login']);
             // error
-            if(!config.skipAlert) {
-              this._toast.success(errObj.message, "Error");
+            if (!config.skipAlert) {
+              this._toast.error(null, errObj.message);
             }
           } else if (err.status === 403) {
             this._router.navigate(['forbidden']);
             // error
             return;
           } else {
-            if(!config.skipAlert) {
-              this._toast.error(errObj.message, "Error");
+            if (!config.skipAlert) {
+              this._toast.error(null, errObj.message || 'An error has occurred');
             }
           }
           this.hideProgress();
         } catch (e) {
+          if (!config.skipAlert) {
+            this._toast.error(null, 'An error has occurred');
+          }
           this.hideProgress();
         }
 

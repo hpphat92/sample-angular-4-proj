@@ -1,3 +1,4 @@
+$item-service-width: 55px;
 @media screen and (min-width: 1620px) {
   .row.shift-up {
     > * {
@@ -36,8 +37,18 @@
   .table-portfolio {
     border-spacing: 0 12px;
     border-collapse: separate;
+    table-layout: fixed;
     thead {
       font-weight: bolder;
+    }
+    tbody {
+      & > tr {
+        & > td {
+          &:last-child {
+            padding-right: 3px !important;
+          }
+        }
+      }
     }
     tr {
       background-color: #f7f5f5;
@@ -55,6 +66,7 @@
       padding: 5px 5px;
       display: flex;
       justify-content: flex-end;
+      flex-wrap: wrap;
       .item {
         padding: 0 5px;
         &:hover {
@@ -72,13 +84,13 @@
         }
         img {
           cursor: pointer;
-          width: 55px;
+          width: $item-service-width;
         }
       }
       .item-placeholder {
         cursor: pointer;
-        width: 55px;
-        height: 55px;
+        width: $item-service-width;
+        height: $item-service-width;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -87,6 +99,8 @@
         border: 1px solid #000;
         font-size: 1.1em;
         font-weight: bold;
+        margin: 0 5px;
+        min-width: $item-service-width;
         &:hover {
           opacity: 0.8;
         }
@@ -102,5 +116,21 @@
   .portfolio-container {
     flex-grow: 1;
     //height: calc(100vh - 120px);
+  }
+  .customisation-icon {
+    width: 20px;
+  }
+  .name-group {
+    display: flex;
+    .name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    a {
+      position: relative;
+      left: 20px;
+    }
   }
 }

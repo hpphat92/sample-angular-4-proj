@@ -81,12 +81,12 @@ export class ForgotPassword {
     if (nMins > 0) {
       this._translate.get('error.account_blocked_minutes').subscribe((msg: string) => {
         msg = msg.replace('{nMins}', `${nMins}`);
-        this._toast.error(msg);
+        this._toast.error(null, msg);
       });
     } else {
       this._translate.get('error.account_blocked_seconds').subscribe((msg: string) => {
         msg = msg.replace('{nSecs}', `${~~(invalidTimeRange / 1000)}`);
-        this._toast.error(msg);
+        this._toast.error(null, msg);
       });
     }
     return true;
@@ -136,7 +136,11 @@ export class ForgotPassword {
           this._localStorage.set(this._buildStorageKeyFromEmail(this.frm.value.email), err.data.blockTo);
           this.showMessageInvalidTime(this.frm.value.email);
         } else {
-          this._toast.error(err.message || `${err.status} ${(err as any).statusText}`, "Error");
+          if (err && (err.message || err.status)) {
+            this._toast.error(null, err.message || `${err.status} ${(err as any).statusText}`);
+          } else {
+            this._toast.error(null, 'An error has occurred');
+          }
         }
       });
       // your code goes here

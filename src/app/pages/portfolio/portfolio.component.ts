@@ -1,8 +1,12 @@
-import { AfterViewInit, Component, ElementRef, Renderer2 } from "@angular/core";
+import {
+  AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild,
+  ViewChildren
+} from "@angular/core";
 import { AppConstant } from "../../app.constant";
 import { ExtendedHttpService } from "../../shared/services/http/http.service";
 import { AllServiceModalComponent } from "./all-services/all-services.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'portfolio',
@@ -10,26 +14,34 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   templateUrl: './portfolio.html'
 })
 export class Portfolio implements AfterViewInit {
-
+  public maxViewItem = 4;
+  public firstServiceContainer = null;
+  public sizePerService = 55 + 10;
   public items = [];
   public position = {
     position: 'top cursor'
   };
 
+  @ViewChildren('listService') set content(list: any) {
+    if (list && list.length) {
+      this.firstServiceContainer = list.first.nativeElement.querySelector('.service-container');
+      this.computeMaxViewServices();
+      this.changeDetectorRef.detectChanges();
+    }
+  }
+
   ngAfterViewInit(): void {
     this._http.get(`${AppConstant.domain}/w-api/portfolios`).map((json) => json.json()).subscribe((resp) => {
-      this.items = (resp.data as any).companies;
+      this.items = _.sortBy((resp.data as any).companies, 'name');
       this.appendHtml((resp.data as any).embedCode);
-      // this.appendHtml('<iframe src="https://feed.mikle.com/widget/v2/44162/"></iframe>');
-
     });
   }
 
   constructor(private _http: ExtendedHttpService,
               private _modalService: NgbModal,
               private elementRef: ElementRef,
-              private _renderer2: Renderer2) {
-
+              private _renderer2: Renderer2,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   private appendHtml(htmlString) {
@@ -64,4 +76,17 @@ export class Portfolio implements AfterViewInit {
     });
   }
 
+  public computeMaxViewServices() {
+    if (this.firstServiceContainer) {
+      let width = this.firstServiceContainer.offsetWidth;
+      this.maxViewItem = Math.min(Math.floor(width / this.sizePerService) - 1, 5) - 1;
+      if (this.maxViewItem < 0) {
+        this.maxViewItem = 0;
+      }
+    }
+  }
+
+  @HostListener('window:resize', ['$event']) onWindowResize(event) {
+    this.computeMaxViewServices();
+  }
 }

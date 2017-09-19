@@ -11,11 +11,14 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
   @Input()
   public config: any;
+  public minFrameHeight = 320;
   public iframe: any;
   public size: any;
   // public ratioHeightPerWidth: number = 1.83722037125;
   public ratioHeightPerWidth: number = 1.815;
+  // public ratioHeightPerWidth: number = 1.83;
   public powerBiRecord;
+  public subButtonContainer;
   public iOS: boolean = false;
   public isIPhone: boolean = !!navigator.platform && /iPhone/.test(navigator.platform);
   public isFullScreen: boolean = false;
@@ -23,18 +26,24 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
 
   private calculateFrameSize(nativeSize) {
+    this.ratioHeightPerWidth = (1.945 * nativeSize.height) / (nativeSize.height + 35);
     if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
       let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
       return {
-        width: (iframeWidth),
-        height: (+nativeSize.height)
+        width: Math.max(+iframeWidth, this.minFrameHeight),
+        height: Math.max(+nativeSize.height, this.minFrameHeight)
       }
     } else {
+      this.ratioHeightPerWidth = (1.86 * nativeSize.height) / (nativeSize.height + 35);
       let iframeWidth = nativeSize.width;
       let iframeHeight = (iframeWidth) / this.ratioHeightPerWidth + 36;
+      if(iframeHeight < this.minFrameHeight){
+        iframeHeight = this.minFrameHeight;
+        iframeWidth = (iframeHeight-36)*this.ratioHeightPerWidth;
+      }
       return {
-        width: (iframeWidth),
-        height: Math.max(+iframeHeight, 320)
+        width: Math.max(+iframeWidth, this.minFrameHeight),
+        height: iframeHeight
       }
     }
 
@@ -61,13 +70,15 @@ export class PowerbiContainerComponent implements AfterViewInit {
     this.iframe.setAttribute('allowfullscreen', '');
     let size = this.calculateFrameSize({
       width: nativeSize.width,
-      height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), 320)
+      height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), this.minFrameHeight)
     });
     this.iframe.setAttribute('style', `overflow:hidden;overflow-x:hidden;overflow-y:hidden;${'height:' + (size.height) + 'px'};left:0px;right:0px;width:${size.width}px; margin: auto;`);
+    this.subButtonContainer && this.subButtonContainer.setAttribute('style', `width:${size.width}px`);
   }
 
   ngAfterViewInit() {
     this.iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+    this.subButtonContainer = this.elementRef.nativeElement.querySelector('.sub-button-container .sub-btn');
     this.configPowerbiReport();
     // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
     //   let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
@@ -88,7 +99,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
       this.currentStyle = this.iframe.getAttribute('style');
       let size = this.calculateFrameSize({
         width: window.innerWidth,
-        height: Math.max(window.innerHeight - (this.isIPhone ? 0 : 50), 320)
+        height: Math.max(window.innerHeight - (this.isIPhone ? 0 : 50), this.minFrameHeight)
       });
       this.iframe.setAttribute('style', `position:fixed; top:0; left:0; right: 0; width:${size.width}px; height:${size.height}px; border:none; margin:auto; overflow:hidden; z-index:999999;`);
     }
@@ -125,14 +136,15 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event']) onWindowResize(event) {
     if (!this.iOS || !this.isFullScreen) {
-      let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
+      let nativeSize = this.elementRef.nativeElement.parentElement.getBoundingClientRect();
       let size = this.calculateFrameSize({
         width: nativeSize.width,
-        height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), 320)
+        height: Math.max(nativeSize.height - (this.isIPhone ? 0 : 50), this.minFrameHeight)
       });
-
       this.iframe.style.height = size.height + 'px';
       this.iframe.style.width = size.width + 'px';
+      this.subButtonContainer && this.subButtonContainer.setAttribute('style', `width:${size.width}px`);
+
       // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
       //   let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
       //   this.iframe.style.width = iframeWidth + 'px';
@@ -146,11 +158,16 @@ export class PowerbiContainerComponent implements AfterViewInit {
     } else {
       let size = this.calculateFrameSize({
         width: window.innerWidth,
-        height: Math.max(window.innerHeight - (this.isIPhone ? 0 : 50), 320)
+        height: Math.max(window.innerHeight - (this.isIPhone ? 0 : 50), this.minFrameHeight)
       });
       this.iframe.style.width = `${size.width}px`;
       this.iframe.style.height = `${size.height}px`;
+      this.subButtonContainer && this.subButtonContainer.setAttribute('style', `width:${size.width}px`);
     }
+
+
+    this.subButtonContainer && this.subButtonContainer.setAttribute('style', `width:${this.iframe.style.width}`);
+
   }
 
 }

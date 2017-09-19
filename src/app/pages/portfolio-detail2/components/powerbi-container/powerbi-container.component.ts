@@ -26,18 +26,24 @@ export class PowerbiContainerComponent implements AfterViewInit {
 
 
   private calculateFrameSize(nativeSize) {
+    this.ratioHeightPerWidth = (1.945 * nativeSize.height) / (nativeSize.height + 35);
     if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
       let iframeWidth = (nativeSize.height - 36) * this.ratioHeightPerWidth;
       return {
-        width: (iframeWidth),
-        height: (+nativeSize.height)
+        width: Math.max(+iframeWidth, this.minFrameHeight),
+        height: Math.max(+nativeSize.height, this.minFrameHeight)
       }
     } else {
+      this.ratioHeightPerWidth = (1.86 * nativeSize.height) / (nativeSize.height + 35);
       let iframeWidth = nativeSize.width;
       let iframeHeight = (iframeWidth) / this.ratioHeightPerWidth + 36;
+      if(iframeHeight < this.minFrameHeight){
+        iframeHeight = this.minFrameHeight;
+        iframeWidth = (iframeHeight-36)*this.ratioHeightPerWidth;
+      }
       return {
-        width: (iframeWidth),
-        height: Math.max(+iframeHeight, this.minFrameHeight)
+        width: Math.max(+iframeWidth, this.minFrameHeight),
+        height: iframeHeight
       }
     }
 

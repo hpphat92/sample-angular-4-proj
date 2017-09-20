@@ -79,7 +79,7 @@ export class Portfolio implements AfterViewInit {
   public computeMaxViewServices() {
     if (this.firstServiceContainer) {
       let width = this.firstServiceContainer.offsetWidth;
-      this.maxViewItem = Math.min(Math.floor(width / this.sizePerService) - 1, 5) - 1;
+      this.maxViewItem = Math.min(Math.floor(width / this.sizePerService) - 1, 4);
       if (this.maxViewItem < 0) {
         this.maxViewItem = 0;
       }

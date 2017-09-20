@@ -3,6 +3,8 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, ActivatedRoute, R
 import { ExtendedHttpService } from "../shared/services/http/http.service";
 import { UserToken } from "../shared/models/user-token.model";
 import { AuthService } from "../shared/services/auth/auth.service";
+import { NotSupportMobileModalComponent } from "../shared/not-support-mobile/not-support-mobile.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable()
 export class CheckAdminToken implements Resolve<any> {
@@ -37,7 +39,34 @@ export class CheckAdminToken implements Resolve<any> {
     })
   }
 }
+@Injectable()
+export class CheckMobileVisible implements Resolve<any> {
+  constructor(private _modalService: NgbModal,
+              private _router: Router) {
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return new Promise((resolve, reject) => {
+      if (/Mobi/.test(navigator.userAgent)) {
+        // mobile!
+
+        let modalRef = this._modalService.open(NotSupportMobileModalComponent);
+        modalRef.result.then(data => {
+          this._router.navigate(['app', 'portfolio']);
+          resolve();
+        }, (err) => {
+          this._router.navigate(['app', 'portfolio']);
+          resolve();
+        });
+      } else {
+        // [routerLink]="item.id?['/app/customisation/'+item.id]:['']"
+        resolve();
+      }
+    })
+  }
+}
 export const SHARE_RESOLVES = [
-  CheckAdminToken
+  CheckAdminToken,
+  CheckMobileVisible
 ];
 

@@ -22,6 +22,5 @@ import { Ng2TooltipOverlayModule } from "ng2-tooltip-overlay";
   ],
   providers: [
   ],
-
 })
 export class PortfolioModule {}

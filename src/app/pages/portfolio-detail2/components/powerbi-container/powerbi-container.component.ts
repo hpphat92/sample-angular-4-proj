@@ -19,7 +19,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   // public ratioHeightPerWidth: number = 1.83;
   public powerBiRecord;
   public subButtonContainer;
-  public iOS: boolean = !!navigator.userAgent && /ipad|iphone|ipod/.test(navigator.userAgent.toLowerCase());;
+  public iOS: boolean = !!navigator.userAgent && /ipad|iphone|ipod/.test(navigator.userAgent.toLowerCase());
   public isIPhone: boolean = !!navigator.userAgent && /iphone|ipod/.test(navigator.userAgent.toLowerCase());
   public isFullScreen: boolean = false;
   public currentStyle: any;

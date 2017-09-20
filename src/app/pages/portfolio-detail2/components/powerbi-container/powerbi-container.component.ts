@@ -19,7 +19,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   // public ratioHeightPerWidth: number = 1.83;
   public powerBiRecord;
   public subButtonContainer;
-  public iOS: boolean = false;
+  public iOS: boolean = !!navigator.userAgent && /ipad|iphone|ipod/.test(navigator.userAgent.toLowerCase());;
   public isIPhone: boolean = !!navigator.userAgent && /iphone|ipod/.test(navigator.userAgent.toLowerCase());
   public isFullScreen: boolean = false;
   public currentStyle: any;
@@ -77,7 +77,6 @@ export class PowerbiContainerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.iOS = !!navigator.userAgent && /ipad|iphone|ipod/.test(navigator.userAgent);
     this.subButtonContainer = this.elementRef.nativeElement.querySelector('.sub-button-container .sub-btn');
     this.configPowerbiReport();
     // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {

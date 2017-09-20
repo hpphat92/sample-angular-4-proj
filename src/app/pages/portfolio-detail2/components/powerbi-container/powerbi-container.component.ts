@@ -100,6 +100,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
         width: window.innerWidth,
         height: Math.max(window.innerHeight - (this.isIPhone ? 0 : 50), this.minFrameHeight)
       });
+      document.querySelector('powerbi-container').setAttribute('style', '-webkit-overflow-scrolling: auto;');
       this.iframe.setAttribute('style', `position:fixed; top:0; left:0; right: 0; width:${size.width}px; height:${size.height}px; border:none; margin:auto; overflow:hidden; z-index:999999;`);
     }
   }
@@ -107,6 +108,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public exitFullScreen(): void {
     if (this.iOS && this.isFullScreen) {
       this.isFullScreen = false;
+      document.querySelector('powerbi-container').setAttribute('style', '-webkit-overflow-scrolling: touch;');
       this.iframe.setAttribute('style', this.currentStyle);
       // let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
       // let size = this.calculateFrameSize({

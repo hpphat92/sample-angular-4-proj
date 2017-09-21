@@ -21,6 +21,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public subButtonContainer;
   public iOS: boolean = !!navigator.userAgent && /ipad|iphone|ipod/.test(navigator.userAgent.toLowerCase());
   public isIPhone: boolean = !!navigator.userAgent && /iphone|ipod/.test(navigator.userAgent.toLowerCase());
+  public isMobile: boolean = !!navigator.userAgent && /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(navigator.userAgent.toLowerCase());
   public isFullScreen: boolean = false;
   public currentStyle: any;
 

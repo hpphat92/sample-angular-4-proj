@@ -1,5 +1,5 @@
 <div></div>
-<div class="sub-button-container">
+<div *ngIf="!isMobile" class="sub-button-container">
   <div class="sub-btn" *ngIf="config.datasetId || !isIPhone">
     <div class="fake-item"></div>
     <p class="left-item item" *ngIf="!isIPhone" (click)="goFullScreen()">{{'label.click_full_screen' | translate}}<img

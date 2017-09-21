@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, ActivatedRoute, R
 import { ExtendedHttpService } from "../shared/services/http/http.service";
 import { UserToken } from "../shared/models/user-token.model";
 import { AuthService } from "../shared/services/auth/auth.service";
-import { NotSupportMobileModalComponent } from "../shared/not-support-mobile/not-support-mobile.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ModalDialogService } from "../shared/modal-dialog/modal-dialog.service";
 
 @Injectable()
 export class CheckAdminToken implements Resolve<any> {
@@ -42,16 +42,15 @@ export class CheckAdminToken implements Resolve<any> {
 @Injectable()
 export class CheckMobileVisible implements Resolve<any> {
   constructor(private _modalService: NgbModal,
-              private _router: Router) {
+              private _router: Router,
+              private _modalDialogService: ModalDialogService) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return new Promise((resolve, reject) => {
       if (/Mobi/.test(navigator.userAgent)) {
         // mobile!
-
-        let modalRef = this._modalService.open(NotSupportMobileModalComponent);
-        modalRef.result.then(data => {
+        this._modalDialogService.open('Info', 'Service customisation is not available in mobile or tablet view. Please use your desktop to access this function').then(data => {
           this._router.navigate(['app', 'portfolio']);
           resolve();
         }, (err) => {

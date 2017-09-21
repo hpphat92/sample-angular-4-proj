@@ -8,7 +8,7 @@ import { AllServiceModalComponent } from "./all-services/all-services.component"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import * as _ from 'lodash';
 import { Router } from "@angular/router";
-import { NotSupportMobileModalComponent } from "../../shared/not-support-mobile/not-support-mobile.component";
+import { ModalDialogService } from "app/shared/modal-dialog/modal-dialog.service";
 
 @Component({
   selector: 'portfolio',
@@ -43,6 +43,7 @@ export class Portfolio implements AfterViewInit {
               private _modalService: NgbModal,
               private elementRef: ElementRef,
               private _renderer2: Renderer2,
+              private _modalDialogService: ModalDialogService,
               private changeDetectorRef: ChangeDetectorRef,
               private _router: Router) {
   }
@@ -92,9 +93,7 @@ export class Portfolio implements AfterViewInit {
   public gotoCustomisationView(item) {
     if (/Mobi/.test(navigator.userAgent)) {
       // mobile!
-
-      let modalRef = this._modalService.open(NotSupportMobileModalComponent);
-      modalRef.result.then(data => {
+      this._modalDialogService.open('Info', 'Service customisation is not available in mobile or tablet view. Please use your desktop to access this function').then(data => {
       }, (err) => {
       });
     } else {

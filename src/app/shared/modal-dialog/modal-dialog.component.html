@@ -1,13 +1,15 @@
 <div class="modal-alythex">
   <div class="modal-header">
-    <h4 class="modal-title">Info</h4>
+    <h4 class="modal-title">{{title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <!--<p><b>{{ serviceItem.name }}</b> has <b>{{ serviceItem.services.length }}</b> active services</p>-->
-    Service customisation is not available in mobile or tablet view. Please use your desktop to access this function
+    <!--Service customisation is not available in mobile or tablet view. Please use your desktop to access this function-->
+
+    {{ content }}
   </div>
   <div class="modal-footer text-right">
     <button class="btn btn-alythex" (click)="close()">

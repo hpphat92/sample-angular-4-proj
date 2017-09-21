@@ -4,13 +4,14 @@ import { Router } from "@angular/router";
 
 
 @Component({
-  selector: 'not-support-mobile',
-  templateUrl: './not-support-mobile.component.html',
-  styleUrls: ['./not-support-mobile.component.scss'],
+  selector: 'modal-dialog',
+  templateUrl: './modal-dialog.component.html',
+  styleUrls: ['./modal-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class NotSupportMobileModalComponent implements OnInit {
-  public serviceItem: any;
+export class ModalDialogComponent implements OnInit {
+  public title: any;
+  public content: any;
 
   constructor(private activeModal: NgbActiveModal, private _router: Router) {
   }
@@ -21,10 +22,4 @@ export class NotSupportMobileModalComponent implements OnInit {
   public close(): void {
     this.activeModal.dismiss();
   }
-
-  public gotoService(service): void {
-    this.close();
-    this._router.navigate(['app', 'portfolio-detail', service.mappingId]);
-  }
-
 }

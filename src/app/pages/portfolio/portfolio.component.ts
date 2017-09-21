@@ -62,11 +62,12 @@ export class Portfolio implements AfterViewInit {
     }
     iframeDoc.open();
     (iframeDoc as any).write(htmlString);
-    (iframeDoc as any).write('<style>iframe {border: 0; width: 100%; height: 100%;} body {margin: 0}</style>');
+    (iframeDoc as any).write('<style>iframe {border: 0; } body {margin: 0}</style>');
     iframeDoc.close();
     setTimeout(() => {
-      (iframe as any).width = (iframeDoc as any).body.scrollWidth;
-      (iframe as any).height = (iframeDoc as any).body.scrollHeight;
+      let size = iframe.getBoundingClientRect();
+      (iframe as any).width = Math.floor(size.width);
+      (iframe as any).height = Math.floor(size.height);
     }, 5000);
 
   }

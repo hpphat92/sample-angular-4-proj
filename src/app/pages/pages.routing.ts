@@ -4,7 +4,7 @@ import { ModuleWithProviders } from "@angular/core";
 import { AnonymousPage } from "./../shared/services/auth-guard";
 import { AuthorizedPage } from "../shared/services/auth-guard/auth-guard.service";
 import { UnAuthPage } from "./un-auth-page/un-auth-page.component";
-import { CheckAdminToken } from "./page.resolve";
+import { CheckAdminToken, CheckMobileVisible } from "./page.resolve";
 
 // noinspection TypeScriptValidateTypes
 
@@ -50,7 +50,10 @@ export const routes: Routes = [
         path: 'portfolio-detail/:id',
         loadChildren: './portfolio-detail2/portfolio-detail2.module#PortfolioDetail2Module'
       },
-      {path: 'customisation/:id', loadChildren: './customisation/customisation.module#CustomisationModule'},
+      {path: 'customisation/:id', loadChildren: './customisation/customisation.module#CustomisationModule',
+        resolve: {
+          checkMobileVisible: CheckMobileVisible
+        }},
       {path: 'submit-data', loadChildren: './submit-data/submit-data.module#SubmitDataModule'},
       {path: 'test1', loadChildren: './test1/test1.module#Test1Module'},
       {path: 'support', loadChildren: './support/support.module#SupportModule'},

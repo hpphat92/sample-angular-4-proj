@@ -30,7 +30,7 @@
       <tr *ngFor="let item of items" #listService>
 
         <td class="text-left">
-          <a [routerLink]="item.id?['/app/customisation/'+item.id]:['']" *ngIf="item.customSheetUrlCount">
+          <a href="javascript:void(0)" (click)="gotoCustomisationView(item)" *ngIf="item.customSheetUrlCount">
             <img class="customisation-icon" src="assets/img/Customisation_icon.png" alt="">
           </a>
         </td>

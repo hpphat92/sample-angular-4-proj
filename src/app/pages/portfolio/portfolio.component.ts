@@ -7,6 +7,8 @@ import { ExtendedHttpService } from "../../shared/services/http/http.service";
 import { AllServiceModalComponent } from "./all-services/all-services.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import * as _ from 'lodash';
+import { Router } from "@angular/router";
+import { NotSupportMobileModalComponent } from "../../shared/not-support-mobile/not-support-mobile.component";
 
 @Component({
   selector: 'portfolio',
@@ -41,7 +43,8 @@ export class Portfolio implements AfterViewInit {
               private _modalService: NgbModal,
               private elementRef: ElementRef,
               private _renderer2: Renderer2,
-              private changeDetectorRef: ChangeDetectorRef) {
+              private changeDetectorRef: ChangeDetectorRef,
+              private _router: Router) {
   }
 
   private appendHtml(htmlString) {
@@ -83,6 +86,20 @@ export class Portfolio implements AfterViewInit {
       if (this.maxViewItem < 0) {
         this.maxViewItem = 0;
       }
+    }
+  }
+
+  public gotoCustomisationView(item) {
+    if (/Mobi/.test(navigator.userAgent)) {
+      // mobile!
+
+      let modalRef = this._modalService.open(NotSupportMobileModalComponent);
+      modalRef.result.then(data => {
+      }, (err) => {
+      });
+    } else {
+      // [routerLink]="item.id?['/app/customisation/'+item.id]:['']"
+      this._router.navigate(['app', 'customisation', item.id]);
     }
   }
 

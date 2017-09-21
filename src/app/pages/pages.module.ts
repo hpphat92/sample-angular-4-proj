@@ -10,17 +10,19 @@ import { SHARED_SERVICES } from "../shared/index";
 import { UnAuthPageModule } from "./un-auth-page/un-auth-page.module";
 import { AllServiceModalComponent } from "./portfolio/all-services/all-services.component";
 import { SHARE_RESOLVES } from "./page.resolve";
+import { NotSupportMobileModalComponent } from "../shared/not-support-mobile/not-support-mobile.component";
 
 @NgModule({
   imports: [CommonModule, AppTranslationModule, NgaModule, routing, UnAuthPageModule],
-  declarations: [Pages, AllServiceModalComponent
+  declarations: [Pages, AllServiceModalComponent, NotSupportMobileModalComponent
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ...SHARED_SERVICES,
     ...SHARE_RESOLVES
   ],
   entryComponents: [
-    AllServiceModalComponent
+    AllServiceModalComponent,
+    NotSupportMobileModalComponent
   ]
 })
 export class PagesModule {

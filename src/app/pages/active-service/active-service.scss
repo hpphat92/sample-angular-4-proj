@@ -1,4 +1,7 @@
 :host {
-  height: 60vh;
-  display: block;
+  flex-grow: 1;
+  display: flex;
+  .container-iframe {
+    flex-grow: 1;
+  }
 }

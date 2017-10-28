@@ -1,5 +1,5 @@
 <div></div>
-<div class="sub-button-container">
+<div *ngIf="!isMobile" class="sub-button-container">
   <div class="sub-btn" *ngIf="config.datasetId || !isIPhone">
     <div class="fake-item"></div>
     <p class="left-item item" *ngIf="!isIPhone" (click)="goFullScreen()">{{'label.click_full_screen' | translate}}<img
@@ -7,7 +7,7 @@
     <p class="right-item item"><i class="fa fa-refresh" *ngIf="config.datasetId"  (click)="refreshDataset()"></i></p>
   </div>
 </div>
-<div class="ios-fullscreen" *ngIf="this.iOS && this.isFullScreen">
+<div class="ios-fullscreen" *ngIf="iOS && isFullScreen">
   <a href="javascript:void(0)" (click)="exitFullScreen()">
     <p class="m-b-10">Click here to exit full screen <img src="assets/img/exit-full-screen.png"></p>
   </a>

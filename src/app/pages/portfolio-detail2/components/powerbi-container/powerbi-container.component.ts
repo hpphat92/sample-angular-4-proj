@@ -19,8 +19,9 @@ export class PowerbiContainerComponent implements AfterViewInit {
   // public ratioHeightPerWidth: number = 1.83;
   public powerBiRecord;
   public subButtonContainer;
-  public iOS: boolean = false;
-  public isIPhone: boolean = !!navigator.platform && /iPhone/.test(navigator.platform);
+  public iOS: boolean = !!navigator.userAgent && /ipad|iphone|ipod/.test(navigator.userAgent.toLowerCase());
+  public isIPhone: boolean = !!navigator.userAgent && /iphone|ipod/.test(navigator.userAgent.toLowerCase());
+  public isMobile: boolean = !!navigator.userAgent && /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(navigator.userAgent.toLowerCase());
   public isFullScreen: boolean = false;
   public currentStyle: any;
 
@@ -77,7 +78,6 @@ export class PowerbiContainerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
     this.subButtonContainer = this.elementRef.nativeElement.querySelector('.sub-button-container .sub-btn');
     this.configPowerbiReport();
     // if (nativeSize.width > nativeSize.height * this.ratioHeightPerWidth) {
@@ -101,6 +101,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
         width: window.innerWidth,
         height: Math.max(window.innerHeight - (this.isIPhone ? 0 : 50), this.minFrameHeight)
       });
+      document.querySelector('powerbi-container').setAttribute('style', '-webkit-overflow-scrolling: auto;');
       this.iframe.setAttribute('style', `position:fixed; top:0; left:0; right: 0; width:${size.width}px; height:${size.height}px; border:none; margin:auto; overflow:hidden; z-index:999999;`);
     }
   }
@@ -108,6 +109,7 @@ export class PowerbiContainerComponent implements AfterViewInit {
   public exitFullScreen(): void {
     if (this.iOS && this.isFullScreen) {
       this.isFullScreen = false;
+      document.querySelector('powerbi-container').setAttribute('style', '-webkit-overflow-scrolling: touch;');
       this.iframe.setAttribute('style', this.currentStyle);
       // let nativeSize = this.elementRef.nativeElement.getBoundingClientRect();
       // let size = this.calculateFrameSize({

@@ -7,6 +7,7 @@ import { NgaModule } from "../../theme/nga.module";
 import { Portfolio } from "./portfolio.component";
 import { routing } from "./portfolio.routing";
 import { Ng2TooltipOverlayModule } from "ng2-tooltip-overlay";
+import { ModalDialogModule } from "../../shared/modal-dialog/modal-dialog.module";
 
 @NgModule({
   imports: [
@@ -15,13 +16,13 @@ import { Ng2TooltipOverlayModule } from "ng2-tooltip-overlay";
     AppTranslationModule,
     NgaModule,
     Ng2TooltipOverlayModule,
-    routing
+    routing,
+    ModalDialogModule
   ],
   declarations: [
     Portfolio,
   ],
   providers: [
   ],
-
 })
 export class PortfolioModule {}

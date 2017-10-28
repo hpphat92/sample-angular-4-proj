@@ -15,9 +15,9 @@
     </div>
     <table class="table table-portfolio">
       <colgroup>
-        <col width="40">
+        <col width="25">
         <col>
-        <col width="100">
+        <col width="165">
         <col>
       </colgroup>
       <!--<thead>-->
@@ -30,7 +30,7 @@
       <tr *ngFor="let item of items" #listService>
 
         <td class="text-left">
-          <a [routerLink]="item.id?['/app/customisation/'+item.id]:['']" *ngIf="item.customSheetUrlCount">
+          <a href="javascript:void(0)" (click)="gotoCustomisationView(item)" *ngIf="item.customSheetUrlCount">
             <img class="customisation-icon" src="assets/img/Customisation_icon.png" alt="">
           </a>
         </td>

@@ -10,9 +10,10 @@ import { SHARED_SERVICES } from "../shared/index";
 import { UnAuthPageModule } from "./un-auth-page/un-auth-page.module";
 import { AllServiceModalComponent } from "./portfolio/all-services/all-services.component";
 import { SHARE_RESOLVES } from "./page.resolve";
+import { ModalDialogModule } from "../shared/modal-dialog/modal-dialog.module";
 
 @NgModule({
-  imports: [CommonModule, AppTranslationModule, NgaModule, routing, UnAuthPageModule],
+  imports: [CommonModule, AppTranslationModule, NgaModule, routing, UnAuthPageModule, ModalDialogModule],
   declarations: [Pages, AllServiceModalComponent
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

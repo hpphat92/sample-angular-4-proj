@@ -7,6 +7,8 @@ import { ExtendedHttpService } from "../../shared/services/http/http.service";
 import { AllServiceModalComponent } from "./all-services/all-services.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import * as _ from 'lodash';
+import { Router } from "@angular/router";
+import { ModalDialogService } from "app/shared/modal-dialog/modal-dialog.service";
 
 @Component({
   selector: 'portfolio',
@@ -41,7 +43,9 @@ export class Portfolio implements AfterViewInit {
               private _modalService: NgbModal,
               private elementRef: ElementRef,
               private _renderer2: Renderer2,
-              private changeDetectorRef: ChangeDetectorRef) {
+              private _modalDialogService: ModalDialogService,
+              private changeDetectorRef: ChangeDetectorRef,
+              private _router: Router) {
   }
 
   private appendHtml(htmlString) {
@@ -59,7 +63,7 @@ export class Portfolio implements AfterViewInit {
     }
     iframeDoc.open();
     (iframeDoc as any).write(htmlString);
-    (iframeDoc as any).write('<style>iframe {border: 0; width: 100%; height: 100%;} body {margin: 0}</style>');
+    (iframeDoc as any).write('<style>iframe {border: 0; width: calc(100% - 1px); height: 100%;} body {margin: 0}</style>');
     iframeDoc.close();
     setTimeout(() => {
       (iframe as any).width = (iframeDoc as any).body.scrollWidth;
@@ -79,10 +83,22 @@ export class Portfolio implements AfterViewInit {
   public computeMaxViewServices() {
     if (this.firstServiceContainer) {
       let width = this.firstServiceContainer.offsetWidth;
-      this.maxViewItem = Math.min(Math.floor(width / this.sizePerService) - 1, 5) - 1;
+      this.maxViewItem = Math.min(Math.floor(width / this.sizePerService) - 1, 4);
       if (this.maxViewItem < 0) {
         this.maxViewItem = 0;
       }
+    }
+  }
+
+  public gotoCustomisationView(item) {
+    if (/Mobi/.test(navigator.userAgent)) {
+      // mobile!
+      this._modalDialogService.open('Info', 'Service customisation is not available in mobile or tablet view. Please use your desktop to access this function').then(data => {
+      }, (err) => {
+      });
+    } else {
+      // [routerLink]="item.id?['/app/customisation/'+item.id]:['']"
+      this._router.navigate(['app', 'customisation', item.id]);
     }
   }
 

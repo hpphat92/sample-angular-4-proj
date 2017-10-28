@@ -81,7 +81,7 @@ a {
 
 .al-main {
   margin-left: $left-space;
-  padding: $top-height 0 12px 0;
+  padding: $top-height 0 10px 0;
   position: relative;
   height: 100%;
 }
@@ -224,9 +224,6 @@ a {
   .al-footer {
     height: 112px;
     text-align: center;
-  }
-  .al-main {
-    padding-bottom: 20px;
   }
   .al-footer-main {
     float: none;

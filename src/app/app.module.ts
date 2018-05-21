@@ -63,7 +63,6 @@ export type StoreType = {
       storageType: 'localStorage'
     }),
     ToastrModule.forRoot(),
-    ToastContainerModule.forRoot(),
     PagesModule,
     LoadingBarModule,
     SelectModule,

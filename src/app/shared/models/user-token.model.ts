@@ -13,3 +13,8 @@ export class UserToken {
     this.isLoggedInAsImperson = false;
   }
 }
+
+export interface SettingInfo {
+  key: string;
+  value: string;
+}

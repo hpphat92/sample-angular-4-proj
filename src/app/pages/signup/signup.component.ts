@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
-import { AppConstant } from "../../app.constant";
 import { ToastrService } from "ngx-toastr";
-import { AuthService } from "../../shared/services/auth/auth.service";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { AppConstant } from "../../app.constant";
+import { AuthService, Util } from "../../shared/services";
 import { ApiResponse } from "../../shared/models/api-response.model";
-import { Router } from "@angular/router";
 import { EqualPasswordsValidator } from "../../theme/validators/equalPasswords.validator";
+import { TermAndConditionsComponent } from './terms-conditions';
 
 @Component({
   selector: 'signup',
@@ -23,10 +26,13 @@ export class Signup {
   public password: AbstractControl;
   public confirmPassword: AbstractControl;
   public submitted: boolean = false;
+  public settingKey: string = 'Terms & Conditions';
 
   constructor(private fb: FormBuilder,
               private _auth: AuthService,
               private _toast: ToastrService,
+              private _util: Util,
+              private _modalService: NgbModal,
               private _router: Router) {
     this.frm = fb.group({
       'firstName': ['', Validators.compose([Validators.required])],
@@ -35,7 +41,7 @@ export class Signup {
       'email': ['', Validators.compose([Validators.required, Validators.pattern(AppConstant.pattern.email)])],
       'password': ['', [Validators.required]],
       'confirmPassword': ['', [Validators.required]],
-
+      'agreedTermsAndConditions': [false, [Validators.requiredTrue]]
     }, {
       validator: EqualPasswordsValidator.validate('password', 'confirmPassword')
     });
@@ -64,5 +70,21 @@ export class Signup {
         this.frm.enable();
       });
     }
+  }
+
+  public showTermsAndConditions(): void {
+    let params = this._util.objectToURLSearchParams({key: this.settingKey});
+    this._auth.getTermsAndConditions().subscribe(resp => {
+      if(resp.status) {
+        let modalRef = this._modalService.open(TermAndConditionsComponent, 
+          {backdrop: 'static', size: 'lg', keyboard: false});
+        modalRef.componentInstance.termsAndConditions = resp.data.value;
+        modalRef.result.then(isSuccess => {
+        }, (err) => {
+        });
+      } else {
+        this._toast.error(resp.message, 'Error');
+      }
+    });
   }
 }

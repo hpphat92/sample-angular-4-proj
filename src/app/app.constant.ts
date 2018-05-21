@@ -1,6 +1,7 @@
 export const AppConstant = {
   // domain: 'http://115.75.6.162:44459',
-  domain: 'https://alythexapi.azurewebsites.net',
+  // domain: 'https://alythexapi.azurewebsites.net',
+  domain: 'https://alythexapi2.azurewebsites.net',
   // domain: 'http://localhost:55948',
 
   format: {

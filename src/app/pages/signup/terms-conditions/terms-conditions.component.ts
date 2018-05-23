@@ -25,7 +25,7 @@ export class TermAndConditionsComponent implements AfterViewInit {
     let iframe = iframes.find((i) => 'terms-conditions' == (i as any).getAttribute('id'));
     if (iframe) {
       (iframe as any).contentDocument.open();
-      (iframe as any).contentDocument.write(this.termsAndConditions);
+      (iframe as any).contentDocument.write(this.termsAndConditions || '');
       (iframe as any).contentDocument.close();
       (iframe as any).width = (iframe as any).parentElement.clientWidth - 30;
       (iframe as any).height = (iframe as any).contentWindow.document.body.clientWidth - (this.isMobile ? 5 : 30);

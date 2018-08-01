@@ -4,7 +4,17 @@
   .auth-main {
     background-color: $body-bg;
     .auth-content {
-      margin-top: 250px !important;
+      margin-top: 135px !important;
     }
+  }
+  .terms-conditions {
+    a {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .modal-dialog {
+    max-width: 90%;
   }
 }

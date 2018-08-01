@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppTranslationModule } from '../../app.translation.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AppTranslationModule } from '../../app.translation.module';
 import { NgaModule } from '../../theme/nga.module';
 
 import { Signup } from './signup.component';
+import { TermAndConditionsComponent } from './terms-conditions';
 import { routing } from './signup.routing';
 
 
@@ -14,11 +18,16 @@ import { routing } from './signup.routing';
     AppTranslationModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule.forRoot(),
     NgaModule,
     routing
   ],
   declarations: [
-    Signup
+    Signup,
+    TermAndConditionsComponent
+  ],
+  entryComponents: [
+    TermAndConditionsComponent
   ]
 })
 export class SignupModule {}

@@ -4,7 +4,7 @@ import * as moment from "moment";
 import { LocalStorageService } from "angular-2-local-storage";
 import { Observable, Subscription } from "rxjs";
 // App modules
-import { ApiResponse, UserInfo, UserToken } from "../../models";
+import { ApiResponse, UserInfo, UserToken, SettingInfo } from "../../models";
 import { AppConstant } from "../../../app.constant";
 import { Router } from "@angular/router";
 import { ExtendedHttpService } from "../http/http.service";
@@ -86,6 +86,12 @@ export class AuthService {
     this._localStorage.remove('userInfo');
     this._localStorage.remove('userToken');
     this._localStorage.remove('logged-time');
+  }
+
+  public getTermsAndConditions(): Observable<ApiResponse<SettingInfo>> {
+    return this._http.get(`${AppConstant.domain}/w-api/settings/terms-conditions`)
+    .map((resp) => resp.json())
+      .catch(this._handleError);
   }
 
   public signup(data): Observable<ApiResponse<any>> {
